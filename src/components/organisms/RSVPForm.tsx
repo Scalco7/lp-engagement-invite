@@ -192,8 +192,8 @@ export const RSVPForm: React.FC = () => {
                 <h3 className="font-serif text-3xl text-brand-dark mb-2">Confirmado!</h3>
                 <p className="font-sans text-base text-brand-dark/85 max-w-sm mx-auto leading-relaxed">
                   {formData.attending === 'yes'
-                    ? 'Sua presença foi confirmada no nosso sonho! Mal podemos esperar para celebrar esse grande dia com você. ❤️'
-                    : 'Obrigado por nos avisar. Sentiremos muito a sua falta nesse dia tão especial! ❤️'}
+                    ? 'Sua presença foi confirmada! Mal podemos esperar para celebrar essa festa de noivado com você. ❤️'
+                    : 'Obrigado por nos avisar. Sentiremos muito a sua falta nessa comemoração tão especial! ❤️'}
                 </p>
               </div>
               <button

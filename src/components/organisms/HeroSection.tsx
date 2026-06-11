@@ -5,9 +5,10 @@ import Countdown from '../molecules/Countdown';
 
 interface HeroSectionProps {
   scrollToSection: (id: string) => void;
+  engagementDate: Date;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engagementDate }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -40,15 +41,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
   if (isMobile) {
     return (
       <section id="hero" className="min-h-[calc(100vh-80px)] flex flex-col items-center justify-center py-12 px-4 relative overflow-hidden bg-brand-bg">
-        <div className="max-w-md mx-auto w-full space-y-8 text-center flex flex-col items-center">
-          
+        <div className="mx-auto w-full space-y-8 text-center flex flex-col items-center">
+
           {/* Main Photo Card */}
           <Reveal className="w-full relative p-2.5 bg-white border border-brand-blush/20 shadow-xl rounded-2xl overflow-hidden">
-            <div className="aspect-[3/4] rounded-xl overflow-hidden bg-neutral-100">
-              <img 
-                src="/imgs/test.jpg" 
-                alt="Julia e Felipe" 
-                className="w-full h-full object-cover" 
+            <div className="aspect-3/4 rounded-xl overflow-hidden bg-neutral-100">
+              <img
+                src="/imgs/test.jpg"
+                alt="Julia e Felipe"
+                className="w-full h-full object-cover"
               />
             </div>
           </Reveal>
@@ -75,11 +76,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
             </Reveal>
 
             <Reveal delay={2} className="w-full">
-              <Countdown targetDate="2026-10-17T17:00:00" />
+              <Countdown targetDate={engagementDate} />
             </Reveal>
 
             <Reveal delay={3} className="pt-2">
-              <button 
+              <button
                 onClick={() => scrollToSection('rsvp')}
                 className="w-full sm:w-auto px-8 py-4 bg-brand-dark text-white rounded-full font-sans text-xs font-semibold uppercase tracking-widest hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-md cursor-pointer"
               >
@@ -93,9 +94,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
   }
 
   // --- INTERACTIVE DESKTOP SCROLL-LINKED COLLAGE ---
-  // Layout values relative to scrollProgress
-  const mainCardWidth = 92 - scrollProgress * 36; // from 92% to 56%
-  const mainCardHeight = 80 - scrollProgress * 38; // from 80vh to 42vh
+  const mainCardWidth = 98 - scrollProgress * 60;
   const mainCardRadius = 16 + scrollProgress * 24; // from 16px to 40px
 
   // Opacity parameters
@@ -107,43 +106,43 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
   return (
     <div className="relative h-[220vh] bg-brand-bg" ref={wrapperRef}>
       {/* Sticky container uses vertical flexbox to stack items cleanly */}
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center py-6 overflow-hidden">
-        
+      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center pt-60 pb-6 overflow-hidden">
+
         {/* Collage Area Container */}
-        <div 
-          className="relative flex items-center justify-center transition-all duration-300 ease-out flex-shrink-0"
+        <div
+          className="relative flex items-center justify-center transition-all duration-300 ease-out shrink-0"
           style={{
             width: `${mainCardWidth}%`,
-            maxWidth: `${1200 - (1200 - 640) * scrollProgress}px`,
-            height: `${mainCardHeight}vh`,
-            maxHeight: `${700 - (700 - 400) * scrollProgress}px`,
+            maxWidth: `${98 - (98 - 50) * scrollProgress}vw`,
+            height: `80vh`,
+            maxHeight: `700px`,
           }}
         >
           {/* 1. MAIN CARD (test.jpg) */}
-          <div 
+          <div
             className="w-full h-full shadow-2xl relative overflow-hidden transition-all duration-100 ease-out border border-white bg-white"
             style={{ borderRadius: `${mainCardRadius}px` }}
           >
-            <img 
-              src="/imgs/test.jpg" 
-              alt="Julia e Felipe" 
+            <img
+              src="/imgs/test.jpg"
+              alt="Julia e Felipe"
               className="absolute inset-0 w-full h-full object-cover object-center"
             />
-            
-            <div 
-              className="absolute inset-0 bg-brand-dark transition-opacity duration-100 ease-out" 
+
+            <div
+              className="absolute inset-0 bg-brand-dark transition-opacity duration-100 ease-out"
               style={{ opacity: overlayOpacity }}
             />
 
             {/* Couple Names Overlay */}
-            <div className="absolute bottom-10 left-0 right-0 text-center text-white select-none z-10 px-4">
-              <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal tracking-wide drop-shadow-md">
+            <div className="@container absolute bottom-10 left-0 right-0 text-center text-white select-none z-10 px-4">
+              <h1 className="font-serif text-5xl sm:text-7xl lg:text-[10cqi] font-normal tracking-wide drop-shadow-md">
                 Julia & Felipe
               </h1>
             </div>
 
             {/* Scroll indicator */}
-            <div 
+            <div
               className="absolute bottom-4 left-0 right-0 text-center text-white/80 z-10 flex flex-col items-center gap-1 transition-all duration-150"
               style={{ opacity: helperTextOpacity }}
             >
@@ -154,8 +153,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
 
           {/* 2. AUXILIARY COLLAGE CARDS */}
           {/* Card 1: Top-Left */}
-          <div 
-            className="absolute w-[170px] aspect-[3/4] bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+          <div
+            className="absolute w-[170px] aspect-3/4 bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
               left: 0,
               top: 0,
@@ -168,7 +167,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
           </div>
 
           {/* Card 2: Bottom-Left */}
-          <div 
+          <div
             className="absolute w-[170px] aspect-square bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
               left: 0,
@@ -182,7 +181,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
           </div>
 
           {/* Card 3: Top-Right */}
-          <div 
+          <div
             className="absolute w-[170px] aspect-square bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
               right: 0,
@@ -196,8 +195,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
           </div>
 
           {/* Card 4: Bottom-Right */}
-          <div 
-            className="absolute w-[170px] aspect-[3/4] bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+          <div
+            className="absolute w-[170px] aspect-3/4 bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
               right: 0,
               bottom: 0,
@@ -212,8 +211,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
         </div>
 
         {/* 3. DYNAMIC CONTENT BELOW (Fades in without overlapping) */}
-        <div 
-          className="mt-6 flex flex-col items-center space-y-3 px-4 transition-all duration-300 ease-out flex-shrink-0"
+        <div
+          className="mt-6 flex flex-col items-center space-y-3 px-4 transition-all duration-300 ease-out shrink-0"
           style={{
             opacity: contentOpacity,
             transform: `translateY(${contentTranslateY}px)`,
@@ -223,7 +222,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
           <span className="font-serif text-lg italic text-brand-accent">
             Vamos nos casar!
           </span>
-          
+
           <div className="flex items-center gap-3 text-brand-dark font-sans text-xs sm:text-sm tracking-wider font-medium">
             <Calendar className="w-4 h-4 text-brand-accent" />
             <span>17 de Outubro de 2026</span>
@@ -234,16 +233,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
 
           {/* Countdown timer */}
           <div className="w-full max-w-lg scale-90 sm:scale-100 origin-center">
-            <Countdown targetDate="2026-10-17T17:00:00" />
+            <Countdown targetDate={engagementDate} />
           </div>
-
-          {/* CTA RSVP Button */}
-          <button 
-            onClick={() => scrollToSection('rsvp')}
-            className="px-8 py-3.5 bg-brand-dark text-[#FDFBF7] rounded-full font-sans text-xs font-semibold uppercase tracking-widest hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-          >
-            Confirmar Presença (RSVP)
-          </button>
         </div>
 
       </div>

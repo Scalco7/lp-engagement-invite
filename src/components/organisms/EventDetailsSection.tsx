@@ -7,8 +7,8 @@ export const EventDetailsSection: React.FC = () => {
     <section id="event" className="py-24 px-4 max-w-6xl mx-auto">
       <div className="text-center mb-16">
         <Reveal>
-          <span className="font-serif text-lg italic text-brand-accent block mb-2">O Casamento</span>
-          <h2 className="font-serif text-4xl sm:text-5xl font-light text-brand-dark">O Grande Dia</h2>
+          <span className="font-serif text-lg italic text-brand-accent block mb-2">A Festa de Noivado</span>
+          <h2 className="font-serif text-4xl sm:text-5xl font-light text-brand-dark">A Celebração</h2>
           <div className="w-16 h-[1px] bg-brand-blush/60 mx-auto mt-4" />
         </Reveal>
       </div>
@@ -24,9 +24,9 @@ export const EventDetailsSection: React.FC = () => {
                 <MapPin className="w-6 h-6" />
               </div>
               <div className="space-y-3 flex-grow">
-                <h3 className="font-serif text-2xl text-brand-dark">A Cerimônia & Recepção</h3>
+                <h3 className="font-serif text-2xl text-brand-dark">A Recepção & Comemoração</h3>
                 <p className="font-sans text-sm text-brand-dark/75 leading-relaxed">
-                  Nossa união e festa serão celebradas no mesmo local. Uma linda chácara rodeada de natureza para compartilharmos este momento especial.
+                  Nossa festa de noivado será comemorada em uma linda chácara rodeada de natureza para compartilharmos este momento especial.
                 </p>
                 <div className="space-y-1.5 text-xs text-brand-dark/80 font-sans">
                   <p><strong>Horário:</strong> Sábado, 17 de Outubro de 2026, às 17:00h</p>
@@ -91,7 +91,7 @@ export const EventDetailsSection: React.FC = () => {
             </div>
             <div className="pt-4 pb-2 text-center">
               <p className="font-serif text-lg italic text-brand-accent">
-                Nosso sim sob o testemunho de vocês
+                Celebrando o nosso amor com vocês
               </p>
             </div>
           </Reveal>

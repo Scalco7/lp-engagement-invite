@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 interface CountdownProps {
-  targetDate: string;
+  targetDate: Date;
 }
 
 interface TimeLeft {
@@ -13,7 +13,7 @@ interface TimeLeft {
 
 export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   const calculateTimeLeft = (): TimeLeft => {
-    const difference = +new Date(targetDate) - +new Date();
+    const difference = +targetDate - +new Date();
     let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
     if (difference > 0) {
@@ -36,6 +36,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     }, 1000);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetDate]);
 
   const addLeadingZero = (num: number): string => {

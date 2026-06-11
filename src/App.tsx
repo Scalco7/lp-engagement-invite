@@ -5,12 +5,12 @@ import HeroSection from './components/organisms/HeroSection';
 import HistorySection from './components/organisms/HistorySection';
 import QuoteBanner from './components/organisms/QuoteBanner';
 import EventDetailsSection from './components/organisms/EventDetailsSection';
-import GiftsSection from './components/organisms/GiftsSection';
 import RSVPSection from './components/organisms/RSVPSection';
 import Footer from './components/organisms/Footer';
 import EnvelopeIntro from './components/organisms/EnvelopeIntro';
 
 function App() {
+  const engagementDate: Date = new Date('2026-07-25T19:00:00');
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -23,10 +23,10 @@ function App() {
   return (
     <>
       <EnvelopeIntro onEnter={() => setEnvelopeOpened(true)} />
-      
+
       {envelopeOpened && (
         <div className="min-h-screen bg-brand-bg text-brand-dark selection:bg-brand-blush/40 relative animate-fade-in">
-          
+
           {/* Delicate floating background ornaments */}
           <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-20">
             {/* Floating heart 1 */}
@@ -52,11 +52,10 @@ function App() {
 
           {/* Main Content */}
           <main className="relative z-10">
-            <HeroSection scrollToSection={scrollToSection} />
+            <HeroSection scrollToSection={scrollToSection} engagementDate={engagementDate} />
             <HistorySection />
             <QuoteBanner />
             <EventDetailsSection />
-            <GiftsSection />
             <RSVPSection />
           </main>
 
