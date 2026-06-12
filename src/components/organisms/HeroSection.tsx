@@ -45,8 +45,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
         <div className="mx-auto w-full space-y-8 text-center flex flex-col items-center">
 
           {/* Main Photo Card */}
-          <Reveal className="w-full relative p-2.5 bg-white border border-brand-blush/20 shadow-xl rounded-2xl overflow-hidden">
-            <div className="aspect-3/4 rounded-xl overflow-hidden bg-neutral-100">
+          <Reveal className="w-full relative shadow-2xl rounded-2xl overflow-hidden border border-white/60">
+            <div className="aspect-3/4 bg-neutral-100">
               <img
                 src="/imgs/test.jpg"
                 alt="Julia e Felipe"
@@ -121,7 +121,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
         >
           {/* 1. MAIN CARD (test.jpg) */}
           <div
-            className="w-full h-full shadow-2xl relative overflow-hidden transition-all duration-100 ease-out border border-white bg-white"
+            className="w-full h-full shadow-2xl relative overflow-hidden transition-all duration-100 ease-out border border-white/60"
             style={{ borderRadius: `${mainCardRadius}px` }}
           >
             <img
@@ -155,58 +155,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
           {/* 2. AUXILIARY COLLAGE CARDS */}
           {/* Card 1: Top-Left */}
           <div
-            className="absolute w-[190px] sm:w-[250px] aspect-3/4 bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+            className="absolute w-[180px] sm:w-[240px] aspect-[4/3] shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
             style={{
-              left: '4%',
-              top: '6%',
-              transform: `translate(calc(-20% - ${220 * (1 - scrollProgress)}px), calc(-15% - ${100 * (1 - scrollProgress)}px)) rotate(${-8 - 10 * (1 - scrollProgress)}deg)`,
-            }}
-          >
-            <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
-              <img src="/imgs/IMG_6420.jpg" alt="Aux 1" className="w-full h-full object-cover" />
-            </div>
-          </div>
-
-          {/* Card 2: Bottom-Left */}
-          <div
-            className="absolute w-[170px] sm:w-[210px] aspect-square bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
-            style={{
-              left: '2%',
-              bottom: '4%',
-              transform: `translate(calc(-15% - ${180 * (1 - scrollProgress)}px), calc(15% + ${80 * (1 - scrollProgress)}px)) rotate(${6 + 8 * (1 - scrollProgress)}deg)`,
-            }}
-          >
-            <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
-              <img src="/imgs/IMG_6436.jpg" alt="Aux 2" className="w-full h-full object-cover" />
-            </div>
-          </div>
-
-          {/* Card 3: Top-Right */}
-          <div
-            className="absolute w-[180px] sm:w-[230px] aspect-[4/3] bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
-            style={{
-              right: '3%',
+              right: '104%',
               top: '4%',
-              transform: `translate(calc(20% + ${200 * (1 - scrollProgress)}px), calc(-10% - ${90 * (1 - scrollProgress)}px)) rotate(${8 + 12 * (1 - scrollProgress)}deg)`,
+              transform: `translate(calc(-${120 * (1 - scrollProgress)}px), calc(-${50 * (1 - scrollProgress)}px)) rotate(${-2 - 4 * (1 - scrollProgress)}deg)`,
             }}
           >
-            <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
-              <img src="/imgs/IMG_6506.jpg" alt="Aux 3" className="w-full h-full object-cover" />
-            </div>
+            <img src="/imgs/IMG_6420.jpg" alt="Aux 1" className="w-full h-full object-cover" />
+          </div>
+
+          {/* Card 2: Lower-Left (also at top) */}
+          <div
+            className="absolute w-[160px] sm:w-[220px] aspect-square shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
+            style={{
+              right: '108%',
+              top: '42%',
+              transform: `translate(calc(-${140 * (1 - scrollProgress)}px), calc(${20 * (1 - scrollProgress)}px)) rotate(${2 + 4 * (1 - scrollProgress)}deg)`,
+            }}
+          >
+            <img src="/imgs/IMG_6436.jpg" alt="Aux 2" className="w-full h-full object-cover" />
+          </div>
+
+          {/* Card 3: Upper-Right (at bottom) */}
+          <div
+            className="absolute w-[180px] sm:w-[240px] aspect-[4/3] shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
+            style={{
+              left: '108%',
+              bottom: '42%',
+              transform: `translate(calc(${140 * (1 - scrollProgress)}px), calc(-${20 * (1 - scrollProgress)}px)) rotate(${2 + 4 * (1 - scrollProgress)}deg)`,
+            }}
+          >
+            <img src="/imgs/IMG_6506.jpg" alt="Aux 3" className="w-full h-full object-cover" />
           </div>
 
           {/* Card 4: Bottom-Right */}
           <div
-            className="absolute w-[190px] sm:w-[240px] aspect-3/4 bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+            className="absolute w-[160px] sm:w-[220px] aspect-square shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
             style={{
-              right: '5%',
-              bottom: '6%',
-              transform: `translate(calc(15% + ${240 * (1 - scrollProgress)}px), calc(20% + ${110 * (1 - scrollProgress)}px)) rotate(${-6 - 10 * (1 - scrollProgress)}deg)`,
+              left: '104%',
+              bottom: '4%',
+              transform: `translate(calc(${100 * (1 - scrollProgress)}px), calc(${40 * (1 - scrollProgress)}px)) rotate(${-2 - 4 * (1 - scrollProgress)}deg)`,
             }}
           >
-            <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
-              <img src="/imgs/IMG_6507.jpg" alt="Aux 4" className="w-full h-full object-cover" />
-            </div>
+            <img src="/imgs/IMG_6507.jpg" alt="Aux 4" className="w-full h-full object-cover" />
           </div>
 
         </div>
