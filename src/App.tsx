@@ -9,6 +9,7 @@ import EventDetailsSection from './components/organisms/EventDetailsSection';
 import Footer from './components/organisms/Footer';
 import EnvelopeIntro from './components/organisms/EnvelopeIntro';
 import ConfirmSection from './components/organisms/ConfirmSection';
+import AdditionalDetailsSection from './components/organisms/AdditionalDetailsSection';
 
 function App() {
   const engagementDate: Date = new Date('2026-07-25T19:00:00');
@@ -58,6 +59,7 @@ function App() {
             <CountdownSection engagementDate={engagementDate} />
             <EventDetailsSection engagementDate={engagementDate} />
             <ConfirmSection engagementDate={engagementDate} />
+            <AdditionalDetailsSection />
             <QuoteBanner />
           </main>
 
