@@ -55,12 +55,12 @@ function App() {
             <HeroSection scrollToSection={scrollToSection} engagementDate={engagementDate} />
             <HistorySection />
             <QuoteBanner />
-            <EventDetailsSection />
-            <RSVPSection />
+            <EventDetailsSection engagementDate={engagementDate} />
+            <RSVPSection engagementDate={engagementDate} />
           </main>
 
           {/* Footer */}
-          <Footer />
+          <Footer engagementDate={engagementDate} />
 
         </div>
       )}

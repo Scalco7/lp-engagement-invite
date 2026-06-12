@@ -2,7 +2,11 @@ import React from 'react';
 import Reveal from '../atoms/Reveal';
 import RSVPForm from './RSVPForm';
 
-export const RSVPSection: React.FC = () => {
+interface RSVPSectionProps {
+  engagementDate: Date;
+}
+
+export const RSVPSection: React.FC<RSVPSectionProps> = ({ engagementDate }) => {
   return (
     <section id="rsvp" className="py-24 bg-brand-bg relative overflow-hidden">
       <div className="max-w-4xl mx-auto text-center px-4 mb-8">
@@ -13,7 +17,7 @@ export const RSVPSection: React.FC = () => {
         </Reveal>
       </div>
 
-      <RSVPForm />
+      <RSVPForm engagementDate={engagementDate} />
     </section>
   );
 };

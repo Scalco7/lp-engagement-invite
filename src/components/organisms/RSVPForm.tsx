@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Heart, Send, CheckCircle } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
+import { formatFullDate, getRsvpDeadline } from '../../utils/date';
 
-export const RSVPForm: React.FC = () => {
+interface RSVPFormProps {
+  engagementDate: Date;
+}
+
+export const RSVPForm: React.FC<RSVPFormProps> = ({ engagementDate }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -63,7 +68,7 @@ export const RSVPForm: React.FC = () => {
                 </span>
                 <h3 className="font-serif text-3xl text-brand-dark">RSVP</h3>
                 <p className="font-sans text-xs text-brand-dark/60 mt-2">
-                  Por favor, confirme sua presença até o dia 17 de Setembro de 2026.
+                  Por favor, confirme sua presença até o dia {formatFullDate(getRsvpDeadline(engagementDate))}.
                 </p>
               </div>
 

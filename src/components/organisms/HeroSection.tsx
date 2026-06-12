@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Calendar, Clock, ArrowDown } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
 import Countdown from '../molecules/Countdown';
+import { formatFullDate, formatShortDate, formatTime } from '../../utils/date';
 
 interface HeroSectionProps {
   scrollToSection: (id: string) => void;
@@ -58,7 +59,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
           <div className="space-y-4">
             <Reveal>
               <span className="font-serif text-lg italic text-brand-accent block">
-                Vamos nos casar!
+                Nossa Festa de Noivado!
               </span>
               <h1 className="font-serif text-5xl font-light text-brand-dark tracking-wide mt-2">
                 Julia & Felipe
@@ -68,10 +69,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
             <Reveal delay={1}>
               <div className="flex items-center justify-center gap-3 text-brand-dark/80 font-sans text-xs tracking-wider">
                 <Calendar className="w-3.5 h-3.5 text-brand-accent" />
-                <span>17/10/2026</span>
+                <span>{formatShortDate(engagementDate)}</span>
                 <span className="text-brand-blush/60">|</span>
                 <Clock className="w-3.5 h-3.5 text-brand-accent" />
-                <span>17:00h</span>
+                <span>{formatTime(engagementDate)}</span>
               </div>
             </Reveal>
 
@@ -154,11 +155,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
           {/* 2. AUXILIARY COLLAGE CARDS */}
           {/* Card 1: Top-Left */}
           <div
-            className="absolute w-[170px] aspect-3/4 bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+            className="absolute w-[190px] sm:w-[250px] aspect-3/4 bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
-              left: 0,
-              top: 0,
-              transform: `translate(calc(-50% - ${400 * (1 - scrollProgress)}px), calc(-30% - ${180 * (1 - scrollProgress)}px)) rotate(${-6 - 15 * (1 - scrollProgress)}deg)`,
+              left: '4%',
+              top: '6%',
+              transform: `translate(calc(-20% - ${220 * (1 - scrollProgress)}px), calc(-15% - ${100 * (1 - scrollProgress)}px)) rotate(${-8 - 10 * (1 - scrollProgress)}deg)`,
             }}
           >
             <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
@@ -168,11 +169,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
 
           {/* Card 2: Bottom-Left */}
           <div
-            className="absolute w-[170px] aspect-square bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+            className="absolute w-[170px] sm:w-[210px] aspect-square bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
-              left: 0,
-              bottom: 0,
-              transform: `translate(calc(-40% - ${400 * (1 - scrollProgress)}px), calc(30% + ${180 * (1 - scrollProgress)}px)) rotate(${4 + 12 * (1 - scrollProgress)}deg)`,
+              left: '2%',
+              bottom: '4%',
+              transform: `translate(calc(-15% - ${180 * (1 - scrollProgress)}px), calc(15% + ${80 * (1 - scrollProgress)}px)) rotate(${6 + 8 * (1 - scrollProgress)}deg)`,
             }}
           >
             <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
@@ -182,11 +183,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
 
           {/* Card 3: Top-Right */}
           <div
-            className="absolute w-[170px] aspect-square bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+            className="absolute w-[180px] sm:w-[230px] aspect-[4/3] bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
-              right: 0,
-              top: 0,
-              transform: `translate(calc(50% + ${400 * (1 - scrollProgress)}px), calc(-20% - ${180 * (1 - scrollProgress)}px)) rotate(${6 + 15 * (1 - scrollProgress)}deg)`,
+              right: '3%',
+              top: '4%',
+              transform: `translate(calc(20% + ${200 * (1 - scrollProgress)}px), calc(-10% - ${90 * (1 - scrollProgress)}px)) rotate(${8 + 12 * (1 - scrollProgress)}deg)`,
             }}
           >
             <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
@@ -196,11 +197,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
 
           {/* Card 4: Bottom-Right */}
           <div
-            className="absolute w-[170px] aspect-3/4 bg-white p-2 pb-4 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
+            className="absolute w-[190px] sm:w-[240px] aspect-3/4 bg-white p-2 pb-4 sm:pb-6 shadow-xl border border-neutral-100 rounded-sm pointer-events-none transition-all duration-100 ease-out"
             style={{
-              right: 0,
-              bottom: 0,
-              transform: `translate(calc(40% + ${400 * (1 - scrollProgress)}px), calc(30% + ${180 * (1 - scrollProgress)}px)) rotate(${-4 - 12 * (1 - scrollProgress)}deg)`,
+              right: '5%',
+              bottom: '6%',
+              transform: `translate(calc(15% + ${240 * (1 - scrollProgress)}px), calc(20% + ${110 * (1 - scrollProgress)}px)) rotate(${-6 - 10 * (1 - scrollProgress)}deg)`,
             }}
           >
             <div className="w-full h-full overflow-hidden bg-neutral-100 rounded-sm">
@@ -220,15 +221,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
           }}
         >
           <span className="font-serif text-lg italic text-brand-accent">
-            Vamos nos casar!
+            Nossa Festa de Noivado!
           </span>
 
           <div className="flex items-center gap-3 text-brand-dark font-sans text-xs sm:text-sm tracking-wider font-medium">
             <Calendar className="w-4 h-4 text-brand-accent" />
-            <span>17 de Outubro de 2026</span>
+            <span>{formatFullDate(engagementDate)}</span>
             <span className="text-brand-blush">|</span>
             <Clock className="w-4 h-4 text-brand-accent" />
-            <span>17:00h</span>
+            <span>{formatTime(engagementDate)}</span>
           </div>
 
           {/* Countdown timer */}

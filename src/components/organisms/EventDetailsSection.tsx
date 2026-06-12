@@ -1,8 +1,13 @@
 import React from 'react';
 import { MapPin, Info, Map } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
+import { getDayOfWeek, formatFullDate, formatTime } from '../../utils/date';
 
-export const EventDetailsSection: React.FC = () => {
+interface EventDetailsSectionProps {
+  engagementDate: Date;
+}
+
+export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engagementDate }) => {
   return (
     <section id="event" className="py-24 px-4 max-w-6xl mx-auto">
       <div className="text-center mb-16">
@@ -29,7 +34,7 @@ export const EventDetailsSection: React.FC = () => {
                   Nossa festa de noivado será comemorada em uma linda chácara rodeada de natureza para compartilharmos este momento especial.
                 </p>
                 <div className="space-y-1.5 text-xs text-brand-dark/80 font-sans">
-                  <p><strong>Horário:</strong> Sábado, 17 de Outubro de 2026, às 17:00h</p>
+                  <p><strong>Horário:</strong> {getDayOfWeek(engagementDate)}, {formatFullDate(engagementDate)}, às {formatTime(engagementDate)}</p>
                   <p><strong>Local:</strong> Espaço Cantinho das Flores</p>
                   <p><strong>Endereço:</strong> Av. das Hortênsias, 1200 - Bairro das Fontes, São Paulo - SP</p>
                 </div>
