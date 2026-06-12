@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 interface CountdownProps {
   targetDate: Date;
+  light?: boolean;
 }
 
 interface TimeLeft {
@@ -11,7 +12,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
+export const Countdown: React.FC<CountdownProps> = ({ targetDate, light = false }) => {
   const calculateTimeLeft = (): TimeLeft => {
     const difference = +targetDate - +new Date();
     let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -55,15 +56,15 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       {timeItems.map((item, index) => (
         <React.Fragment key={item.label}>
           <div className="flex flex-col items-center">
-            <span className="text-3xl sm:text-5xl font-light text-brand-dark font-serif tracking-wide">
+            <span className={`text-3xl sm:text-5xl font-light font-serif tracking-wide ${light ? 'text-brand-bg' : 'text-brand-dark'}`}>
               {addLeadingZero(item.value)}
             </span>
-            <span className="text-[10px] sm:text-xs tracking-widest text-brand-accent uppercase mt-2">
+            <span className={`text-[10px] sm:text-xs tracking-widest uppercase mt-2 ${light ? 'text-brand-blush' : 'text-brand-accent'}`}>
               {item.label}
             </span>
           </div>
           {index < timeItems.length - 1 && (
-            <span className="text-xl sm:text-3xl font-extralight text-brand-blush mb-6">:</span>
+            <span className={`text-xl sm:text-3xl font-extralight mb-6 ${light ? 'text-brand-blush/60' : 'text-brand-blush'}`}>:</span>
           )}
         </React.Fragment>
       ))}

@@ -3,6 +3,7 @@ import { Heart } from 'lucide-react';
 import Header from './components/organisms/Header';
 import HeroSection from './components/organisms/HeroSection';
 import HistorySection from './components/organisms/HistorySection';
+import CountdownSection from './components/organisms/CountdownSection';
 import QuoteBanner from './components/organisms/QuoteBanner';
 import EventDetailsSection from './components/organisms/EventDetailsSection';
 import Footer from './components/organisms/Footer';
@@ -54,9 +55,10 @@ function App() {
           <main className="relative z-10">
             <HeroSection scrollToSection={scrollToSection} engagementDate={engagementDate} />
             <HistorySection />
-            <QuoteBanner />
+            <CountdownSection engagementDate={engagementDate} />
             <EventDetailsSection engagementDate={engagementDate} />
             <ConfirmSection engagementDate={engagementDate} />
+            <QuoteBanner />
           </main>
 
           {/* Footer */}

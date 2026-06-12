@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Calendar, Clock, ArrowDown } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
-import Countdown from '../molecules/Countdown';
-import { formatFullDate, formatShortDate, formatTime } from '../../utils/date';
 
 interface HeroSectionProps {
   scrollToSection: (id: string) => void;
@@ -64,20 +62,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
               <h1 className="font-serif text-5xl font-light text-brand-dark tracking-wide mt-2">
                 Julia & Felipe
               </h1>
-            </Reveal>
-
-            <Reveal delay={1}>
-              <div className="flex items-center justify-center gap-3 text-brand-dark/80 font-sans text-xs tracking-wider">
-                <Calendar className="w-3.5 h-3.5 text-brand-accent" />
-                <span>{formatShortDate(engagementDate)}</span>
-                <span className="text-brand-blush/60">|</span>
-                <Clock className="w-3.5 h-3.5 text-brand-accent" />
-                <span>{formatTime(engagementDate)}</span>
-              </div>
-            </Reveal>
-
-            <Reveal delay={2} className="w-full">
-              <Countdown targetDate={engagementDate} />
             </Reveal>
 
             <Reveal delay={3} className="pt-2">
@@ -215,19 +199,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
           <span className="font-serif text-lg italic text-brand-accent">
             Nossa Festa de Noivado!
           </span>
-
-          <div className="flex items-center gap-3 text-brand-dark font-sans text-xs sm:text-sm tracking-wider font-medium">
-            <Calendar className="w-4 h-4 text-brand-accent" />
-            <span>{formatFullDate(engagementDate)}</span>
-            <span className="text-brand-blush">|</span>
-            <Clock className="w-4 h-4 text-brand-accent" />
-            <span>{formatTime(engagementDate)}</span>
-          </div>
-
-          {/* Countdown timer */}
-          <div className="w-full max-w-lg scale-90 sm:scale-100 origin-center">
-            <Countdown targetDate={engagementDate} />
-          </div>
         </div>
 
       </div>
