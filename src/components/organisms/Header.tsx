@@ -26,17 +26,17 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         <nav className="hidden md:flex items-center gap-8 font-sans text-[11px] font-medium uppercase tracking-widest text-brand-dark/80">
           <button onClick={() => handleScroll('story')} className="hover:text-brand-accent transition-colors duration-300 cursor-pointer">Nossa História</button>
           <button onClick={() => handleScroll('event')} className="hover:text-brand-accent transition-colors duration-300 cursor-pointer">A Celebração</button>
-          <button 
-            onClick={() => handleScroll('rsvp')} 
+          <button
+            onClick={() => handleScroll('confirm')}
             className="px-5 py-2 bg-brand-dark text-white rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
           >
-            Confirmar RSVP
+            Confirmar
           </button>
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <button 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden p-2 text-brand-dark hover:text-brand-accent transition-colors cursor-pointer"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -47,11 +47,11 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <div className="md:hidden absolute top-20 left-0 right-0 bg-brand-bg/95 backdrop-blur-md border border-brand-accent/20 py-6 px-8 flex flex-col gap-5 font-sans text-xs font-semibold uppercase tracking-widest text-brand-dark/95 shadow-xl rounded-2xl animate-fade-in">
             <button onClick={() => handleScroll('story')} className="text-left py-2 border-b border-brand-accent/10 cursor-pointer">Nossa História</button>
             <button onClick={() => handleScroll('event')} className="text-left py-2 border-b border-brand-accent/10 cursor-pointer">A Celebração</button>
-            <button 
-              onClick={() => handleScroll('rsvp')} 
+            <button
+              onClick={() => handleScroll('confirm')}
               className="w-full text-center py-3 bg-brand-dark text-white rounded-full hover:bg-brand-accent hover:text-brand-dark transition-colors duration-300 cursor-pointer"
             >
-              Confirmar RSVP
+              Confirmar
             </button>
           </div>
         )}

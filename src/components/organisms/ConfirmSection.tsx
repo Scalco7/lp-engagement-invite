@@ -1,14 +1,14 @@
 import React from 'react';
 import Reveal from '../atoms/Reveal';
-import RSVPForm from './RSVPForm';
+import ConfirmForm from './ConfirmForm';
 
-interface RSVPSectionProps {
+interface ConfirmSectionProps {
   engagementDate: Date;
 }
 
-export const RSVPSection: React.FC<RSVPSectionProps> = ({ engagementDate }) => {
+export const ConfirmSection: React.FC<ConfirmSectionProps> = ({ engagementDate }) => {
   return (
-    <section id="rsvp" className="py-24 bg-brand-bg relative overflow-hidden">
+    <section id="confirm" className="py-24 bg-brand-bg relative overflow-hidden">
       <div className="max-w-4xl mx-auto text-center px-4 mb-8">
         <Reveal>
           <span className="font-serif text-lg italic text-brand-accent block mb-2">Confirme sua presença</span>
@@ -17,9 +17,9 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ engagementDate }) => {
         </Reveal>
       </div>
 
-      <RSVPForm engagementDate={engagementDate} />
+      <ConfirmForm engagementDate={engagementDate} />
     </section>
   );
 };
 
-export default RSVPSection;
+export default ConfirmSection;

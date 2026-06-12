@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Heart, Send, CheckCircle } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
-import { formatFullDate, getRsvpDeadline } from '../../utils/date';
+import { formatFullDate, getConfirmDeadline } from '../../utils/date';
 
-interface RSVPFormProps {
+interface ConfirmFormProps {
   engagementDate: Date;
 }
 
-export const RSVPForm: React.FC<RSVPFormProps> = ({ engagementDate }) => {
+export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -56,19 +56,18 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ engagementDate }) => {
     <div className="w-full max-w-xl mx-auto px-4 py-8">
       <Reveal>
         <div className="bg-white border border-brand-blush/30 rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden">
-          
+
           {/* Subtle design element */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blush via-brand-sage to-brand-accent" />
 
           {!isSuccess ? (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="text-center mb-8">
-                <span className="font-serif text-lg italic text-brand-accent block mb-1">
+                <span className="font-serif text-3xl italic text-brand-accent block mb-1">
                   Confirmação de Presença
                 </span>
-                <h3 className="font-serif text-3xl text-brand-dark">RSVP</h3>
                 <p className="font-sans text-xs text-brand-dark/60 mt-2">
-                  Por favor, confirme sua presença até o dia {formatFullDate(getRsvpDeadline(engagementDate))}.
+                  Por favor, confirme sua presença até o dia {formatFullDate(getConfirmDeadline(engagementDate))}.
                 </p>
               </div>
 
@@ -131,11 +130,10 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ engagementDate }) => {
                   <button
                     type="button"
                     onClick={() => handleSelectAttending('yes')}
-                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
-                      formData.attending === 'yes'
-                        ? 'border-brand-accent bg-brand-blush/20 text-brand-dark font-semibold'
-                        : 'border-neutral-200 hover:border-brand-blush/50 text-brand-dark/70'
-                    }`}
+                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${formData.attending === 'yes'
+                      ? 'border-brand-accent bg-brand-blush/20 text-brand-dark font-semibold'
+                      : 'border-neutral-200 hover:border-brand-blush/50 text-brand-dark/70'
+                      }`}
                   >
                     <Heart className={`w-4 h-4 ${formData.attending === 'yes' ? 'fill-brand-accent text-brand-accent' : 'text-neutral-400'}`} />
                     Sim, irei!
@@ -143,11 +141,10 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ engagementDate }) => {
                   <button
                     type="button"
                     onClick={() => handleSelectAttending('no')}
-                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
-                      formData.attending === 'no'
-                        ? 'border-brand-accent bg-brand-blush/20 text-brand-dark font-semibold'
-                        : 'border-neutral-200 hover:border-brand-blush/50 text-brand-dark/70'
-                    }`}
+                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${formData.attending === 'no'
+                      ? 'border-brand-accent bg-brand-blush/20 text-brand-dark font-semibold'
+                      : 'border-neutral-200 hover:border-brand-blush/50 text-brand-dark/70'
+                      }`}
                   >
                     Infelizmente não posso
                   </button>
@@ -218,4 +215,4 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ engagementDate }) => {
   );
 };
 
-export default RSVPForm;
+export default ConfirmForm;

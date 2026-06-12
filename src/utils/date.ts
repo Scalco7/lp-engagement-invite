@@ -30,7 +30,7 @@ export const formatTime = (date: Date): string => {
   return `${hours}:${minutes}h`;
 };
 
-export const getRsvpDeadline = (engagementDate: Date): Date => {
+export const getConfirmDeadline = (engagementDate: Date): Date => {
   const deadline = new Date(engagementDate);
   deadline.setMonth(deadline.getMonth() - 1);
   return deadline;

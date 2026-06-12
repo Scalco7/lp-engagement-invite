@@ -5,9 +5,9 @@ import HeroSection from './components/organisms/HeroSection';
 import HistorySection from './components/organisms/HistorySection';
 import QuoteBanner from './components/organisms/QuoteBanner';
 import EventDetailsSection from './components/organisms/EventDetailsSection';
-import RSVPSection from './components/organisms/RSVPSection';
 import Footer from './components/organisms/Footer';
 import EnvelopeIntro from './components/organisms/EnvelopeIntro';
+import ConfirmSection from './components/organisms/ConfirmSection';
 
 function App() {
   const engagementDate: Date = new Date('2026-07-25T19:00:00');
@@ -56,7 +56,7 @@ function App() {
             <HistorySection />
             <QuoteBanner />
             <EventDetailsSection engagementDate={engagementDate} />
-            <RSVPSection engagementDate={engagementDate} />
+            <ConfirmSection engagementDate={engagementDate} />
           </main>
 
           {/* Footer */}

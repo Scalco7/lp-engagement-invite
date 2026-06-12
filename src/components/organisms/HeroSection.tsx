@@ -82,10 +82,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
 
             <Reveal delay={3} className="pt-2">
               <button
-                onClick={() => scrollToSection('rsvp')}
+                onClick={() => scrollToSection('confirm')}
                 className="w-full sm:w-auto px-8 py-4 bg-brand-dark text-white rounded-full font-sans text-xs font-semibold uppercase tracking-widest hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-md cursor-pointer"
               >
-                Confirmar Presença (RSVP)
+                Confirmar Presença
               </button>
             </Reveal>
           </div>
