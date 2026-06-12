@@ -14,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ engagementDate }) => {
         <Heart className="w-4 h-4 text-brand-blush fill-brand-blush animate-pulse" />
       </div>
       <p className="font-sans text-xs tracking-widest uppercase text-brand-blush/70">
-        {formatFullDate(engagementDate)} • São Paulo, SP
+        {formatFullDate(engagementDate)} • Curitiba, PR
       </p>
       <div className="w-12 h-[1px] bg-brand-blush/30 mx-auto" />
       <div>
