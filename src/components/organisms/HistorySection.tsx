@@ -149,7 +149,7 @@ export const HistorySection: React.FC = () => {
 
   return (
     <section id="story" ref={containerRef} className="relative h-[800vh] bg-brand-bg">
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center px-4 overflow-hidden">
+      <div className="sticky top-0 h-[101vh] w-full flex flex-col pt-20 items-center justify-start px-4 overflow-hidden">
 
         {/* Title Area */}
         <div className="text-center mb-8 shrink-0 z-20">
@@ -161,7 +161,7 @@ export const HistorySection: React.FC = () => {
         </div>
 
         {/* Cards Stack Container */}
-        <div className="relative w-full max-w-4xl h-[480px] sm:h-[460px] md:h-[420px] flex items-center justify-center">
+        <div className="relative w-full max-w-4xl h-120 flex items-center justify-center">
           {historyData.map((item, index) => (
             <div
               key={index}
