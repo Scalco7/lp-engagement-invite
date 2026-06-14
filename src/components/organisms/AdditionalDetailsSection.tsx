@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gift, CreditCard, Pizza } from 'lucide-react';
+import { Gift, CreditCard, Pizza, Shirt } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
 
 export const AdditionalDetailsSection: React.FC = () => {
@@ -10,7 +10,7 @@ export const AdditionalDetailsSection: React.FC = () => {
          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-accent rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <Reveal>
             <span className="font-serif text-lg italic text-brand-accent block mb-2">Informações Úteis</span>
@@ -19,7 +19,7 @@ export const AdditionalDetailsSection: React.FC = () => {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card: Valores */}
           <Reveal delay={1}>
             <div className="bg-white p-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
@@ -37,8 +37,35 @@ export const AdditionalDetailsSection: React.FC = () => {
             </div>
           </Reveal>
 
-          {/* Card: Presentes */}
+          {/* Card: Traje (Dress Code) */}
           <Reveal delay={2}>
+            <div className="bg-white p-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
+              <div className="w-14 h-14 bg-brand-bg/80 rounded-full flex items-center justify-center text-brand-accent mb-6">
+                <Shirt className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-brand-dark mb-4">Traje</h3>
+              <p className="font-sans text-sm text-brand-dark/75 leading-relaxed flex-grow">
+                Para celebrar esse dia com conforto e elegância, o estilo de traje escolhido é o <strong>Esporte Fino / Passeio</strong>.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center gap-2 w-full">
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-brand-dark bg-brand-bg px-3 py-1.5 rounded-full border border-brand-blush/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
+                  <span>Vestidos fluídos</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-brand-dark bg-brand-bg px-3 py-1.5 rounded-full border border-brand-blush/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-sage" />
+                  <span>Blazer e camisa</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-brand-dark bg-brand-bg px-3 py-1.5 rounded-full border border-brand-blush/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-blush" />
+                  <span>Evitar branco puro</span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Card: Presentes */}
+          <Reveal delay={3}>
             <div className="bg-white p-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
               <div className="w-14 h-14 bg-brand-bg/80 rounded-full flex items-center justify-center text-brand-accent mb-6">
                 <Gift className="w-6 h-6" />

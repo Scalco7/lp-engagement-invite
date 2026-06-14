@@ -1,5 +1,5 @@
 import React from 'react';
-import { Info, Map } from 'lucide-react';
+import { Map } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
 import { getDayOfWeek, formatFullDate, formatTime } from '../../utils/date';
 
@@ -43,10 +43,10 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engage
                 </div>
                 <div className="pt-2 flex flex-wrap gap-3">
                   <a
-                    href="https://maps.google.com/?q=Nostra+Casa+Pizzaria+Pilarzinho+Curitiba"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-blush text-brand-accent hover:bg-brand-blush/20 text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer"
+                     href="https://maps.google.com/?q=Nostra+Casa+Pizzaria+Pilarzinho+Curitiba"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-blush text-brand-accent hover:bg-brand-blush/20 text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer"
                   >
                     <Map className="w-3.5 h-3.5" />
                     Ver no Google Maps
@@ -63,36 +63,6 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engage
               </div>
             </div>
           </Reveal>
-
-          {/* Festa / Dress Code */}
-          <Reveal delay={2}>
-            <div className="bg-white border border-brand-blush/30 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col sm:flex-row gap-6 items-start">
-              <div className="p-4 bg-brand-sage/30 rounded-xl text-brand-dark/70 flex-shrink-0">
-                <Info className="w-6 h-6" />
-              </div>
-              <div className="space-y-3 flex-grow">
-                <h3 className="font-serif text-2xl text-brand-dark">Traje (Dress Code)</h3>
-                <p className="font-sans text-sm text-brand-dark/75 leading-relaxed">
-                  Para celebrar esse dia com conforto e elegância, o estilo escolhido é o <strong>Esporte Fino / Passeio</strong>.
-                </p>
-                <div className="flex flex-wrap gap-4 pt-2">
-                  <div className="flex items-center gap-2 text-xs text-brand-dark/80 bg-brand-bg px-4 py-2 rounded-full border border-brand-blush/20">
-                    <span className="w-2.5 h-2.5 rounded-full bg-brand-accent" />
-                    <span>Vestidos fluídos</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-brand-dark/80 bg-brand-bg px-4 py-2 rounded-full border border-brand-blush/20">
-                    <span className="w-2.5 h-2.5 rounded-full bg-brand-sage" />
-                    <span>Blazer e camisa</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-brand-dark/80 bg-brand-bg px-4 py-2 rounded-full border border-brand-blush/20">
-                    <span className="w-2.5 h-2.5 rounded-full bg-brand-blush" />
-                    <span>Evitar branco puro</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
         </div>
 
         {/* Right Side: Collage Photo */}
