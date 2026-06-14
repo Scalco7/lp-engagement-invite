@@ -4,10 +4,9 @@ import Reveal from '../atoms/Reveal';
 
 interface HeroSectionProps {
   scrollToSection: (id: string) => void;
-  engagementDate: Date;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engagementDate }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);

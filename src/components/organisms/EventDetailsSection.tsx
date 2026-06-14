@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Info, Map } from 'lucide-react';
+import { Info, Map } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
 import { getDayOfWeek, formatFullDate, formatTime } from '../../utils/date';
 

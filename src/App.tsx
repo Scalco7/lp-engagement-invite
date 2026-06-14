@@ -54,7 +54,7 @@ function App() {
 
           {/* Main Content */}
           <main className="relative z-10">
-            <HeroSection scrollToSection={scrollToSection} engagementDate={engagementDate} />
+            <HeroSection scrollToSection={scrollToSection} />
             <HistorySection />
             <CountdownSection engagementDate={engagementDate} />
             <EventDetailsSection engagementDate={engagementDate} />
