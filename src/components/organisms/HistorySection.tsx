@@ -156,7 +156,7 @@ export const HistorySection: React.FC = () => {
           <Reveal>
             <span className="font-serif text-lg italic text-brand-accent block mb-1">Nossa História</span>
             <h2 className="font-serif text-3xl sm:text-4xl font-light text-brand-dark">Como tudo começou...</h2>
-            <div className="w-12 h-[1px] bg-brand-blush/60 mx-auto mt-2" />
+            <div className="w-12 h-px bg-brand-blush/60 mx-auto mt-2" />
           </Reveal>
         </div>
 
