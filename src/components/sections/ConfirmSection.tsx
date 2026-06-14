@@ -8,7 +8,7 @@ interface ConfirmSectionProps {
 
 export const ConfirmSection: React.FC<ConfirmSectionProps> = ({ engagementDate }) => {
   return (
-    <section id="confirm" className="py-24 bg-brand-bg relative overflow-hidden">
+    <section id="confirm" className="py-14 bg-brand-bg relative overflow-hidden">
       <div className="max-w-4xl mx-auto text-center px-4 mb-8">
         <Reveal>
           <span className="font-serif text-lg italic text-brand-accent block mb-2">Confirme sua presença</span>

@@ -9,7 +9,7 @@ interface EventDetailsSectionProps {
 
 export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engagementDate }) => {
   return (
-    <section id="event" className="py-24 px-4 max-w-6xl mx-auto">
+    <section id="event" className="py-14 px-4 max-w-6xl mx-auto">
       <div className="text-center mb-16">
         <Reveal>
           <span className="font-serif text-lg italic text-brand-accent block mb-2">A Festa de Noivado</span>

@@ -4,7 +4,7 @@ import Reveal from '../atoms/Reveal';
 
 export const AdditionalDetailsSection: React.FC = () => {
   return (
-    <section id="additional-details" className="py-24 px-4 bg-brand-bg relative border-t border-brand-blush/20">
+    <section id="additional-details" className="py-14 px-4 bg-brand-bg relative border-t border-brand-blush/20">
       {/* Subtle background decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-[0.03]">
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-accent rounded-full blur-3xl" />
