@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { Heart } from 'lucide-react';
 import Header from './components/organisms/Header';
-import HeroSection from './components/organisms/HeroSection';
-import HistorySection from './components/organisms/HistorySection';
-import VlogsSection from './components/organisms/VlogsSection';
-import CountdownSection from './components/organisms/CountdownSection';
 import QuoteBanner from './components/organisms/QuoteBanner';
-import EventDetailsSection from './components/organisms/EventDetailsSection';
 import Footer from './components/organisms/Footer';
 import EnvelopeIntro from './components/organisms/EnvelopeIntro';
-import ConfirmSection from './components/organisms/ConfirmSection';
-import AdditionalDetailsSection from './components/organisms/AdditionalDetailsSection';
+import AdditionalDetailsSection from './components/sections/AdditionalDetailsSection';
+import ConfirmSection from './components/sections/ConfirmSection';
+import CountdownSection from './components/sections/CountdownSection';
+import EventDetailsSection from './components/sections/EventDetailsSection';
+import HeroSection from './components/sections/HeroSection';
+import HistorySection from './components/sections/HistorySection';
+import VlogsSection from './components/sections/VlogsSection';
 
 function App() {
   const engagementDate: Date = new Date('2026-07-25T19:00:00');

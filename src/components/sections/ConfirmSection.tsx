@@ -1,6 +1,6 @@
 import React from 'react';
 import Reveal from '../atoms/Reveal';
-import ConfirmForm from './ConfirmForm';
+import ConfirmForm from '../organisms/ConfirmForm';
 
 interface ConfirmSectionProps {
   engagementDate: Date;
