@@ -165,7 +165,7 @@ export const HistorySection: React.FC = () => {
           {historyData.map((item, index) => (
             <div
               key={index}
-              className="absolute w-[95%] max-w-[800px] h-[450px] sm:h-[430px] md:h-[390px] flex flex-col md:flex-row bg-white rounded-3xl shadow-2xl overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
+              className="absolute w-[95%] max-w-[800px] h-[450px] sm:h-[430px] md:h-[390px] flex flex-col md:flex-row bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
               style={getCardStyle(index)}
             >
               {/* Left Column: Image */}

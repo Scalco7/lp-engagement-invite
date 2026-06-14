@@ -77,7 +77,7 @@ export const HeroSection: React.FC = () => {
         >
           {/* 1. MAIN CARD (test.jpg) */}
           <div
-            className="w-full h-full shadow-2xl relative overflow-hidden transition-all duration-100 ease-out border border-white/60"
+            className="w-full h-full shadow-lg relative overflow-hidden transition-all duration-100 ease-out border border-white/60"
             style={{ borderRadius: `${mainCardRadius}px` }}
           >
             <img
