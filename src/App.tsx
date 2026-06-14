@@ -3,6 +3,7 @@ import { Heart } from 'lucide-react';
 import Header from './components/organisms/Header';
 import HeroSection from './components/organisms/HeroSection';
 import HistorySection from './components/organisms/HistorySection';
+import VlogsSection from './components/organisms/VlogsSection';
 import CountdownSection from './components/organisms/CountdownSection';
 import QuoteBanner from './components/organisms/QuoteBanner';
 import EventDetailsSection from './components/organisms/EventDetailsSection';
@@ -60,6 +61,7 @@ function App() {
             <EventDetailsSection engagementDate={engagementDate} />
             <ConfirmSection engagementDate={engagementDate} />
             <AdditionalDetailsSection />
+            <VlogsSection />
             <QuoteBanner />
           </main>
 
