@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ engagementDate }) => {
       <div className="w-12 h-[1px] bg-brand-blush/30 mx-auto" />
       <div>
         <p className="font-sans text-[10px] text-brand-bg/50 tracking-wider">
-          Feito com carinho para a nossa festa de noivado.
+          Feito com carinho para o nosso jantar de noivado.
         </p>
         <p className="font-sans text-[10px] text-brand-bg/50">
           Developed by Felipe Scalco & Julia (quase) Scalco

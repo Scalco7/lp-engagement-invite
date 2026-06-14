@@ -57,7 +57,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
           <div className="space-y-4">
             <Reveal>
               <span className="font-serif text-lg italic text-brand-accent block">
-                Nossa Festa de Noivado!
+                Nosso Jantar de Noivado!
               </span>
               <h1 className="font-serif text-5xl font-light text-brand-dark tracking-wide mt-2">
                 Julia & Felipe
@@ -197,7 +197,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, engag
           }}
         >
           <span className="font-serif text-lg italic text-brand-accent">
-            Nossa Festa de Noivado!
+            Nosso Jantar de Noivado!
           </span>
         </div>
 

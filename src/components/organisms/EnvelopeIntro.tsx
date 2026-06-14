@@ -21,10 +21,10 @@ export const EnvelopeIntro: React.FC<EnvelopeProps> = ({ onEnter }) => {
 
   const handleOpenSequence = () => {
     if (isFlapOpen) return;
-    
+
     // 1. Open the envelope top flap (takes ~800ms)
     setIsFlapOpen(true);
-    
+
     // 2. Slide out the card (starts after flap is partially open)
     setTimeout(() => {
       setIsCardOut(true);
@@ -46,10 +46,9 @@ export const EnvelopeIntro: React.FC<EnvelopeProps> = ({ onEnter }) => {
   if (isDone) return null;
 
   return (
-    <div 
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#F5EBE6] px-4 transition-all duration-[1000ms] cubic-bezier(0.16, 1, 0.3, 1) ${
-        isOpen ? 'opacity-0 pointer-events-none scale-105' : 'opacity-100'
-      }`}
+    <div
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#F5EBE6] px-4 transition-all duration-[1000ms] cubic-bezier(0.16, 1, 0.3, 1) ${isOpen ? 'opacity-0 pointer-events-none scale-105' : 'opacity-100'
+        }`}
     >
       {/* Intro Header */}
       <div className={`text-center space-y-2 mb-8 sm:mb-12 transition-all duration-[800ms] ${isFlapOpen ? 'opacity-40 scale-95 blur-[1px]' : 'opacity-100'}`}>
@@ -67,22 +66,21 @@ export const EnvelopeIntro: React.FC<EnvelopeProps> = ({ onEnter }) => {
       </div>
 
       {/* Interactive Envelope Wrapper */}
-      <div 
+      <div
         onClick={handleOpenSequence}
-        className={`relative w-80 h-52 sm:w-[450px] sm:h-[300px] my-4 cursor-pointer select-none active:scale-98 transition-transform duration-300 ${
-          !isFlapOpen ? 'animate-float-slow hover:scale-102' : ''
-        }`}
+        className={`relative w-80 h-52 sm:w-[450px] sm:h-[300px] my-4 cursor-pointer select-none active:scale-98 transition-transform duration-300 ${!isFlapOpen ? 'animate-float-slow hover:scale-102' : ''
+          }`}
         style={{ perspective: '1000px' }}
       >
         {/* Envelope Back Plate */}
         <div className="absolute inset-0 bg-[#E5D6CD] rounded-xl shadow-inner border border-brand-accent/20 z-0" />
 
         {/* The Invitation Card (Letter) */}
-        <div 
+        <div
           className="absolute inset-x-4 top-3 bottom-3 bg-[#FAF6F0] rounded-lg shadow-md flex flex-col items-center justify-center p-1 text-center transition-all duration-[1000ms] cubic-bezier(0.25, 1, 0.5, 1)"
           style={{
-            transform: isCardOut 
-              ? 'translateY(-60%) scale(1.05)' 
+            transform: isCardOut
+              ? 'translateY(-60%) scale(1.05)'
               : 'translateY(0) scale(0.95)',
             zIndex: isCardOut ? 30 : 10,
             boxShadow: isCardOut ? '0 25px 50px -12px rgba(61, 44, 37, 0.25)' : '0 4px 6px -1px rgba(0,0,0,0.1)'
@@ -92,14 +90,14 @@ export const EnvelopeIntro: React.FC<EnvelopeProps> = ({ onEnter }) => {
           <div className="w-full h-full border border-brand-accent/30 rounded-md p-1.5">
             <div className="w-full h-full border border-brand-accent/10 rounded flex flex-col items-center justify-center px-4 py-6 space-y-2 sm:space-y-4">
               <Heart className="w-4 h-4 text-brand-accent fill-brand-accent/10" />
-              
+
               <div className="space-y-1 sm:space-y-2">
                 <span className="font-serif text-[10px] sm:text-xs tracking-[0.25em] text-brand-accent uppercase block">
                   Julia & Felipe
                 </span>
                 <div className="w-6 h-[1px] bg-brand-accent/30 mx-auto my-1" />
                 <h3 className="font-serif text-lg sm:text-2xl text-brand-dark font-light leading-relaxed">
-                  Festa de <br />
+                  Jantar de <br />
                   Noivado
                 </h3>
                 <p className="font-serif italic text-xs text-brand-dark/60 mt-1">
@@ -128,7 +126,7 @@ export const EnvelopeIntro: React.FC<EnvelopeProps> = ({ onEnter }) => {
         </div>
 
         {/* Envelope Top Flap (Lid) */}
-        <div 
+        <div
           className="absolute top-0 left-0 w-full h-1/2 origin-top transition-transform duration-[800ms] ease-in-out overflow-visible"
           style={{
             transform: isFlapOpen ? 'rotateX(180deg)' : 'rotateX(0deg)',
@@ -143,10 +141,9 @@ export const EnvelopeIntro: React.FC<EnvelopeProps> = ({ onEnter }) => {
         </div>
 
         {/* Wax Seal Seal / Button (click target in center) */}
-        <div 
-          className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 transition-all duration-700 ease-in-out ${
-            isFlapOpen ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100'
-          }`}
+        <div
+          className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 transition-all duration-700 ease-in-out ${isFlapOpen ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100'
+            }`}
         >
           <div className="w-14 h-14 bg-gradient-to-br from-[#D9A094] to-[#B0776D] rounded-full flex items-center justify-center shadow-lg border-2 border-[#FAF6F0]/20 active:scale-95 transition-all duration-300">
             <div className="w-10 h-10 rounded-full border border-[#FAF6F0]/20 flex items-center justify-center animate-pulse">
