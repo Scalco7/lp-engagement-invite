@@ -149,7 +149,7 @@ export const HistorySection: React.FC = () => {
 
   return (
     <section id="story" ref={containerRef} className="relative h-[800vh] bg-brand-bg">
-      <div className="sticky top-0 h-[101vh] w-full flex flex-col pt-20 items-center justify-start px-4 overflow-hidden">
+      <div className="sticky top-0 h-[101vh] w-full flex flex-col pt-6 sm:pt-20 items-center justify-start px-4 overflow-hidden">
 
         {/* Title Area */}
         <div className="text-center mb-8 shrink-0 z-20">

@@ -53,7 +53,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto px-4 py-8">
+    <div className="w-full max-w-xl mx-auto px-2 min-[360px]:px-4">
       <Reveal>
         <div className="bg-white border border-brand-blush/30 rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden">
 
@@ -61,7 +61,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blush via-brand-sage to-brand-accent" />
 
           {!isSuccess ? (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="text-center mb-8">
                 <span className="font-serif text-3xl italic text-brand-accent block mb-1">
                   Confirmação de Presença
@@ -141,7 +141,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
                   <button
                     type="button"
                     onClick={() => handleSelectAttending('no')}
-                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${formData.attending === 'no'
+                    className={`py-3.5 px-2 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${formData.attending === 'no'
                       ? 'border-brand-accent bg-brand-blush/20 text-brand-dark font-semibold'
                       : 'border-neutral-200 hover:border-brand-blush/50 text-brand-dark/70'
                       }`}

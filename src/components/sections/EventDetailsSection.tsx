@@ -10,7 +10,7 @@ interface EventDetailsSectionProps {
 export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engagementDate }) => {
   return (
     <section id="event" className="py-14 px-4 max-w-6xl mx-auto">
-      <div className="text-center mb-16">
+      <div className="text-center mb-8 sm:mb-16">
         <Reveal>
           <span className="font-serif text-lg italic text-brand-accent block mb-2">A Festa de Noivado</span>
           <h2 className="font-serif text-4xl sm:text-5xl font-light text-brand-dark">A Celebração</h2>
@@ -73,7 +73,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engage
         </div>
 
         {/* Right Side: Collage Photo */}
-        <div className="lg:col-span-5 flex justify-center">
+        <div className="lg:col-span-5 justify-center hidden lg:flex">
           <Reveal className="relative p-3 bg-white border border-brand-blush/20 shadow-xl rounded-2xl max-w-sm overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-500">
             <div className="aspect-3/3 rounded-xl overflow-hidden bg-neutral-100">
               <img

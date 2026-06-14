@@ -11,7 +11,7 @@ export const AdditionalDetailsSection: React.FC = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-16">
           <Reveal>
             <span className="font-serif text-lg italic text-brand-accent block mb-2">Informações Úteis</span>
             <h2 className="font-serif text-4xl sm:text-5xl font-light text-brand-dark">Detalhes Adicionais</h2>
@@ -22,7 +22,7 @@ export const AdditionalDetailsSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card: Traje (Dress Code) */}
           <Reveal delay={1}>
-            <div className="bg-white p-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
+            <div className="bg-white py-4 px-8 sm:py-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
               <div className="w-14 h-14 bg-brand-bg/80 rounded-full flex items-center justify-center text-brand-accent mb-6">
                 <Shirt className="w-6 h-6" />
               </div>
@@ -49,7 +49,7 @@ export const AdditionalDetailsSection: React.FC = () => {
 
           {/* Card: Cardápio */}
           <Reveal delay={2}>
-            <div className="bg-white p-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
+            <div className="bg-white py-4 px-8 sm:py-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
               <div className="w-14 h-14 bg-brand-bg/80 rounded-full flex items-center justify-center text-brand-accent mb-6">
                 <Utensils className="w-6 h-6" />
               </div>
@@ -59,7 +59,7 @@ export const AdditionalDetailsSection: React.FC = () => {
               </p>
               <div className="mt-8 w-full">
                 <a
-                  href="http://www.example.com"
+                  href="https://nostracasapizzaria.com.br/cardapio/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-brand-dark text-white hover:bg-brand-accent hover:text-brand-dark text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer w-full text-center"
@@ -73,7 +73,7 @@ export const AdditionalDetailsSection: React.FC = () => {
 
           {/* Card: Presentes */}
           <Reveal delay={3}>
-            <div className="bg-white p-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
+            <div className="bg-white py-4 px-8 sm:py-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
               <div className="w-14 h-14 bg-brand-bg/80 rounded-full flex items-center justify-center text-brand-accent mb-6">
                 <Gift className="w-6 h-6" />
               </div>
@@ -84,7 +84,7 @@ export const AdditionalDetailsSection: React.FC = () => {
               <div className="mt-8 flex flex-col gap-2 w-full">
                 <div className="flex items-center justify-center gap-2 text-[10px] sm:text-xs font-semibold text-brand-dark uppercase tracking-widest bg-brand-bg px-5 py-3 rounded-full w-full border border-brand-blush/20">
                   <span className="text-brand-accent">PIX:</span>
-                  <span className="select-all">(41) 99999-9999</span>
+                  <span className="select-all">(41) 99586-9381</span>
                 </div>
               </div>
             </div>

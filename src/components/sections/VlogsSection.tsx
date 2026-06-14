@@ -55,7 +55,7 @@ export const VlogsSection: React.FC = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-16">
           <Reveal>
             <span className="font-serif text-lg italic text-brand-accent block mb-2">Nossos Vídeos</span>
             <h2 className="font-serif text-4xl sm:text-5xl font-light text-brand-dark">Diários de Bordo</h2>

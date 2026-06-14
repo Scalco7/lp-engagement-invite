@@ -104,19 +104,21 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({ engagementDa
           </div>
         </Reveal>
 
-        {/* Countdown Timer */}
-        <Reveal delay={2} className="w-full">
-          <div className="scale-105 sm:scale-120 py-4 origin-center">
-            <Countdown targetDate={engagementDate} />
-          </div>
-        </Reveal>
+        <div>
+          {/* Countdown Timer */}
+          <Reveal delay={2} className="w-full">
+            <div className="scale-105 sm:scale-120 py-4 origin-center">
+              <Countdown targetDate={engagementDate} />
+            </div>
+          </Reveal>
 
-        {/* Message */}
-        <Reveal delay={3}>
-          <p className="font-serif text-3xl sm:text-4xl italic text-brand-accent font-light mt-4">
-            Venha comemorar conosco!
-          </p>
-        </Reveal>
+          {/* Message */}
+          <Reveal delay={3}>
+            <p className="font-serif text-3xl sm:text-4xl italic text-brand-accent font-light mt-4">
+              Venha comemorar conosco!
+            </p>
+          </Reveal>
+        </div>
 
       </div>
     </section>

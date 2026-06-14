@@ -52,7 +52,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate, light = false 
   ];
 
   return (
-    <div className="flex justify-center items-center gap-4 sm:gap-8 my-8 font-sans">
+    <div className="flex justify-center items-center gap-3 sm:gap-8 my-8 font-sans">
       {timeItems.map((item, index) => (
         <React.Fragment key={item.label}>
           <div className="flex flex-col items-center">

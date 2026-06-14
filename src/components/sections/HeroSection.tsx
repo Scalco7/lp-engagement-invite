@@ -34,11 +34,11 @@ export const HeroSection: React.FC = () => {
   // --- STATIC MOBILE LAYOUT ---
   if (isMobile) {
     return (
-      <section id="hero" className="min-h-[calc(100vh-80px)] flex flex-col items-center justify-center py-12 px-4 relative overflow-hidden bg-brand-bg">
+      <section id="hero" className="flex flex-col items-center justify-center pb-12 pt-26 px-4 relative overflow-hidden bg-brand-bg">
         <div className="mx-auto w-full space-y-8 text-center flex flex-col items-center">
 
           {/* Main Photo Card */}
-          <Reveal className="w-full relative shadow-2xl rounded-2xl overflow-hidden border border-white/60">
+          <Reveal className="w-full relative shadow-lg rounded-2xl overflow-hidden border border-white/60">
             <div className="aspect-3/4 bg-neutral-100">
               <img
                 src="/imgs/test.jpg"
