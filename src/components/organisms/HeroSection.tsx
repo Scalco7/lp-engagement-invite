@@ -2,11 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
 
-interface HeroSectionProps {
-  scrollToSection: (id: string) => void;
-}
-
-export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
+export const HeroSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -51,27 +47,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
               />
             </div>
           </Reveal>
-
-          {/* Texts */}
-          <div className="space-y-4">
-            <Reveal>
-              <span className="font-serif text-lg italic text-brand-accent block">
-                Nosso Jantar de Noivado!
-              </span>
-              <h1 className="font-serif text-5xl font-light text-brand-dark tracking-wide mt-2">
-                Julia & Felipe
-              </h1>
-            </Reveal>
-
-            <Reveal delay={3} className="pt-2">
-              <button
-                onClick={() => scrollToSection('confirm')}
-                className="w-full sm:w-auto px-8 py-4 bg-brand-dark text-white rounded-full font-sans text-xs font-semibold uppercase tracking-widest hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-md cursor-pointer"
-              >
-                Confirmar Presença
-              </button>
-            </Reveal>
-          </div>
         </div>
       </section>
     );
@@ -84,13 +59,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
   // Opacity parameters
   const overlayOpacity = 0.3 - scrollProgress * 0.2;
   const helperTextOpacity = Math.max(0, 1 - scrollProgress * 3);
-  const contentOpacity = scrollProgress > 0.4 ? (scrollProgress - 0.4) * 1.66 : 0;
-  const contentTranslateY = (1 - scrollProgress) * 30;
 
   return (
     <div className="relative h-[220vh] bg-brand-bg" ref={wrapperRef}>
       {/* Sticky container uses vertical flexbox to stack items cleanly */}
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center pt-60 pb-6 overflow-hidden">
+      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-start pt-24 pb-6 overflow-hidden">
 
         {/* Collage Area Container */}
         <div
@@ -184,20 +157,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => 
             <img src="/imgs/IMG_6507.jpg" alt="Aux 4" className="w-full h-full object-cover" />
           </div>
 
-        </div>
-
-        {/* 3. DYNAMIC CONTENT BELOW (Fades in without overlapping) */}
-        <div
-          className="mt-6 flex flex-col items-center space-y-3 px-4 transition-all duration-300 ease-out shrink-0"
-          style={{
-            opacity: contentOpacity,
-            transform: `translateY(${contentTranslateY}px)`,
-            visibility: scrollProgress > 0.4 ? 'visible' : 'hidden',
-          }}
-        >
-          <span className="font-serif text-lg italic text-brand-accent">
-            Nosso Jantar de Noivado!
-          </span>
         </div>
 
       </div>

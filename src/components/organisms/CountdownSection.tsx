@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import Reveal from '../atoms/Reveal';
 import Countdown from '../molecules/Countdown';
 import { formatFullDate, formatTime, getDayOfWeek } from '../../utils/date';
@@ -8,8 +9,69 @@ interface CountdownSectionProps {
 }
 
 export const CountdownSection: React.FC<CountdownSectionProps> = ({ engagementDate }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    let triggered = false;
+
+    const playConfetti = () => {
+      // Left side burst
+      confetti({
+        particleCount: 50,
+        angle: 60,
+        spread: 60,
+        origin: { x: 0, y: 0.8 },
+        colors: ['#E2C2B9', '#D4E2D4', '#C79C93', '#FDFBF7', '#3D2C25']
+      });
+
+      // Right side burst
+      confetti({
+        particleCount: 50,
+        angle: 120,
+        spread: 60,
+        origin: { x: 1, y: 0.8 },
+        colors: ['#E2C2B9', '#D4E2D4', '#C79C93', '#FDFBF7', '#3D2C25']
+      });
+    };
+
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Trigger when the bottom of the section reaches the bottom of the viewport
+      if (rect.bottom <= viewportHeight + 50 && rect.top < viewportHeight) {
+        if (!triggered) {
+          triggered = true;
+
+          // Smooth scroll to align the bottom of the section to the bottom of the screen
+          sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+          // Wait for smooth scroll to finish, then lock and play confetti
+          setTimeout(() => {
+            playConfetti();
+          }, 400);
+        }
+      } else if (rect.top > viewportHeight || rect.bottom < 0) {
+        // Reset triggered state if they scroll completely away
+        triggered = false;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <section id="countdown" className="min-h-[90vh] flex items-center justify-center bg-brand-bg relative overflow-hidden">
+    <section
+      id="countdown"
+      ref={sectionRef}
+      className="min-h-[90vh] flex items-center justify-center bg-brand-bg relative overflow-hidden"
+    >
 
       {/* Decorative background elements to keep the section premium */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-10">
@@ -26,7 +88,7 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({ engagementDa
             <h2 className="font-serif text-4xl sm:text-5xl font-light text-brand-dark tracking-wide mt-2">
               Contagem Regressiva
             </h2>
-            <div className="w-16 h-[1px] bg-brand-blush/40 mx-auto mt-4" />
+            <div className="w-16 h-px bg-brand-blush/40 mx-auto mt-4" />
           </Reveal>
         </div>
 
