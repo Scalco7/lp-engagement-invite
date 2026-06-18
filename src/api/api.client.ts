@@ -15,7 +15,7 @@ export class ApiError extends Error {
 }
 
 const BASE_URL = (
-  import.meta.env.VITE_API_URL || "https://engagement-invite-api.vercel.app"
+  import.meta.env.VITE_API_URL || "http://localhost:5000"
 ).replace(/\/$/, "");
 
 async function handleResponse<T>(response: Response): Promise<T> {

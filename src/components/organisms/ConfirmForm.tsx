@@ -34,7 +34,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
+    if (!formData.name || !formData.email || !formData.phone) return;
 
     setIsSubmitting(true);
     setErrorMessage(null);
@@ -112,12 +112,13 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label htmlFor="email" className="font-sans text-xs font-semibold text-brand-dark/80 uppercase tracking-wider block">
-                    E-mail
+                    E-mail *
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
+                    required
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="exemplo@email.com"
