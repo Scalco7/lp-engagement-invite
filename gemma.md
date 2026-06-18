@@ -1,0 +1,78 @@
+# Documentação do Projeto: LP & Bolão - Engagement Invite
+
+Esta documentação serve para guiar qualquer desenvolvedor que assuma o projeto, descrevendo o estado atual, a arquitetura implementada e as modificações recentes.
+
+---
+
+## 1. Visão Geral do Projeto
+O projeto consiste em uma Landing Page elegante para envio de convites de noivado e confirmação de presença (RSVP), integrada a uma página de **Bolão de Palpites (Bets)** onde convidados confirmados podem palpitar sobre perguntas divertidas do noivado com odds dinâmicas calculadas em tempo real.
+
+A API consumida está hospedada na Vercel e se comunica com um banco PostgreSQL no Neon:
+- **Swagger UI**: [https://engagement-invite-api.vercel.app/api-docs/#/](https://engagement-invite-api.vercel.app/api-docs/#/)
+- **API URL Base**: `https://engagement-invite-api.vercel.app` (pode ser sobrescrita localmente definindo `VITE_API_URL` no `.env`).
+
+---
+
+## 2. Arquitetura do Sistema e Estrutura de Pastas
+
+Abaixo estão os novos componentes arquiteturais inseridos para dar suporte a consumo de API, tipagem segura, persistência local e roteamento:
+
+```
+src/
+├── App.tsx                   # Ponto de entrada do React Router (rotas: "/" e "/bet")
+├── main.tsx                  # Bootstrap da aplicação
+├── api/                      # Camada de Consumo de API
+│   ├── api.client.ts         # Wrapper do fetch com tratamento robusto de exceções (ApiError)
+│   ├── rsvp.service.ts       # Chamadas da API de RSVP (List, Create, Lookup)
+│   ├── bets.service.ts       # Chamadas da API do Bolão (List Questions, Place Bet)
+│   └── index.ts              # Exportador central de serviços e tipos da API
+├── services/                 # Serviços Client-Side de State/Persistência
+│   └── rsvpStorage.ts        # Gerenciador do LocalStorage para salvar a confirmação (id, willGo)
+├── types/                    # Definições globais de Tipos TypeScript (Separados por domínio)
+│   ├── api.types.ts          # Envelopes de sucesso e erros da API
+│   ├── bets.types.ts         # Modelos de perguntas, opções, palpites e odds
+│   ├── rsvp.types.ts         # Modelos de dados do convidado e entrada do RSVP
+│   └── index.ts              # Centralizador de exportação de tipos
+├── pages/                    # Componentes de Páginas
+│   ├── LandingPage.tsx       # Landing Page com convite e formulário RSVP
+│   └── BetPage.tsx           # Página do Bolão (/bet) com barreiras de segurança
+└── components/               # Pasta de Componentes seguindo Atomic Design
+    ├── atoms/                # Elementos visuais mínimos (ex: Reveal.tsx)
+    ├── molecules/            # Combinações de átomos (ex: Countdown.tsx, BetQuestionCard.tsx, AccessDeniedMessage.tsx)
+    ├── organisms/            # Componentes complexos e com estado (ex: ConfirmForm.tsx, RsvpLookupForm.tsx, BetQuestionsList.tsx, EnvelopeIntro.tsx, Header.tsx, Footer.tsx)
+    └── sections/             # Seções grandes estruturantes da Landing Page (ex: HeroSection.tsx, HistorySection.tsx, ConfirmSection.tsx, etc.)
+```
+
+---
+
+## 3. Alterações Realizadas e Histórico de Refatoração
+
+### A. Ajustes no Formulário de Confirmação (`ConfirmForm.tsx`)
+- **Remoção e Re-adição de Campos**: A pedido, foi retirada a "mensagem para os noivos" e o campo de "e-mail" foi ajustado para se tornar **obrigatório** (tanto no input JSX usando `required` quanto na validação JS dentro do `handleSubmit`).
+- **Integração com API**: Substituído o comportamento simulado (mocked timeout) pelo envio real para a rota `POST /api/rsvp` através do `rsvpService`.
+- **Persistência Local**: Após receber o RSVP salvo com sucesso da API, os dados `id` e `will_go` são armazenados no `localStorage` via `rsvpStorage`.
+
+### B. Criação da Camada de API Reutilizável (`/src/api`)
+- Desenvolvido o `api.client.ts` para padronizar as requisições HTTP (`GET`/`POST`).
+- Caso o servidor backend responda com erros HTTP (como 400 ou 500), o cliente lança um erro `ApiError` estendendo a classe nativa `Error`, extraindo mensagens e validações da API.
+
+### C. Modularização de Tipos (`/src/types`)
+- Inicialmente os tipos estavam em `src/api/types.ts`. Eles foram migrados para a raiz `/src/types/` e divididos logicamente de acordo com suas responsabilidades em: `api.types.ts`, `bets.types.ts`, `rsvp.types.ts` e indexados em `index.ts`.
+- Todos os arquivos de serviço e cliente foram corrigidos para importar a partir da nova localização.
+
+### D. Roteamento e Barreiras de Segurança na rota `/bet`
+- Instalado e configurado o `react-router-dom` para suportar rotas no client-side.
+- A página **/bet** ([BetPage.tsx](file:///d:/felipe/Develop/julia/lp-engagement-invite/src/pages/BetPage.tsx)) foi implementada com três barreiras/portões de segurança restritivos:
+  1. **Sem RSVP salvo no LocalStorage**: O usuário é impedido de ver o bolão. É renderizado um formulário simples exigindo **E-mail** e **Telefone**. Ao enviar, consome `rsvpService.lookupRsvp` buscando o RSVP correspondente na API. Se encontrado, salva no localStorage e libera o acesso. Há um botão para retornar à Home (`/`) caso queira realizar um novo RSVP.
+  2. **RSVP com "Não vou"**: Se o convidado marcou que não vai à festa, ele é bloqueado de interagir ou ver as perguntas do bolão, exibindo uma mensagem informativa simples.
+  3. **RSVP Confirmado ("Vou")**: O acesso é liberado, engatilhando a chamada da API `betsService.listQuestions()` para exibir as perguntas e cotações. Existe também um botão de depuração no rodapé que limpa a sessão local.
+
+### E. Componentização da Página do Bolão (`BetPage.tsx`) seguindo Atomic Design
+- A página de Bolão foi decomposta em partes atômicas e reutilizáveis:
+  - **Molecules (Moléculas)**:
+    - `AccessDeniedMessage.tsx`: Card simples informando o bloqueio para convidados que recusaram a festa.
+    - `BetQuestionCard.tsx`: Card que exibe uma única pergunta do bolão com suas respectivas opções de votos e odds.
+  - **Organisms (Organismos)**:
+    - `RsvpLookupForm.tsx`: Formulário completo com estado interno para busca do RSVP por e-mail e telefone.
+    - `BetQuestionsList.tsx`: Grid dinâmico que exibe a lista de cards de palpites, estados de carregamento (loading), e botão para limpar a confirmação salva.
+- A página principal `BetPage.tsx` atua apenas como um orquestrador leve de fluxo e estado, chamando as rotas da API e renderizando as moléculas/organismos baseados no status de autenticação local.
