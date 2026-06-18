@@ -11,6 +11,7 @@ interface ConfirmFormProps {
 export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     phone: '',
     attending: 'yes', // 'yes' | 'no'
   });
@@ -86,21 +87,37 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
                 />
               </div>
 
-              {/* Telefone */}
-              <div className="space-y-1.5">
-                <label htmlFor="phone" className="font-sans text-xs font-semibold text-brand-dark/80 uppercase tracking-wider block">
-                  Telefone *
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="(00) 00000-0000"
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-accent transition-colors duration-300 bg-brand-bg/20 text-brand-dark"
-                />
+              {/* Email & Telefone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label htmlFor="email" className="font-sans text-xs font-semibold text-brand-dark/80 uppercase tracking-wider block">
+                    E-mail
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="exemplo@email.com"
+                    className="w-full px-4 py-3 border border-neutral-200 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-accent transition-colors duration-300 bg-brand-bg/20 text-brand-dark"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="phone" className="font-sans text-xs font-semibold text-brand-dark/80 uppercase tracking-wider block">
+                    Telefone *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="(00) 00000-0000"
+                    className="w-full px-4 py-3 border border-neutral-200 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-accent transition-colors duration-300 bg-brand-bg/20 text-brand-dark"
+                  />
+                </div>
               </div>
 
               {/* Você irá? */}
@@ -167,7 +184,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
               <button
                 onClick={() => {
                   setIsSuccess(false);
-                  setFormData({ name: '', phone: '', attending: 'yes' });
+                  setFormData({ name: '', email: '', phone: '', attending: 'yes' });
                 }}
                 className="text-xs font-semibold text-brand-accent uppercase tracking-widest hover:underline hover:text-brand-dark transition-colors duration-300"
               >
