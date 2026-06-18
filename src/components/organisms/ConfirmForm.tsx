@@ -3,6 +3,8 @@ import confetti from 'canvas-confetti';
 import { Heart, Send, CheckCircle } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
 import { formatFullDate, getConfirmDeadline } from '../../utils/date';
+import { rsvpStorage, type LocalRsvp } from '../../services/rsvpStorage';
+import { rsvpService } from '../../api/rsvp.service';
 
 interface ConfirmFormProps {
   engagementDate: Date;
@@ -17,7 +19,9 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(() => rsvpStorage.hasSaved());
+  const [localRsvp, setLocalRsvp] = useState<LocalRsvp | null>(() => rsvpStorage.get());
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -28,27 +32,44 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
     setFormData((prev) => ({ ...prev, attending: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
 
     setIsSubmitting(true);
+    setErrorMessage(null);
 
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
+    try {
+      const response = await rsvpService.createRsvp({
+        name: formData.name,
+        email: formData.email,
+        phone_number: formData.phone,
+        will_go: formData.attending === 'yes',
+      });
 
-      if (formData.attending === 'yes') {
-        // Trigger elegant confetti with brand colors
-        confetti({
-          particleCount: 150,
-          spread: 80,
-          origin: { y: 0.6 },
-          colors: ['#E2C2B9', '#D4E2D4', '#C79C93', '#FDFBF7', '#3D2C25']
-        });
+      if (response.status === 'success') {
+        const savedRsvp = response.data;
+        rsvpStorage.save(savedRsvp.id, savedRsvp.will_go);
+        setLocalRsvp({ id: savedRsvp.id, willGo: savedRsvp.will_go });
+        setIsSuccess(true);
+
+        if (savedRsvp.will_go) {
+          // Trigger elegant confetti with brand colors
+          confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ['#E2C2B9', '#D4E2D4', '#C79C93', '#FDFBF7', '#3D2C25']
+          });
+        }
       }
-    }, 1500);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Ocorreu um erro ao enviar sua confirmação. Por favor, tente novamente.';
+      console.error('Failed to submit RSVP:', error);
+      setErrorMessage(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,6 +171,13 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
                 </div>
               </div>
 
+              {/* Error Message */}
+              {errorMessage && (
+                <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 text-xs font-sans rounded-xl animate-fade-in text-center">
+                  {errorMessage}
+                </div>
+              )}
+
               {/* Submit Button */}
               <button
                 type="submit"
@@ -174,9 +202,11 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
                 </div>
               </div>
               <div>
-                <h3 className="font-serif text-3xl text-brand-dark mb-2">Confirmado!</h3>
+                <h3 className="font-serif text-3xl text-brand-dark mb-2">
+                  {localRsvp ? 'Resposta Salva!' : 'Confirmado!'}
+                </h3>
                 <p className="font-sans text-base text-brand-dark/85 max-w-sm mx-auto leading-relaxed">
-                  {formData.attending === 'yes'
+                  {(localRsvp ? localRsvp.willGo : formData.attending === 'yes')
                     ? 'Sua presença foi confirmada! Mal podemos esperar para celebrar esse noivado com você. ❤️'
                     : 'Obrigado por nos avisar. Sentiremos muito a sua falta nessa comemoração tão especial! ❤️'}
                 </p>
@@ -184,6 +214,8 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
               <button
                 onClick={() => {
                   setIsSuccess(false);
+                  setLocalRsvp(null);
+                  setErrorMessage(null);
                   setFormData({ name: '', email: '', phone: '', attending: 'yes' });
                 }}
                 className="text-xs font-semibold text-brand-accent uppercase tracking-widest hover:underline hover:text-brand-dark transition-colors duration-300"
