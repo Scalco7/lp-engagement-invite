@@ -6,6 +6,22 @@ import { formatFullDate, getConfirmDeadline } from '../../utils/date';
 import { rsvpStorage, type LocalRsvp } from '../../services/rsvpStorage';
 import { rsvpService } from '../../api/rsvp.service';
 
+const formatPhone = (value: string): string => {
+  const digits = value.replace(/\D/g, '');
+  const cleanDigits = digits.slice(0, 11);
+
+  if (cleanDigits.length <= 2) {
+    return cleanDigits.length > 0 ? `(${cleanDigits}` : '';
+  }
+  if (cleanDigits.length <= 3) {
+    return `(${cleanDigits.slice(0, 2)}) ${cleanDigits.slice(2)}`;
+  }
+  if (cleanDigits.length <= 7) {
+    return `(${cleanDigits.slice(0, 2)}) ${cleanDigits.slice(2, 3)} ${cleanDigits.slice(3)}`;
+  }
+  return `(${cleanDigits.slice(0, 2)}) ${cleanDigits.slice(2, 3)} ${cleanDigits.slice(3, 7)}-${cleanDigits.slice(7)}`;
+};
+
 interface ConfirmFormProps {
   engagementDate: Date;
 }
@@ -25,7 +41,11 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === 'phone') {
+      setFormData((prev) => ({ ...prev, phone: formatPhone(value) }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSelectAttending = (value: 'yes' | 'no') => {
@@ -136,7 +156,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="(00) 00000-0000"
+                    placeholder="(00) 9 0000-0000"
                     className="w-full px-4 py-3 border border-neutral-200 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-accent transition-colors duration-300 bg-brand-bg/20 text-brand-dark"
                   />
                 </div>

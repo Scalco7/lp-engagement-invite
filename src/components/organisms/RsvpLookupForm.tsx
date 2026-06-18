@@ -2,6 +2,22 @@ import React, { useState } from 'react';
 import { rsvpService } from '../../api/rsvp.service';
 import type { Rsvp } from '../../types';
 
+const formatPhone = (value: string): string => {
+  const digits = value.replace(/\D/g, '');
+  const cleanDigits = digits.slice(0, 11);
+
+  if (cleanDigits.length <= 2) {
+    return cleanDigits.length > 0 ? `(${cleanDigits}` : '';
+  }
+  if (cleanDigits.length <= 3) {
+    return `(${cleanDigits.slice(0, 2)}) ${cleanDigits.slice(2)}`;
+  }
+  if (cleanDigits.length <= 7) {
+    return `(${cleanDigits.slice(0, 2)}) ${cleanDigits.slice(2, 3)} ${cleanDigits.slice(3)}`;
+  }
+  return `(${cleanDigits.slice(0, 2)}) ${cleanDigits.slice(2, 3)} ${cleanDigits.slice(3, 7)}-${cleanDigits.slice(7)}`;
+};
+
 interface RsvpLookupFormProps {
   onSuccess: (rsvp: Rsvp) => void;
   onGoHome: () => void;
@@ -66,8 +82,8 @@ export const RsvpLookupForm: React.FC<RsvpLookupFormProps> = ({ onSuccess, onGoH
             type="tel"
             required
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="(00) 99999-9999"
+            onChange={(e) => setPhone(formatPhone(e.target.value))}
+            placeholder="(00) 9 0000-0000"
             style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }}
           />
         </div>

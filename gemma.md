@@ -49,6 +49,7 @@ src/
 
 ### A. Ajustes no Formulário de Confirmação (`ConfirmForm.tsx`)
 - **Remoção e Re-adição de Campos**: A pedido, foi retirada a "mensagem para os noivos" e o campo de "e-mail" foi ajustado para se tornar **obrigatório** (tanto no input JSX usando `required` quanto na validação JS dentro do `handleSubmit`).
+- **Máscara de Telefone**: Adicionada uma máscara de telefone em tempo real `(xx) x xxxx-xxxx` para o celular do convidado, aplicada no momento da digitação.
 - **Integração com API**: Substituído o comportamento simulado (mocked timeout) pelo envio real para a rota `POST /api/rsvp` através do `rsvpService`.
 - **Persistência Local**: Após receber o RSVP salvo com sucesso da API, os dados `id` e `will_go` são armazenados no `localStorage` via `rsvpStorage`.
 
@@ -73,6 +74,6 @@ src/
     - `AccessDeniedMessage.tsx`: Card simples informando o bloqueio para convidados que recusaram a festa.
     - `BetQuestionCard.tsx`: Card que exibe uma única pergunta do bolão com suas respectivas opções de votos e odds.
   - **Organisms (Organismos)**:
-    - `RsvpLookupForm.tsx`: Formulário completo com estado interno para busca do RSVP por e-mail e telefone.
+    - `RsvpLookupForm.tsx`: Formulário completo com estado interno para busca do RSVP por e-mail e telefone. Implementa a mesma máscara de telefone em tempo real `(xx) x xxxx-xxxx` para manter consistência e qualidade de UX no preenchimento.
     - `BetQuestionsList.tsx`: Grid dinâmico que exibe a lista de cards de palpites, estados de carregamento (loading), e botão para limpar a confirmação salva.
 - A página principal `BetPage.tsx` atua apenas como um orquestrador leve de fluxo e estado, chamando as rotas da API e renderizando as moléculas/organismos baseados no status de autenticação local.
