@@ -40,18 +40,12 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({ engagementDa
       const rect = sectionRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      // Trigger when the bottom of the section reaches the bottom of the viewport
-      if (rect.bottom <= viewportHeight + 50 && rect.top < viewportHeight) {
+      // Trigger when the section is significantly visible in the viewport
+      const isVisible = rect.top < viewportHeight - 100 && rect.bottom > 100;
+      if (isVisible) {
         if (!triggered) {
           triggered = true;
-
-          // Smooth scroll to align the bottom of the section to the bottom of the screen
-          sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-
-          // Wait for smooth scroll to finish, then lock and play confetti
-          setTimeout(() => {
-            playConfetti();
-          }, 400);
+          playConfetti();
         }
       } else if (rect.top > viewportHeight || rect.bottom < 0) {
         // Reset triggered state if they scroll completely away

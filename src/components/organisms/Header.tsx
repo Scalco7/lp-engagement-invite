@@ -80,8 +80,8 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection, rsvp }) => {
               onClick={handleBetsClick}
               disabled={isLocked}
               className={`flex items-center gap-1.5 transition-colors duration-300 font-sans text-[11px] font-medium tracking-widest ${isLocked
-                  ? 'text-brand-dark/40 cursor-not-allowed'
-                  : 'text-brand-dark/80 hover:text-brand-accent cursor-pointer'
+                ? 'text-brand-dark/40 cursor-not-allowed'
+                : 'text-brand-dark/80 hover:text-brand-accent cursor-pointer'
                 } ${isDisappearing ? 'animate-shrink-fade' : ''}`}
             >
               {isLocked && (
@@ -118,9 +118,9 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection, rsvp }) => {
               <button
                 onClick={handleBetsClick}
                 disabled={isLocked}
-                className={`text-left py-2 border-b border-brand-accent/10 flex items-center gap-1.5 cursor-pointer w-full font-sans text-xs font-semibold uppercase tracking-widest ${isLocked
-                    ? 'text-brand-dark/40 cursor-not-allowed'
-                    : 'text-brand-dark/95 hover:text-brand-accent'
+                className={`text-left py-2 border-b border-brand-accent/10 flex items-center gap-1.5 cursor-pointer w-full font-sans text-xs font-semibold tracking-widest ${isLocked
+                  ? 'text-brand-dark/40 cursor-not-allowed'
+                  : 'text-brand-dark/95 hover:text-brand-accent'
                   } ${isDisappearing ? 'animate-shrink-fade' : ''}`}
               >
                 {isLocked && (
