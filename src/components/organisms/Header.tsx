@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection, rsvp }) => {
   const handleBetsClick = () => {
     if (isLocked) return;
     setMobileMenuOpen(false);
-    navigate('/bet');
+    navigate('/engagement-invite/bet');
   };
 
   return (

@@ -69,7 +69,7 @@ export default function BetPage() {
 
 
   const handleGoHome = () => {
-    navigate('/');
+    navigate('/engagement-invite');
   };
 
   const handleBetPlaced = (questionId: string, value: string) => {

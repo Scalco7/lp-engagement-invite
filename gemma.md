@@ -19,7 +19,7 @@ Abaixo estão os novos componentes arquiteturais inseridos para dar suporte a co
 
 ```
 src/
-├── App.tsx                   # Ponto de entrada do React Router (rotas: "/" e "/bet")
+├── App.tsx                   # Ponto de entrada do React Router (rotas: "/engagement-invite" e "/engagement-invite/bet", com redirecionamento de "/" e rotas inexistentes "*" para "/engagement-invite")
 ├── main.tsx                  # Bootstrap da aplicação
 ├── api/                      # Camada de Consumo de API
 │   ├── api.client.ts         # Wrapper do fetch com tratamento robusto de exceções (ApiError)
@@ -61,10 +61,10 @@ src/
 - Inicialmente os tipos estavam em `src/api/types.ts`. Eles foram migrados para a raiz `/src/types/` e divididos logicamente de acordo com suas responsabilidades em: `api.types.ts`, `bets.types.ts`, `rsvp.types.ts` e indexados em `index.ts`.
 - Todos os arquivos de serviço e cliente foram corrigidos para importar a partir da nova localização.
 
-### D. Roteamento e Barreiras de Segurança na rota `/bet`
+### D. Roteamento e Barreiras de Segurança na rota `/engagement-invite/bet`
 - Instalado e configurado o `react-router-dom` para suportar rotas no client-side.
-- A página **/bet** ([BetPage.tsx](file:///d:/felipe/Develop/julia/lp-engagement-invite/src/pages/BetPage.tsx)) foi implementada com três barreiras/portões de segurança restritivos:
-  1. **Sem RSVP salvo no LocalStorage**: O usuário é impedido de ver o bolão. É renderizado um formulário simples exigindo **E-mail** e **Telefone**. Ao enviar, consome `rsvpService.lookupRsvp` buscando o RSVP correspondente na API. Se encontrado, salva no localStorage e libera o acesso. Há um botão para retornar à Home (`/`) caso queira realizar um novo RSVP.
+- A página **do bolão** ([BetPage.tsx](file:///d:/develop/ju/lp-engagement-invite/src/pages/BetPage.tsx)) foi implementada na rota `/engagement-invite/bet` com três barreiras/portões de segurança restritivos:
+  1. **Sem RSVP salvo no LocalStorage**: O usuário é impedido de ver o bolão. É renderizado um formulário simples exigindo **E-mail** e **Telefone**. Ao enviar, consome `rsvpService.lookupRsvp` buscando o RSVP correspondente na API. Se encontrado, salva no localStorage e libera o acesso. Há um botão para retornar à Home (`/engagement-invite`) caso queira realizar um novo RSVP.
   2. **RSVP com "Não vou"**: Se o convidado marcou que não vai à festa, ele é bloqueado de interagir ou ver as perguntas do bolão, exibindo uma mensagem informativa simples.
   3. **RSVP Confirmado ("Vou")**: O acesso é liberado, engatilhando a chamada da API `betsService.listQuestions()` para exibir as perguntas e cotações. Existe também um botão de depuração no rodapé que limpa a sessão local.
 
@@ -99,12 +99,12 @@ src/
   - Integrado o botão "Palpites" na barra de navegação (`Header.tsx` no desktop e mobile) como o **primeiro item da esquerda para a direita**.
   - Estilizado de forma plana (como os outros links planos: "Nossa História" e "A Celebração"), usando borda inferior divisória (`border-b border-brand-accent/10`) no mobile.
   - Inicialmente bloqueado com um ícone de **cadeado** (`Lock`) e desabilitado caso o usuário não tenha feito RSVP.
-  - Ao confirmar presença ("Vou"), engatilha a animação `animate-unlock` (o cadeado gira, diminui e some), liberando o acesso ao clique que navega para `/bet`.
+  - Ao confirmar presença ("Vou"), engatilha a animação `animate-unlock` (o cadeado gira, diminui e some), liberando o acesso ao clique que navega para `/engagement-invite/bet`.
   - Ao registrar que não comparecerá ("Infelizmente não posso"), executa a animação `animate-shrink-fade` (o botão encolhe e desaparece da barra de navegação).
   - A comunicação em tempo real entre o formulário (`ConfirmForm.tsx`) e o cabeçalho (`Header.tsx`) é feita por meio de elevação de estado e callbacks (`onRsvpUpdated`) na `LandingPage.tsx`.
 - **Atalho no Card de Confirmação (RSVP)**:
-  - Adicionado um botão proeminente **"🎲 Dar Meus Palpites"** diretamente no card de sucesso do `ConfirmForm.tsx` quando a confirmação de presença for positiva ("Vou").
-  - O clique direciona o convidado diretamente para `/bet`, melhorando o fluxo de onboarding do bolão logo após a confirmação de presença.
+  - Adicionado um botão proeminente **"🎲 Dar Meus Palpites"** diretamente no card de sucesso del `ConfirmForm.tsx` quando a confirmação de presença for positiva ("Vou").
+  - O clique direciona o convidado diretamente para `/engagement-invite/bet`, melhorando o fluxo de onboarding do bolão logo após a confirmação de presença.
 - **Scroll Automático ao Topo**:
   - Inserido um gancho `useEffect` em `BetPage.tsx` que rola a tela do navegador automaticamente para o topo (`window.scrollTo(0, 0)`) no momento em que a página monta. Isso garante que a visualização inicie perfeitamente no cabeçalho do bolão, corrigindo a persistência do scroll da Landing Page.
 - **Estilização de Destaque para Favorito e Zebra**:

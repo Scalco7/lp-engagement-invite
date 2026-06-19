@@ -241,7 +241,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvp
               {(localRsvp ? localRsvp.willGo : formData.attending === 'yes') && (
                 <div className="pt-2 animate-scale-up">
                   <button
-                    onClick={() => navigate('/bet')}
+                    onClick={() => navigate('/engagement-invite/bet')}
                     className="w-full bg-brand-dark text-brand-bg font-sans font-medium text-sm py-4 rounded-xl shadow-md hover:bg-brand-accent hover:text-brand-dark active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 uppercase tracking-wider cursor-pointer"
                   >
                     🎲 Dar Meus Palpites
