@@ -118,7 +118,7 @@ export const HeroSection: React.FC = () => {
               transform: `translate(calc(-${120 * (1 - scrollProgress)}px), calc(-${50 * (1 - scrollProgress)}px)) rotate(${-2 - 4 * (1 - scrollProgress)}deg)`,
             }}
           >
-            <img src="/imgs/IMG_6420.jpg" alt="Aux 1" className="w-full h-full object-cover" />
+            <img src="/imgs/hero-help-1.jpg" alt="Aux 1" className="w-full h-full object-cover" />
           </div>
 
           {/* Card 2: Lower-Left (also at top) */}
@@ -130,31 +130,31 @@ export const HeroSection: React.FC = () => {
               transform: `translate(calc(-${140 * (1 - scrollProgress)}px), calc(${20 * (1 - scrollProgress)}px)) rotate(${2 + 4 * (1 - scrollProgress)}deg)`,
             }}
           >
-            <img src="/imgs/IMG_6436.jpg" alt="Aux 2" className="w-full h-full object-cover" />
+            <img src="/imgs/hero-help-2.jpg" alt="Aux 2" className="w-full h-full object-cover" />
           </div>
 
           {/* Card 3: Upper-Right (at bottom) */}
           <div
-            className="absolute w-[180px] sm:w-[240px] aspect-[4/3] shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
+            className="absolute w-[180px] sm:w-[240px] aspect-4/3 shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
             style={{
               left: '108%',
-              bottom: '42%',
+              bottom: '54%',
               transform: `translate(calc(${140 * (1 - scrollProgress)}px), calc(-${20 * (1 - scrollProgress)}px)) rotate(${2 + 4 * (1 - scrollProgress)}deg)`,
             }}
           >
-            <img src="/imgs/IMG_6506.jpg" alt="Aux 3" className="w-full h-full object-cover" />
+            <img src="/imgs/hero-help-4.jpg" alt="Aux 3" className="w-full h-full object-cover" />
           </div>
 
           {/* Card 4: Bottom-Right */}
           <div
-            className="absolute w-[160px] sm:w-[220px] aspect-square shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
+            className="absolute w-[160px] sm:w-[220px] aspect-6/7 shadow-2xl rounded-2xl overflow-hidden pointer-events-none transition-all duration-100 ease-out border border-white/60"
             style={{
               left: '104%',
               bottom: '4%',
               transform: `translate(calc(${100 * (1 - scrollProgress)}px), calc(${40 * (1 - scrollProgress)}px)) rotate(${-2 - 4 * (1 - scrollProgress)}deg)`,
             }}
           >
-            <img src="/imgs/IMG_6507.jpg" alt="Aux 4" className="w-full h-full object-cover" />
+            <img src="/imgs/hero-help-3.jpg" alt="Aux 4" className="w-full h-full object-cover" />
           </div>
 
         </div>
