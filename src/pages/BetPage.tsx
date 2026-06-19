@@ -16,6 +16,11 @@ export default function BetPage() {
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(false);
   const [isLoadingBets, setIsLoadingBets] = useState(false);
 
+  // Scroll to top when page mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Load pool questions and guest's bets only if authorized
   useEffect(() => {
     if (localRsvp && localRsvp.willGo) {

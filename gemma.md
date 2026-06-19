@@ -105,6 +105,9 @@ src/
 - **Atalho no Card de Confirmação (RSVP)**:
   - Adicionado um botão proeminente **"🎲 Dar Meus Palpites"** diretamente no card de sucesso do `ConfirmForm.tsx` quando a confirmação de presença for positiva ("Vou").
   - O clique direciona o convidado diretamente para `/bet`, melhorando o fluxo de onboarding do bolão logo após a confirmação de presença.
+- **Scroll Automático ao Topo**:
+  - Inserido um gancho `useEffect` em `BetPage.tsx` que rola a tela do navegador automaticamente para o topo (`window.scrollTo(0, 0)`) no momento em que a página monta. Isso garante que a visualização inicie perfeitamente no cabeçalho do bolão, corrigindo a persistência do scroll da Landing Page.
+
 
 
 
