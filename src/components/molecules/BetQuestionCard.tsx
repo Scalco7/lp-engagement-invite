@@ -22,6 +22,7 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
   const [isCustomSelected, setIsCustomSelected] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showAllOptions, setShowAllOptions] = useState(false);
 
   const hasMatchingOption = question.options.some((opt) => opt.value === currentBet);
 
@@ -36,6 +37,39 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
       odd: 1,
     });
   }
+
+  // Sort by odd ascending (lowest odds first = favorites)
+  const sortedOptions = [...optionsToRender].sort((a, b) => a.odd - b.odd);
+
+  // Determine pagination/collapsing
+  const totalOptionsCount = sortedOptions.length;
+  const isCollapsible = totalOptionsCount > 8;
+
+  // Slices:
+  const lowestOdds = isCollapsible ? sortedOptions.slice(0, 4) : sortedOptions;
+  const highestOdds = isCollapsible ? sortedOptions.slice(-4) : [];
+
+  // Make sure currentBet and selectedOption are always visible if set
+  const visibleValues = new Set<string>();
+  lowestOdds.forEach((o) => visibleValues.add(o.value));
+  highestOdds.forEach((o) => visibleValues.add(o.value));
+  if (currentBet) visibleValues.add(currentBet);
+  if (selectedOption) visibleValues.add(selectedOption);
+
+  // Hidden options count
+  const hiddenCount = totalOptionsCount - visibleValues.size;
+
+  // Options that are selected/bet on but are NOT in lowest/highest odds slices
+  const activeUserChoices = sortedOptions.filter(
+    (o) =>
+      (o.value === currentBet || o.value === selectedOption) &&
+      !lowestOdds.some((l) => l.value === o.value) &&
+      !highestOdds.some((h) => h.value === o.value)
+  );
+
+  // Find matching option label to display instead of raw value/id
+  const matchedOption = optionsToRender.find((opt) => opt.value === currentBet);
+  const displayBetLabel = matchedOption ? matchedOption.label : currentBet;
 
   // Calculate percentages
   const totalVotes = question.totalVotes || 0;
@@ -117,6 +151,71 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
     }
   };
 
+  const renderOptionRow = (option: typeof question.options[0]) => {
+    const votesCount = option.votes || 0;
+    const percentage = totalVotes > 0 ? (votesCount / totalVotes) * 100 : 0;
+    const isVotedChoice = currentBet === option.value;
+    const isSelectedChoice = selectedOption === option.value;
+
+    return (
+      <div
+        key={option.value}
+        onClick={() => handleSelectOption(option.value)}
+        className={`relative overflow-hidden border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 group select-none ${
+          currentBet
+            ? isVotedChoice
+              ? 'border-brand-sage bg-brand-sage/5 shadow-sm'
+              : 'border-neutral-100 opacity-60'
+            : isSelectedChoice
+            ? 'border-brand-accent bg-brand-blush/10 scale-[1.01] shadow-sm'
+            : 'border-neutral-200/70 hover:border-brand-blush hover:bg-brand-bg/30 cursor-pointer'
+        }`}
+      >
+        {/* Visual Progress Bar */}
+        {totalVotes > 0 && (
+          <div
+            className="absolute inset-y-0 left-0 bg-brand-sage/10 transition-all duration-1000 ease-out z-0"
+            style={{ width: `${percentage}%` }}
+          />
+        )}
+
+        {/* Left Side: Radio / Check and Option Label */}
+        <div className="flex items-center gap-2.5 relative z-10 max-w-[70%]">
+          {currentBet ? (
+            isVotedChoice ? (
+              <div className="w-5 h-5 rounded-full bg-brand-sage flex items-center justify-center text-brand-dark/95 flex-shrink-0">
+                <Check className="w-3 h-3 stroke-[3px]" />
+              </div>
+            ) : (
+              <div className="w-5 h-5 rounded-full border border-neutral-300 flex-shrink-0" />
+            )
+          ) : isSelectedChoice ? (
+            <div className="w-5 h-5 rounded-full border-2 border-brand-accent bg-brand-accent flex items-center justify-center text-white flex-shrink-0">
+              <div className="w-1.5 h-1.5 rounded-full bg-white" />
+            </div>
+          ) : (
+            <Circle className="w-5 h-5 text-neutral-300 group-hover:text-brand-accent/60 transition-colors flex-shrink-0" />
+          )}
+          <span className="font-sans text-xs font-semibold text-brand-dark/95 truncate">
+            {option.label}
+          </span>
+        </div>
+
+        {/* Right Side: Odds and votes */}
+        <div className="flex flex-col items-end relative z-10 font-sans">
+          <span className="text-[10px] font-bold text-brand-dark/80 bg-brand-bg border border-brand-accent/15 px-2 py-0.5 rounded-md">
+            {option.odd.toFixed(2)}x
+          </span>
+          {totalVotes > 0 && (
+            <span className="text-[9px] text-brand-dark/50 mt-1 font-medium">
+              {percentage.toFixed(0)}% ({votesCount} {votesCount === 1 ? 'voto' : 'votos'})
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="bg-white border border-brand-accent/20 rounded-3xl p-6 shadow-sm hover:shadow-[0_12px_40px_rgba(61,44,37,0.06)] hover:border-brand-accent/30 transition-all duration-300 flex flex-col justify-between min-h-[340px]">
       
@@ -145,70 +244,69 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
 
         {/* Options List */}
         <div className="space-y-3">
-          {optionsToRender.map((option) => {
-            const votesCount = option.votes || 0;
-            const percentage = totalVotes > 0 ? (votesCount / totalVotes) * 100 : 0;
-            const isVotedChoice = currentBet === option.value;
-            const isSelectedChoice = selectedOption === option.value;
-
-            return (
-              <div
-                key={option.value}
-                onClick={() => handleSelectOption(option.value)}
-                className={`relative overflow-hidden border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 group select-none ${
-                  currentBet
-                    ? isVotedChoice
-                      ? 'border-brand-sage bg-brand-sage/5 shadow-sm'
-                      : 'border-neutral-100 opacity-60'
-                    : isSelectedChoice
-                    ? 'border-brand-accent bg-brand-blush/10 scale-[1.01] shadow-sm'
-                    : 'border-neutral-200/70 hover:border-brand-blush hover:bg-brand-bg/30 cursor-pointer'
-                }`}
-              >
-                {/* Visual Progress Bar (Only visible when currentBet is defined or totalVotes > 0) */}
-                {totalVotes > 0 && (
-                  <div
-                    className="absolute inset-y-0 left-0 bg-brand-sage/10 transition-all duration-1000 ease-out z-0"
-                    style={{ width: `${percentage}%` }}
-                  />
-                )}
-
-                {/* Left Side: Radio / Check and Option Label */}
-                <div className="flex items-center gap-2.5 relative z-10 max-w-[70%]">
-                  {currentBet ? (
-                    isVotedChoice ? (
-                      <div className="w-5 h-5 rounded-full bg-brand-sage flex items-center justify-center text-brand-dark flex-shrink-0">
-                        <Check className="w-3 h-3 stroke-[3px]" />
-                      </div>
-                    ) : (
-                      <div className="w-5 h-5 rounded-full border border-neutral-300 flex-shrink-0" />
-                    )
-                  ) : isSelectedChoice ? (
-                    <div className="w-5 h-5 rounded-full border-2 border-brand-accent bg-brand-accent flex items-center justify-center text-white flex-shrink-0">
-                      <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                    </div>
-                  ) : (
-                    <Circle className="w-5 h-5 text-neutral-300 group-hover:text-brand-accent/60 transition-colors flex-shrink-0" />
-                  )}
-                  <span className="font-sans text-xs font-semibold text-brand-dark/95 truncate">
-                    {option.label}
-                  </span>
+          {(!isCollapsible || showAllOptions) ? (
+            // Expanded List: Scrollable container to maintain height
+            <div className={isCollapsible ? "max-h-[260px] overflow-y-auto pr-1.5 space-y-3 scrollbar-thin scrollbar-thumb-brand-accent/25 scrollbar-track-transparent" : "space-y-3"}>
+              {sortedOptions.map(renderOptionRow)}
+            </div>
+          ) : (
+            // Collapsed List: 4 lowest odds, button, 4 highest odds
+            <div className="space-y-3.5">
+              {/* Render active user choices first if any */}
+              {activeUserChoices.length > 0 && (
+                <div className="space-y-2 animate-fade-in">
+                  <div className="text-[8px] font-bold uppercase tracking-widest text-brand-dark/40 mb-1">
+                    Seu Palpite / Selecionado
+                  </div>
+                  {activeUserChoices.map(renderOptionRow)}
                 </div>
+              )}
 
-                {/* Right Side: Odds and votes */}
-                <div className="flex flex-col items-end relative z-10 font-sans">
-                  <span className="text-[10px] font-bold text-brand-dark/80 bg-brand-bg border border-brand-accent/15 px-2 py-0.5 rounded-md">
-                    {option.odd.toFixed(2)}x
-                  </span>
-                  {totalVotes > 0 && (
-                    <span className="text-[9px] text-brand-dark/50 mt-1 font-medium">
-                      {percentage.toFixed(0)}% ({votesCount} {votesCount === 1 ? 'voto' : 'votos'})
-                    </span>
-                  )}
+              {/* Render favorites (lowest odds) */}
+              <div className="space-y-2">
+                <div className="text-[8px] font-bold uppercase tracking-widest text-brand-dark/40 mb-1">
+                  Favoritos (Menores Odds)
+                </div>
+                <div className="space-y-2.5">
+                  {lowestOdds.map(renderOptionRow)}
                 </div>
               </div>
-            );
-          })}
+
+              {/* Expand Button Separator */}
+              {hiddenCount > 0 && (
+                <div className="py-1 flex justify-center animate-fade-in">
+                  <button
+                    type="button"
+                    onClick={() => setShowAllOptions(true)}
+                    className="px-4 py-2 border border-brand-accent/20 rounded-xl bg-brand-bg/50 hover:bg-brand-blush/20 hover:border-brand-accent text-brand-dark/80 transition-all duration-300 font-sans text-[9px] font-bold uppercase tracking-wider cursor-pointer shadow-sm hover:shadow"
+                  >
+                    + Ver outros {hiddenCount} palpites
+                  </button>
+                </div>
+              )}
+
+              {/* Render zebras (highest odds) */}
+              <div className="space-y-2">
+                <div className="text-[8px] font-bold uppercase tracking-widest text-brand-dark/40 mb-1">
+                  Zebras (Maiores Odds)
+                </div>
+                <div className="space-y-2.5">
+                  {highestOdds.map(renderOptionRow)}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Show "Collapse options" link at the bottom of expanded list */}
+          {isCollapsible && showAllOptions && (
+            <button
+              type="button"
+              onClick={() => setShowAllOptions(false)}
+              className="w-full text-center text-[9px] font-bold text-brand-accent hover:text-brand-dark uppercase tracking-widest py-1.5 transition-colors cursor-pointer"
+            >
+              Recolher palpites
+            </button>
+          )}
 
           {/* Custom Input Option for TEXT / NUMBER */}
           {!currentBet && (question.type === 'TEXT' || question.type === 'NUMBER') && (
@@ -286,7 +384,7 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
         ) : (
           <div className="bg-brand-sage/10 border border-brand-sage/30 rounded-xl p-3 flex items-center justify-center gap-2">
             <span className="font-sans text-[11px] text-brand-dark/70">
-              Seu palpite: <strong className="text-brand-dark font-bold">{currentBet}</strong>
+              Seu palpite: <strong className="text-brand-dark font-bold">{displayBetLabel}</strong>
             </span>
           </div>
         )}

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Heart, ArrowLeft } from 'lucide-react';
 import { betsService } from '../api/bets.service';
 import { rsvpStorage, type LocalRsvp } from '../services/rsvpStorage';
-import { betStorage } from '../services/betStorage';
 import type { QuestionWithOdds, Rsvp } from '../types';
 import RsvpLookupForm from '../components/organisms/RsvpLookupForm';
 import AccessDeniedMessage from '../components/molecules/AccessDeniedMessage';
@@ -37,21 +36,20 @@ export default function BetPage() {
           setIsLoadingQuestions(false);
         });
 
-      // Load bets placed by this guest (API with localStorage fallback)
+      // Load bets placed by this guest (API)
       betsService.listBetsForGuest(localRsvp.id)
         .then((response) => {
           if (response.status === 'success') {
             const betsMap: Record<string, string> = {};
             response.data.forEach((bet) => {
               betsMap[bet.questionId] = bet.value;
-              betStorage.save(bet.questionId, bet.value); // Cache locally
             });
             setPlacedBets(betsMap);
           }
         })
         .catch((error) => {
-          console.warn('API de palpites anteriores indisponível ou falhou. Usando cache local:', error);
-          setPlacedBets(betStorage.getAll());
+          console.error('Falha ao recuperar palpites anteriores:', error);
+          setPlacedBets({});
         })
         .finally(() => {
           setIsLoadingBets(false);
@@ -74,7 +72,6 @@ export default function BetPage() {
       const updated = { ...prev, [questionId]: value };
       return updated;
     });
-    betStorage.save(questionId, value);
 
     // Refresh questions to show updated odds and vote percentages
     betsService.listQuestions()

@@ -83,11 +83,18 @@ src/
 - **Integração Real-Time no Card de Palpites**:
   - `BetQuestionCard.tsx` agora exibe opções com barras de progresso que refletem as parciais e odds recalculadas na hora.
   - Convidados podem palpitar selecionando opções ou digitando texto/número livre. Ao confirmar, consome `betsService.placeBet` e dispara confetes dinâmicos de sucesso.
-- **Armazenamento de Palpites e Novo Endpoint**:
-  - Implementado `betsService.listBetsForGuest` que consome a rota `GET /api/bets/rsvp/:rsvpId` no backend (endpoint que deve ser implementado na API).
-  - Criado o serviço `betStorage.ts` para servir como cache local e fallback automático no `localStorage`. Se a chamada da API de palpites falhar, os palpites locais salvos no dispositivo são exibidos de forma transparente.
+- **Recuperação de Palpites via API**:
+  - Implementado `betsService.listBetsForGuest` que consome a rota `GET /api/bets/rsvp/:rsvpId` no backend. A página agora resgata e renderiza de forma unificada os palpites anteriores do convidado diretamente do banco de dados, evitando duplicidades de dados e garantindo a consistência das informações com o servidor.
 - **Cabeçalho de Navegação e Responsividade**:
   - Adicionado cabeçalho fixo com logotipo, coração pulsante e botão de retorno que encurta de "Voltar ao Convite" para "Voltar" em telas pequenas com um ícone de seta.
   - Removido qualquer botão de logout/sair para manter o login permanentemente ativo no dispositivo de cada convidado.
   - Adicionados ornamentos flutuantes lentos idênticos aos do convite principal no fundo da página.
+- **Otimização para Listas Grandes (Exibição de Favoritos e Zebras)**:
+  - Em cenários com mais de 8 opções (ex: 100 convidados em perguntas de escolha de convidado), o card `BetQuestionCard.tsx` oculta a maior parte das opções por padrão para manter a interface limpa e compacta.
+  - Apresenta inicialmente apenas os **4 favoritos** (menores odds) e as **4 zebras** (maiores odds), garantindo que a opção já votada/selecionada pelo convidado continue visível no topo.
+  - Permite expandir a lista completa de forma fluida dentro de um contêiner rolável (`max-h-[260px]`) para não quebrar a estrutura vertical da página, exibindo um botão de recolhimento.
+- **Resolução de Rótulos em Palpites**:
+  - No rodapé do `BetQuestionCard.tsx`, o sistema busca a opção correspondente ao palpite (`currentBet`) e exibe o rótulo amigável (ex: "Felipe Maciel Scalco") em vez do identificador ou UUID bruto recebido do backend.
+
+
 
