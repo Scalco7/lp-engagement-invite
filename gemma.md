@@ -77,3 +77,17 @@ src/
     - `RsvpLookupForm.tsx`: Formulário completo com estado interno para busca do RSVP por e-mail e telefone. Implementa a mesma máscara de telefone em tempo real `(xx) x xxxx-xxxx` para manter consistência e qualidade de UX no preenchimento.
     - `BetQuestionsList.tsx`: Grid dinâmico que exibe a lista de cards de palpites, estados de carregamento (loading), e botão para limpar a confirmação salva.
 - A página principal `BetPage.tsx` atua apenas como um orquestrador leve de fluxo e estado, chamando as rotas da API e renderizando as moléculas/organismos baseados no status de autenticação local.
+
+### F. Melhorias Visuais e de Palpites em Tempo Real no Bolão
+- **Estilização Premium com TailwindCSS**: Refatorados todos os componentes do bolão (`RsvpLookupForm.tsx`, `AccessDeniedMessage.tsx`, `BetQuestionsList.tsx` e `BetQuestionCard.tsx`) eliminando estilos inline e adotando a paleta de cores e tipografias oficiais do sistema (`font-serif`, `font-sans`, `#fdfbf7`, `#3d2c25`, `#c79c93`).
+- **Integração Real-Time no Card de Palpites**:
+  - `BetQuestionCard.tsx` agora exibe opções com barras de progresso que refletem as parciais e odds recalculadas na hora.
+  - Convidados podem palpitar selecionando opções ou digitando texto/número livre. Ao confirmar, consome `betsService.placeBet` e dispara confetes dinâmicos de sucesso.
+- **Armazenamento de Palpites e Novo Endpoint**:
+  - Implementado `betsService.listBetsForGuest` que consome a rota `GET /api/bets/rsvp/:rsvpId` no backend (endpoint que deve ser implementado na API).
+  - Criado o serviço `betStorage.ts` para servir como cache local e fallback automático no `localStorage`. Se a chamada da API de palpites falhar, os palpites locais salvos no dispositivo são exibidos de forma transparente.
+- **Cabeçalho de Navegação e Responsividade**:
+  - Adicionado cabeçalho fixo com logotipo, coração pulsante e botão de retorno que encurta de "Voltar ao Convite" para "Voltar" em telas pequenas com um ícone de seta.
+  - Removido qualquer botão de logout/sair para manter o login permanentemente ativo no dispositivo de cada convidado.
+  - Adicionados ornamentos flutuantes lentos idênticos aos do convite principal no fundo da página.
+
