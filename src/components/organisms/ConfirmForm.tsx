@@ -244,7 +244,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvp
                     onClick={() => navigate('/engagement-invite/bet')}
                     className="w-full bg-brand-dark text-brand-bg font-sans font-medium text-sm py-4 rounded-xl shadow-md hover:bg-brand-accent hover:text-brand-dark active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 uppercase tracking-wider cursor-pointer"
                   >
-                    🎲 Dar Meus Palpites
+                    Dar Meus Palpites
                   </button>
                 </div>
               )}
@@ -257,7 +257,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvp
                   setFormData({ name: '', email: '', phone: '', attending: 'yes' });
                   if (onRsvpUpdated) onRsvpUpdated();
                 }}
-                className="text-xs font-semibold text-brand-accent uppercase tracking-widest hover:underline hover:text-brand-dark transition-colors duration-300"
+                className="cursor-pointer text-xs font-semibold text-brand-accent uppercase tracking-widest hover:underline hover:text-brand-dark transition-colors duration-300"
               >
                 Confirmar outro convidado
               </button>
