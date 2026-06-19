@@ -80,6 +80,19 @@ const historyData: HistoryItem[] = [
 export const HistorySection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,11 +121,13 @@ export const HistorySection: React.FC = () => {
 
   const getCardStyle = (index: number) => {
     const totalCards = historyData.length;
-    // We want the last card to stay fully active at progress = 1
     // Scale cardProgress from 0 to totalCards - 0.5
     const cardProgress = scrollProgress * (totalCards - 0.5);
     const diff = cardProgress - index;
     const rotation = index % 2 === 0 ? 0.7 : -0.7;
+
+    // Use a smaller spacing gap on mobile so cards stack tightly
+    const gap = isMobile ? 6 : 10;
 
     if (diff < -1) {
       return {
@@ -125,7 +140,7 @@ export const HistorySection: React.FC = () => {
     } else if (diff < 0) {
       const progress = diff + 1; // 0 to 1
       const slideY = (1 - progress) * 80; // slides up from 80vh
-      const finalY = index * 22; // Cards stack statically with a larger 22px gap
+      const finalY = (index - cardProgress) * gap;
       return {
         transform: `translateY(calc(${finalY}px + ${slideY}vh)) scale(1) rotate(${rotation}deg)`,
         opacity: 1, // Fully opaque during entry to prevent overlaps
@@ -134,7 +149,7 @@ export const HistorySection: React.FC = () => {
         visibility: 'visible' as const,
       };
     } else {
-      const translateY = index * 15; // Perfectly static positions relative to stack
+      const translateY = (index - cardProgress) * gap;
       const brightness = Math.max(0.7, 1 - diff * 0.15); // Active card is 1.0, stacked cards dim to 0.7
 
       return {
@@ -149,27 +164,27 @@ export const HistorySection: React.FC = () => {
 
   return (
     <section id="story" ref={containerRef} className="relative h-[800vh] bg-brand-bg">
-      <div className="sticky top-0 h-[101vh] w-full flex flex-col pt-6 sm:pt-20 items-center justify-start px-4 overflow-hidden">
+      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center px-4 overflow-hidden">
 
         {/* Title Area */}
-        <div className="text-center mb-8 shrink-0 z-20">
+        <div className="text-center mb-12 md:mb-20 shrink-0 z-20">
           <Reveal>
-            <span className="font-serif text-lg italic text-brand-accent block mb-1">Nossa História</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-brand-dark">Como tudo começou...</h2>
+            <span className="font-serif text-base md:text-lg italic text-brand-accent block mb-1">Nossa História</span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-brand-dark">Como tudo começou...</h2>
             <div className="w-12 h-px bg-brand-blush/60 mx-auto mt-2" />
           </Reveal>
         </div>
 
         {/* Cards Stack Container */}
-        <div className="relative w-full max-w-4xl h-120 flex items-center justify-center">
+        <div className="relative w-full max-w-4xl h-[390px] sm:h-[420px] md:h-[440px] flex items-center justify-center">
           {historyData.map((item, index) => (
             <div
               key={index}
-              className="absolute w-[95%] max-w-[800px] h-[450px] sm:h-[430px] md:h-[390px] flex flex-col md:flex-row bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
+              className="absolute w-[95%] max-w-[800px] h-[360px] sm:h-[390px] md:h-[390px] flex flex-col md:flex-row bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
               style={getCardStyle(index)}
             >
               {/* Left Column: Image */}
-              <div className="w-full md:w-1/2 h-[180px] sm:h-[200px] md:h-full overflow-hidden relative">
+              <div className="w-full md:w-1/2 h-[130px] sm:h-[160px] md:h-full overflow-hidden relative">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -180,7 +195,7 @@ export const HistorySection: React.FC = () => {
               </div>
 
               {/* Right Column: Text */}
-              <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-center space-y-2.5 sm:space-y-3 text-left">
+              <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 flex flex-col justify-center space-y-2.5 sm:space-y-3 text-left">
                 <span className="font-serif text-2xl sm:text-3xl italic text-brand-accent block">
                   {item.year}
                 </span>

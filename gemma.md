@@ -118,4 +118,8 @@ src/
   - **Molécula `CustomBetInput.tsx`**: Gerencia a caixa e o campo de entrada para respostas livres do bolão (texto/número), contendo as transições de foco e animação de expansão.
 - **Vercel Analytics**:
   - Integrado o pacote `@vercel/analytics` para monitoramento de visitas e performance do usuário em tempo real. O componente `<Analytics />` foi inserido no nível raiz da aplicação em [App.tsx](file:///d:/develop/ju/lp-engagement-invite/src/App.tsx).
+- **Ajustes de Altura Dinâmica e Responsividade na Seção de História (`HistorySection.tsx`)**:
+  - Corrigido o corte inferior dos cards em viewports menores removendo paddings fixos e o alinhamento superior do contêiner sticky, adotando o alinhamento flexível centralizado (`justify-center`) para manter todo o conteúdo (título e deck de cards) perfeitamente centralizado verticalmente.
+  - Modificado o cálculo de empilhamento para que os cards antigos subam no topo do deck (`(index - cardProgress) * gap`) à medida que o usuário rola a página, em vez de empurrar o card ativo para baixo. Para evitar que os cards subam a ponto de cobrir o título da seção, a distância entre os cards empilhados foi calibrada (`gap` reduzido para `10px` no desktop e `6px` no mobile) e o espaçamento inferior do título foi aumentado (`mb-12` no mobile e `md:mb-20` no desktop), alcançando 0px de overlap.
+  - Reduzidas e adaptadas responsivamente as dimensões de altura e espaçamentos internos dos cards e de seus contêineres nas resoluções mobile (card com `h-[360px]`, imagem com `h-[130px]`, padding `p-4`) e tablet (card com `h-[390px]`, imagem com `h-[160px]`, padding `p-6`).
 
