@@ -1,7 +1,5 @@
 import { apiClient } from "./api.client";
 import type {
-  BetQuestion,
-  BetQuestionInput,
   GuestBet,
   PlaceBetInput,
   QuestionWithOdds,
@@ -20,18 +18,6 @@ export const betsService = {
   },
 
   /**
-   * Creates a new prediction/bet question for the pool.
-   */
-  async createQuestion(
-    data: BetQuestionInput,
-  ): Promise<SuccessSingleResponse<BetQuestion>> {
-    return apiClient.post<SuccessSingleResponse<BetQuestion>>(
-      "/api/bets/questions",
-      data,
-    );
-  },
-
-  /**
    * Submits a guest's bet/prediction for a specific pool question.
    */
   async placeBet(
@@ -40,6 +26,17 @@ export const betsService = {
     return apiClient.post<SuccessSingleResponse<GuestBet>>(
       "/api/bets/place",
       data,
+    );
+  },
+
+  /**
+   * Retrieves the list of all bets placed by a specific guest.
+   */
+  async listBetsForGuest(
+    rsvpId: string,
+  ): Promise<SuccessListResponse<GuestBet>> {
+    return apiClient.get<SuccessListResponse<GuestBet>>(
+      `/api/bets/rsvp/${rsvpId}`,
     );
   },
 };

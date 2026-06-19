@@ -69,8 +69,8 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
 
       if (response.status === 'success') {
         const savedRsvp = response.data;
-        rsvpStorage.save(savedRsvp.id, savedRsvp.will_go);
-        setLocalRsvp({ id: savedRsvp.id, willGo: savedRsvp.will_go });
+        rsvpStorage.save(savedRsvp.id, savedRsvp.will_go, savedRsvp.name);
+        setLocalRsvp({ id: savedRsvp.id, willGo: savedRsvp.will_go, name: savedRsvp.name });
         setIsSuccess(true);
 
         if (savedRsvp.will_go) {

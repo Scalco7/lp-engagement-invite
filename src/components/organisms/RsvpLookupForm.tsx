@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { Search, ArrowLeft, Heart } from 'lucide-react';
 import { rsvpService } from '../../api/rsvp.service';
 import type { Rsvp } from '../../types';
+import Reveal from '../atoms/Reveal';
 
 const formatPhone = (value: string): string => {
   const digits = value.replace(/\D/g, '');
@@ -51,77 +53,104 @@ export const RsvpLookupForm: React.FC<RsvpLookupFormProps> = ({ onSuccess, onGoH
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '400px', margin: '0 auto', fontFamily: 'sans-serif' }}>
-      <h2>Acesso ao Bolão</h2>
-      <p>Para participar do bolão, precisamos validar sua confirmação de presença.</p>
-      
-      {errorMessage && (
-        <div style={{ color: '#d9534f', padding: '0.5rem 0', marginBottom: '1rem', fontWeight: 'bold' }}>
-          {errorMessage}
+    <div className="w-full max-w-md mx-auto px-4 py-8 md:py-16">
+      <Reveal>
+        <div className="bg-white border border-brand-blush/30 rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgba(61,44,37,0.04)] relative overflow-hidden">
+          
+          {/* Decorative Top Line */}
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blush via-brand-sage to-brand-accent" />
+
+          {/* Heading */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-3">
+              <div className="w-12 h-12 rounded-full bg-brand-blush/20 flex items-center justify-center text-brand-accent">
+                <Heart className="w-5 h-5 fill-current" />
+              </div>
+            </div>
+            <h2 className="font-serif text-3xl italic text-brand-dark mb-2">
+              Acesso ao Bolão
+            </h2>
+            <p className="font-sans text-xs text-brand-dark/60 leading-relaxed max-w-xs mx-auto">
+              Para palpitar e ver os votos dos convidados, precisamos validar sua confirmação de presença.
+            </p>
+          </div>
+
+          {/* Error Message */}
+          {errorMessage && (
+            <div className="mb-6 p-4 bg-red-50/80 border border-red-100 text-red-700 text-xs font-sans rounded-xl animate-fade-in text-center leading-relaxed">
+              {errorMessage}
+            </div>
+          )}
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-1.5">
+              <label htmlFor="lookup-email" className="font-sans text-xs font-semibold text-brand-dark/80 uppercase tracking-wider block">
+                E-mail *
+              </label>
+              <input
+                id="lookup-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="seu.email@exemplo.com"
+                className="w-full px-4 py-3 border border-neutral-200 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-accent transition-colors duration-300 bg-brand-bg/20 text-brand-dark"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label htmlFor="lookup-phone" className="font-sans text-xs font-semibold text-brand-dark/80 uppercase tracking-wider block">
+                Telefone *
+              </label>
+              <input
+                id="lookup-phone"
+                type="tel"
+                required
+                value={phone}
+                onChange={(e) => setPhone(formatPhone(e.target.value))}
+                placeholder="(00) 9 0000-0000"
+                className="w-full px-4 py-3 border border-neutral-200 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-accent transition-colors duration-300 bg-brand-bg/20 text-brand-dark"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full mt-2 bg-brand-dark text-brand-bg font-sans font-medium text-sm py-4 rounded-xl shadow-md hover:bg-brand-accent hover:text-brand-dark active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 uppercase tracking-wider cursor-pointer"
+            >
+              {isSubmitting ? (
+                <div className="w-5 h-5 border-2 border-brand-bg border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <>
+                  <Search className="w-4 h-4" />
+                  Verificar Confirmação
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="relative my-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-brand-blush/20"></div>
+            </div>
+            <div className="relative flex justify-center text-[10px] uppercase tracking-widest text-brand-dark/40 font-sans">
+              <span className="bg-white px-3">ou</span>
+            </div>
+          </div>
+
+          {/* Go Back button */}
+          <button
+            onClick={onGoHome}
+            className="w-full py-3.5 border border-brand-dark/35 rounded-xl font-sans font-medium text-xs text-brand-dark/80 hover:bg-brand-dark/5 hover:border-brand-dark transition-all duration-300 flex items-center justify-center gap-2 uppercase tracking-widest cursor-pointer"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Ainda não confirmei presença
+          </button>
+
         </div>
-      )}
-
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-          <label htmlFor="lookup-email">E-mail *</label>
-          <input
-            id="lookup-email"
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="seu.email@exemplo.com"
-            style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }}
-          />
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-          <label htmlFor="lookup-phone">Telefone *</label>
-          <input
-            id="lookup-phone"
-            type="tel"
-            required
-            value={phone}
-            onChange={(e) => setPhone(formatPhone(e.target.value))}
-            placeholder="(00) 9 0000-0000"
-            style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }}
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          style={{
-            padding: '0.75rem',
-            backgroundColor: '#3D2C25',
-            color: '#FFF',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: isSubmitting ? 'not-allowed' : 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          {isSubmitting ? 'Buscando...' : 'Verificar Confirmação'}
-        </button>
-      </form>
-
-      <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid #eee' }} />
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <button
-          onClick={onGoHome}
-          style={{
-            padding: '0.75rem',
-            backgroundColor: 'transparent',
-            color: '#3D2C25',
-            border: '1px solid #3D2C25',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
-        >
-          Ainda não confirmei presença (Ir para a Página Inicial)
-        </button>
-      </div>
+      </Reveal>
     </div>
   );
 };

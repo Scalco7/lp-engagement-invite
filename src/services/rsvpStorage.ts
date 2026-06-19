@@ -1,6 +1,7 @@
 export interface LocalRsvp {
   id: string;
   willGo: boolean;
+  name?: string;
 }
 
 const RSVP_STORAGE_KEY = 'lp_engagement_rsvp_data';
@@ -9,9 +10,9 @@ export const rsvpStorage = {
   /**
    * Saves the registered RSVP details to LocalStorage.
    */
-  save(id: string, willGo: boolean): void {
+  save(id: string, willGo: boolean, name?: string): void {
     try {
-      const data: LocalRsvp = { id, willGo };
+      const data: LocalRsvp = { id, willGo, name };
       localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify(data));
     } catch (error) {
       console.error('Failed to save RSVP to localStorage:', error);

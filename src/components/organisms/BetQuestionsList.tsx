@@ -1,44 +1,93 @@
 import React from 'react';
+import { Loader2, Info } from 'lucide-react';
 import BetQuestionCard from '../molecules/BetQuestionCard';
+import Footer from './Footer';
 import type { QuestionWithOdds } from '../../types';
+import type { LocalRsvp } from '../../services/rsvpStorage';
+import Reveal from '../atoms/Reveal';
 
 interface BetQuestionsListProps {
   questions: QuestionWithOdds[];
+  placedBets: Record<string, string>;
   isLoading: boolean;
-  onResetSession: () => void;
+  localRsvp: LocalRsvp;
+  onBetPlaced: (questionId: string, value: string) => void;
 }
 
-export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({ questions, isLoading, onResetSession }) => {
+export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({
+  questions,
+  placedBets,
+  isLoading,
+  localRsvp,
+  onBetPlaced
+}) => {
+  const engagementDate = new Date('2026-07-25T19:00:00');
+
+  // Greeting name: capitalization
+  const rawName = localRsvp.name || 'Convidado';
+  const displayName = rawName.split(' ')[0];
+
   return (
-    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto', fontFamily: 'sans-serif' }}>
-      <h1>Bolão do Noivado 🎲</h1>
-      <p>Bem-vindo ao nosso bolão! Deixe seus palpites para as perguntas abaixo.</p>
+    <div className="w-full flex flex-col min-h-screen">
+      <div className="max-w-4xl w-full mx-auto px-4 py-8 md:py-12 flex-grow">
+        <Reveal>
+          <div className="text-center max-w-xl mx-auto mb-10 md:mb-14">
+            <h1 className="font-serif text-4xl md:text-5xl italic text-brand-dark mb-4">
+              Palpites de {displayName} 🎲
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-brand-dark/70 leading-relaxed">
+              Deixe suas previsões e divirta-se! As odds e as parciais são recalculadas em tempo real conforme os convidados realizam seus palpites.
+            </p>
+          </div>
+        </Reveal>
 
-      {isLoading ? (
-        <p>Carregando as perguntas do bolão...</p>
-      ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginTop: '2rem' }}>
-          {questions.map((question) => (
-            <BetQuestionCard key={question.id} question={question} />
-          ))}
-          {questions.length === 0 && <p>Nenhuma pergunta cadastrada no bolão no momento.</p>}
-        </div>
-      )}
+        {isLoading && questions.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 text-brand-accent space-y-4">
+            <Loader2 className="w-8 h-8 animate-spin" />
+            <p className="font-sans text-xs tracking-wider uppercase text-brand-dark/60">
+              Carregando as perguntas do bolão...
+            </p>
+          </div>
+        ) : (
+          <div>
+            {/* Info notice about rules */}
+            <Reveal delay={1}>
+              <div className="bg-brand-sage/20 border border-brand-sage/40 rounded-2xl p-4 flex items-start gap-3 mb-8 max-w-2xl mx-auto">
+                <Info className="w-5 h-5 text-brand-dark/65 flex-shrink-0 mt-0.5" />
+                <div className="font-sans text-xs text-brand-dark/80 leading-relaxed">
+                  <span className="font-semibold block mb-0.5 text-brand-dark">Como funciona o bolão?</span>
+                  Você só pode palpitar uma vez em cada pergunta. Após confirmar, seu palpite é registrado e as estatísticas do evento atualizam na hora!
+                </div>
+              </div>
+            </Reveal>
 
-      <button
-        onClick={onResetSession}
-        style={{
-          marginTop: '3rem',
-          padding: '0.5rem 1rem',
-          backgroundColor: '#d9534f',
-          color: '#FFF',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer'
-        }}
-      >
-        Limpar Confirmação do Dispositivo
-      </button>
+            {/* Questions Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+              {questions.map((question, index) => (
+                <Reveal key={question.id} delay={(index % 3 + 1) as 1 | 2 | 3}>
+                  <BetQuestionCard
+                    question={question}
+                    currentBet={placedBets[question.id]}
+                    guestRsvpId={localRsvp.id}
+                    onBetPlaced={(value) => onBetPlaced(question.id, value)}
+                  />
+                </Reveal>
+              ))}
+            </div>
+
+            {questions.length === 0 && (
+              <div className="text-center py-16 bg-white border border-brand-blush/20 rounded-3xl max-w-xl mx-auto shadow-sm">
+                <p className="font-sans text-sm text-brand-dark/60">
+                  Nenhuma pergunta cadastrada no bolão no momento. Volte mais tarde! 😊
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Styled Footer */}
+      <Footer engagementDate={engagementDate} />
     </div>
   );
 };
