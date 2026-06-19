@@ -116,3 +116,6 @@ src/
   - **Átomo `OddsBadge.tsx`**: Exibe o badge de odds, centralizando estilos e animações do favorito (gradiente quente com ícone `Flame` saltitante) e da zebra (emoji `🦓` saltitante).
   - **Molécula `BetOptionRow.tsx`**: Encapsula uma linha de opção de aposta, manipulando a barra de progresso, indicação visual do palpite selecionado/votado, exibição de votos e cotações (delegando as cotações ao `OddsBadge`).
   - **Molécula `CustomBetInput.tsx`**: Gerencia a caixa e o campo de entrada para respostas livres do bolão (texto/número), contendo as transições de foco e animação de expansão.
+- **Vercel Analytics**:
+  - Integrado o pacote `@vercel/analytics` para monitoramento de visitas e performance do usuário em tempo real. O componente `<Analytics />` foi inserido no nível raiz da aplicação em [App.tsx](file:///d:/develop/ju/lp-engagement-invite/src/App.tsx).
+
