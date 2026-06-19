@@ -161,15 +161,14 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
       <div
         key={option.value}
         onClick={() => handleSelectOption(option.value)}
-        className={`relative overflow-hidden border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 group select-none ${
-          currentBet
-            ? isVotedChoice
-              ? 'border-brand-sage bg-brand-sage/5 shadow-sm'
-              : 'border-neutral-100 opacity-60'
-            : isSelectedChoice
+        className={`relative overflow-hidden border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 group select-none ${currentBet
+          ? isVotedChoice
+            ? 'border-brand-sage bg-brand-sage/5 shadow-sm'
+            : 'border-neutral-100 opacity-60'
+          : isSelectedChoice
             ? 'border-brand-accent bg-brand-blush/10 scale-[1.01] shadow-sm'
             : 'border-neutral-200/70 hover:border-brand-blush hover:bg-brand-bg/30 cursor-pointer'
-        }`}
+          }`}
       >
         {/* Visual Progress Bar */}
         {totalVotes > 0 && (
@@ -218,7 +217,7 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
 
   return (
     <div className="bg-white border border-brand-accent/20 rounded-3xl p-6 shadow-sm hover:shadow-[0_12px_40px_rgba(61,44,37,0.06)] hover:border-brand-accent/30 transition-all duration-300 flex flex-col justify-between min-h-[340px]">
-      
+
       {/* Top Meta Info */}
       <div>
         <div className="flex justify-between items-center mb-3">
@@ -246,7 +245,7 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
         <div className="space-y-3">
           {(!isCollapsible || showAllOptions) ? (
             // Expanded List: Scrollable container to maintain height
-            <div className={isCollapsible ? "max-h-[260px] overflow-y-auto pr-1.5 space-y-3 scrollbar-thin scrollbar-thumb-brand-accent/25 scrollbar-track-transparent" : "space-y-3"}>
+            <div className={isCollapsible ? "max-h-120 overflow-y-auto pr-1.5 space-y-3 scrollbar-thin scrollbar-thumb-brand-accent/25 scrollbar-track-transparent" : "space-y-3"}>
               {sortedOptions.map(renderOptionRow)}
             </div>
           ) : (
@@ -265,7 +264,7 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
               {/* Render favorites (lowest odds) */}
               <div className="space-y-2">
                 <div className="text-[8px] font-bold uppercase tracking-widest text-brand-dark/40 mb-1">
-                  Favoritos (Menores Odds)
+                  Favoritos
                 </div>
                 <div className="space-y-2.5">
                   {lowestOdds.map(renderOptionRow)}
@@ -288,7 +287,7 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
               {/* Render zebras (highest odds) */}
               <div className="space-y-2">
                 <div className="text-[8px] font-bold uppercase tracking-widest text-brand-dark/40 mb-1">
-                  Zebras (Maiores Odds)
+                  Zebras
                 </div>
                 <div className="space-y-2.5">
                   {highestOdds.map(renderOptionRow)}
@@ -313,11 +312,10 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
             <div>
               <div
                 onClick={handleSelectCustom}
-                className={`border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 select-none ${
-                  isCustomSelected
-                    ? 'border-brand-accent bg-brand-blush/10 scale-[1.01] shadow-sm'
-                    : 'border-dashed border-neutral-300 hover:border-brand-blush hover:bg-brand-bg/30 cursor-pointer text-brand-dark/60'
-                }`}
+                className={`border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 select-none ${isCustomSelected
+                  ? 'border-brand-accent bg-brand-blush/10 scale-[1.01] shadow-sm'
+                  : 'border-dashed border-neutral-300 hover:border-brand-blush hover:bg-brand-bg/30 cursor-pointer text-brand-dark/60'
+                  }`}
               >
                 <div className="flex items-center gap-2.5">
                   {isCustomSelected ? (

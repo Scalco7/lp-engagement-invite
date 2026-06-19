@@ -29,14 +29,14 @@ export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({
 
   return (
     <div className="w-full flex flex-col min-h-screen">
-      <div className="max-w-4xl w-full mx-auto px-4 py-8 md:py-12 flex-grow">
+      <div className="max-w-4xl w-full mx-auto px-4 py-8 md:py-12 grow">
         <Reveal>
           <div className="text-center max-w-xl mx-auto mb-10 md:mb-14">
             <h1 className="font-serif text-4xl md:text-5xl italic text-brand-dark mb-4">
-              Palpites de {displayName} 🎲
+              Palpites de {displayName}
             </h1>
             <p className="font-sans text-xs sm:text-sm text-brand-dark/70 leading-relaxed">
-              Deixe suas previsões e divirta-se! As odds e as parciais são recalculadas em tempo real conforme os convidados realizam seus palpites.
+              Deixe suas previsões e divirta-se! As odds são recalculadas em tempo real conforme os convidados realizam seus palpites.
             </p>
           </div>
         </Reveal>
@@ -53,7 +53,7 @@ export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({
             {/* Info notice about rules */}
             <Reveal delay={1}>
               <div className="bg-brand-sage/20 border border-brand-sage/40 rounded-2xl p-4 flex items-start gap-3 mb-8 max-w-2xl mx-auto">
-                <Info className="w-5 h-5 text-brand-dark/65 flex-shrink-0 mt-0.5" />
+                <Info className="w-5 h-5 text-brand-dark/65 shrink-0 mt-0.5" />
                 <div className="font-sans text-xs text-brand-dark/80 leading-relaxed">
                   <span className="font-semibold block mb-0.5 text-brand-dark">Como funciona o bolão?</span>
                   Você só pode palpitar uma vez em cada pergunta. Após confirmar, seu palpite é registrado e as estatísticas do evento atualizam na hora!

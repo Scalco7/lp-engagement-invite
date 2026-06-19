@@ -10,11 +10,19 @@ import CountdownSection from '../components/sections/CountdownSection';
 import EventDetailsSection from '../components/sections/EventDetailsSection';
 import HeroSection from '../components/sections/HeroSection';
 import HistorySection from '../components/sections/HistorySection';
+import { rsvpStorage, type LocalRsvp } from '../services/rsvpStorage';
 import VlogsSection from '../components/sections/VlogsSection';
+
 
 export default function LandingPage() {
   const engagementDate: Date = new Date('2026-07-25T19:00:00');
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
+
+  const [rsvp, setRsvp] = useState<LocalRsvp | null>(() => rsvpStorage.get());
+
+  const handleRsvpUpdated = () => {
+    setRsvp(rsvpStorage.get());
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -51,7 +59,7 @@ export default function LandingPage() {
           </div>
 
           {/* Navigation Header */}
-          <Header scrollToSection={scrollToSection} />
+          <Header scrollToSection={scrollToSection} rsvp={rsvp} />
 
           {/* Main Content */}
           <main className="relative z-10">
@@ -59,7 +67,7 @@ export default function LandingPage() {
             <HistorySection />
             <CountdownSection engagementDate={engagementDate} />
             <EventDetailsSection engagementDate={engagementDate} />
-            <ConfirmSection engagementDate={engagementDate} />
+            <ConfirmSection engagementDate={engagementDate} onRsvpUpdated={handleRsvpUpdated} />
             <AdditionalDetailsSection />
             <VlogsSection />
             <QuoteBanner />

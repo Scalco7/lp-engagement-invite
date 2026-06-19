@@ -4,9 +4,10 @@ import ConfirmForm from '../organisms/ConfirmForm';
 
 interface ConfirmSectionProps {
   engagementDate: Date;
+  onRsvpUpdated?: () => void;
 }
 
-export const ConfirmSection: React.FC<ConfirmSectionProps> = ({ engagementDate }) => {
+export const ConfirmSection: React.FC<ConfirmSectionProps> = ({ engagementDate, onRsvpUpdated }) => {
   return (
     <section id="confirm" className="py-14 bg-brand-bg relative overflow-hidden">
       <div className="max-w-4xl mx-auto text-center px-4 mb-8">
@@ -17,7 +18,7 @@ export const ConfirmSection: React.FC<ConfirmSectionProps> = ({ engagementDate }
         </Reveal>
       </div>
 
-      <ConfirmForm engagementDate={engagementDate} />
+      <ConfirmForm engagementDate={engagementDate} onRsvpUpdated={onRsvpUpdated} />
     </section>
   );
 };

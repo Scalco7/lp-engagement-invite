@@ -95,6 +95,18 @@ src/
   - Permite expandir a lista completa de forma fluida dentro de um contêiner rolável (`max-h-[260px]`) para não quebrar a estrutura vertical da página, exibindo um botão de recolhimento.
 - **Resolução de Rótulos em Palpites**:
   - No rodapé do `BetQuestionCard.tsx`, o sistema busca a opção correspondente ao palpite (`currentBet`) e exibe o rótulo amigável (ex: "Felipe Maciel Scalco") em vez do identificador ou UUID bruto recebido do backend.
+- **Botão "Palpites" Dinâmico no Header**:
+  - Integrado o botão "Palpites" na barra de navegação (`Header.tsx` no desktop e mobile) como o **primeiro item da esquerda para a direita**.
+  - Estilizado de forma plana (como os outros links planos: "Nossa História" e "A Celebração"), usando borda inferior divisória (`border-b border-brand-accent/10`) no mobile.
+  - Inicialmente bloqueado com um ícone de **cadeado** (`Lock`) e desabilitado caso o usuário não tenha feito RSVP.
+  - Ao confirmar presença ("Vou"), engatilha a animação `animate-unlock` (o cadeado gira, diminui e some), liberando o acesso ao clique que navega para `/bet`.
+  - Ao registrar que não comparecerá ("Infelizmente não posso"), executa a animação `animate-shrink-fade` (o botão encolhe e desaparece da barra de navegação).
+  - A comunicação em tempo real entre o formulário (`ConfirmForm.tsx`) e o cabeçalho (`Header.tsx`) é feita por meio de elevação de estado e callbacks (`onRsvpUpdated`) na `LandingPage.tsx`.
+- **Atalho no Card de Confirmação (RSVP)**:
+  - Adicionado um botão proeminente **"🎲 Dar Meus Palpites"** diretamente no card de sucesso do `ConfirmForm.tsx` quando a confirmação de presença for positiva ("Vou").
+  - O clique direciona o convidado diretamente para `/bet`, melhorando o fluxo de onboarding do bolão logo após a confirmação de presença.
+
+
 
 
 

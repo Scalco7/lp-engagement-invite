@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { Heart, Send, CheckCircle } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
@@ -24,9 +25,11 @@ const formatPhone = (value: string): string => {
 
 interface ConfirmFormProps {
   engagementDate: Date;
+  onRsvpUpdated?: () => void;
 }
 
-export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
+export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvpUpdated }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -82,6 +85,8 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
             colors: ['#E2C2B9', '#D4E2D4', '#C79C93', '#FDFBF7', '#3D2C25']
           });
         }
+
+        if (onRsvpUpdated) onRsvpUpdated();
       }
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'Ocorreu um erro ao enviar sua confirmação. Por favor, tente novamente.';
@@ -232,12 +237,25 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate }) => {
                     : 'Obrigado por nos avisar. Sentiremos muito a sua falta nessa comemoração tão especial! ❤️'}
                 </p>
               </div>
+
+              {(localRsvp ? localRsvp.willGo : formData.attending === 'yes') && (
+                <div className="pt-2 animate-scale-up">
+                  <button
+                    onClick={() => navigate('/bet')}
+                    className="w-full bg-brand-dark text-brand-bg font-sans font-medium text-sm py-4 rounded-xl shadow-md hover:bg-brand-accent hover:text-brand-dark active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 uppercase tracking-wider cursor-pointer"
+                  >
+                    🎲 Dar Meus Palpites
+                  </button>
+                </div>
+              )}
               <button
                 onClick={() => {
+                  rsvpStorage.clear();
                   setIsSuccess(false);
                   setLocalRsvp(null);
                   setErrorMessage(null);
                   setFormData({ name: '', email: '', phone: '', attending: 'yes' });
+                  if (onRsvpUpdated) onRsvpUpdated();
                 }}
                 className="text-xs font-semibold text-brand-accent uppercase tracking-widest hover:underline hover:text-brand-dark transition-colors duration-300"
               >
