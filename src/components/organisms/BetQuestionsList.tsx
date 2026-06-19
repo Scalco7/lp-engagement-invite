@@ -23,17 +23,13 @@ export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({
 }) => {
   const engagementDate = new Date('2026-07-25T19:00:00');
 
-  // Greeting name: capitalization
-  const rawName = localRsvp.name || 'Convidado';
-  const displayName = rawName.split(' ')[0];
-
   return (
     <div className="w-full flex flex-col min-h-screen">
       <div className="max-w-4xl w-full mx-auto px-4 py-8 md:py-12 grow">
         <Reveal>
           <div className="text-center max-w-xl mx-auto mb-10 md:mb-14">
             <h1 className="font-serif text-4xl md:text-5xl italic text-brand-dark mb-4">
-              Palpites de {displayName}
+              Palpites do casamento
             </h1>
             <p className="font-sans text-xs sm:text-sm text-brand-dark/70 leading-relaxed">
               Deixe suas previsões e divirta-se! As odds são recalculadas em tempo real conforme os convidados realizam seus palpites.

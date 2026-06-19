@@ -37,8 +37,8 @@ src/
 │   ├── LandingPage.tsx       # Landing Page com convite e formulário RSVP
 │   └── BetPage.tsx           # Página do Bolão (/bet) com barreiras de segurança
 └── components/               # Pasta de Componentes seguindo Atomic Design
-    ├── atoms/                # Elementos visuais mínimos (ex: Reveal.tsx)
-    ├── molecules/            # Combinações de átomos (ex: Countdown.tsx, BetQuestionCard.tsx, AccessDeniedMessage.tsx)
+    ├── atoms/                # Elementos visuais mínimos (ex: Reveal.tsx, OddsBadge.tsx)
+    ├── molecules/            # Combinações de átomos (ex: Countdown.tsx, BetQuestionCard.tsx, AccessDeniedMessage.tsx, BetOptionRow.tsx, CustomBetInput.tsx)
     ├── organisms/            # Componentes complexos e com estado (ex: ConfirmForm.tsx, RsvpLookupForm.tsx, BetQuestionsList.tsx, EnvelopeIntro.tsx, Header.tsx, Footer.tsx)
     └── sections/             # Seções grandes estruturantes da Landing Page (ex: HeroSection.tsx, HistorySection.tsx, ConfirmSection.tsx, etc.)
 ```
@@ -107,9 +107,12 @@ src/
   - O clique direciona o convidado diretamente para `/bet`, melhorando o fluxo de onboarding do bolão logo após a confirmação de presença.
 - **Scroll Automático ao Topo**:
   - Inserido um gancho `useEffect` em `BetPage.tsx` que rola a tela do navegador automaticamente para o topo (`window.scrollTo(0, 0)`) no momento em que a página monta. Isso garante que a visualização inicie perfeitamente no cabeçalho do bolão, corrigindo a persistência do scroll da Landing Page.
-
-
-
-
-
-
+- **Estilização de Destaque para Favorito e Zebra**:
+  - Implementado em `BetQuestionCard.tsx` a identificação dinâmica da opção favorita (menor odd) e da opção zebra (maior odd) de cada pergunta, desde que haja pelo menos 3 opções, uma diferença real de odds, e que **no máximo 4 opções compartilhem essa mesma odd** (evitando poluição visual caso muitas opções estejam empatadas com a mesma odd padrão/inicial).
+  - **Favorito (Menor Odd)**: Recebe estilo com borda alaranjada (vermelha quando votado/selecionado), fundo suave de cor âmbar (avermelhado suave quando selecionado/votado) e efeito hover que projeta sombra laranja brilhante. A etiqueta de odds é renderizada com gradiente quente (`from-amber-500 via-orange-500 to-red-500`), texto branco em negrito e um ícone `Flame` saltitante (`animate-bounce`). O efeito piscante (`animate-pulse`) foi removido do badge a fim de mantê-lo sólido. Além disso, a barra de progresso de votos recebe um tom alaranjado (`bg-orange-500/10`), e o indicador de marcação de voto/seleção ganha cor vermelha ao invés de verde/rosa.
+  - **Zebra (Maior Odd)**: Ganha o estilo listrado estilizado usando a classe `.bg-zebra-stripes` no container e um emoji de zebra `🦓` saltitante ao lado das odds para adicionar mais dinamismo e humor.
+- **Componentização e Atomic Design no Bolão**:
+  - Refatorado o card principal `BetQuestionCard.tsx` para seguir rigorosamente o padrão **Atomic Design**, dividindo-o em partes menores, o que reduziu drasticamente o acoplamento de markup e facilitou a manutenção.
+  - **Átomo `OddsBadge.tsx`**: Exibe o badge de odds, centralizando estilos e animações do favorito (gradiente quente com ícone `Flame` saltitante) e da zebra (emoji `🦓` saltitante).
+  - **Molécula `BetOptionRow.tsx`**: Encapsula uma linha de opção de aposta, manipulando a barra de progresso, indicação visual do palpite selecionado/votado, exibição de votos e cotações (delegando as cotações ao `OddsBadge`).
+  - **Molécula `CustomBetInput.tsx`**: Gerencia a caixa e o campo de entrada para respostas livres do bolão (texto/número), contendo as transições de foco e animação de expansão.

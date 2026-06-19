@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Check, Circle, CheckCircle, Loader2 } from 'lucide-react';
+import { Check, CheckCircle, Loader2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { betsService } from '../../api/bets.service';
 import type { QuestionWithOdds } from '../../types';
+import BetOptionRow from './BetOptionRow';
+import CustomBetInput from './CustomBetInput';
 
 interface BetQuestionCardProps {
   question: QuestionWithOdds;
@@ -157,61 +159,32 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
     const isVotedChoice = currentBet === option.value;
     const isSelectedChoice = selectedOption === option.value;
 
+    const minOdd = sortedOptions.length > 0 ? sortedOptions[0].odd : undefined;
+    const maxOdd = sortedOptions.length > 0 ? sortedOptions[sortedOptions.length - 1].odd : undefined;
+    const hasOddDifference = minOdd !== undefined && maxOdd !== undefined && minOdd < maxOdd;
+    const shouldApplySpecialStyles = sortedOptions.length >= 3 && hasOddDifference;
+
+    const countMinOdd = minOdd !== undefined ? sortedOptions.filter(o => o.odd === minOdd).length : 0;
+    const countMaxOdd = maxOdd !== undefined ? sortedOptions.filter(o => o.odd === maxOdd).length : 0;
+
+    const isFavorite = shouldApplySpecialStyles && option.odd === minOdd && countMinOdd <= 4;
+    const isZebra = shouldApplySpecialStyles && option.odd === maxOdd && countMaxOdd <= 4;
+
     return (
-      <div
+      <BetOptionRow
         key={option.value}
+        label={option.label}
+        odd={option.odd}
+        votes={option.votes}
+        totalVotes={totalVotes}
+        percentage={percentage}
+        isVotedChoice={isVotedChoice}
+        isSelectedChoice={isSelectedChoice}
+        isFavorite={isFavorite}
+        isZebra={isZebra}
+        currentBet={currentBet}
         onClick={() => handleSelectOption(option.value)}
-        className={`relative overflow-hidden border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 group select-none ${currentBet
-          ? isVotedChoice
-            ? 'border-brand-sage bg-brand-sage/5 shadow-sm'
-            : 'border-neutral-100 opacity-60'
-          : isSelectedChoice
-            ? 'border-brand-accent bg-brand-blush/10 scale-[1.01] shadow-sm'
-            : 'border-neutral-200/70 hover:border-brand-blush hover:bg-brand-bg/30 cursor-pointer'
-          }`}
-      >
-        {/* Visual Progress Bar */}
-        {totalVotes > 0 && (
-          <div
-            className="absolute inset-y-0 left-0 bg-brand-sage/10 transition-all duration-1000 ease-out z-0"
-            style={{ width: `${percentage}%` }}
-          />
-        )}
-
-        {/* Left Side: Radio / Check and Option Label */}
-        <div className="flex items-center gap-2.5 relative z-10 max-w-[70%]">
-          {currentBet ? (
-            isVotedChoice ? (
-              <div className="w-5 h-5 rounded-full bg-brand-sage flex items-center justify-center text-brand-dark/95 flex-shrink-0">
-                <Check className="w-3 h-3 stroke-[3px]" />
-              </div>
-            ) : (
-              <div className="w-5 h-5 rounded-full border border-neutral-300 flex-shrink-0" />
-            )
-          ) : isSelectedChoice ? (
-            <div className="w-5 h-5 rounded-full border-2 border-brand-accent bg-brand-accent flex items-center justify-center text-white flex-shrink-0">
-              <div className="w-1.5 h-1.5 rounded-full bg-white" />
-            </div>
-          ) : (
-            <Circle className="w-5 h-5 text-neutral-300 group-hover:text-brand-accent/60 transition-colors flex-shrink-0" />
-          )}
-          <span className="font-sans text-xs font-semibold text-brand-dark/95 truncate">
-            {option.label}
-          </span>
-        </div>
-
-        {/* Right Side: Odds and votes */}
-        <div className="flex flex-col items-end relative z-10 font-sans">
-          <span className="text-[10px] font-bold text-brand-dark/80 bg-brand-bg border border-brand-accent/15 px-2 py-0.5 rounded-md">
-            {option.odd.toFixed(2)}x
-          </span>
-          {totalVotes > 0 && (
-            <span className="text-[9px] text-brand-dark/50 mt-1 font-medium">
-              {percentage.toFixed(0)}% ({votesCount} {votesCount === 1 ? 'voto' : 'votos'})
-            </span>
-          )}
-        </div>
-      </div>
+      />
     );
   };
 
@@ -307,48 +280,14 @@ export const BetQuestionCard: React.FC<BetQuestionCardProps> = ({
             </button>
           )}
 
-          {/* Custom Input Option for TEXT / NUMBER */}
-          {!currentBet && (question.type === 'TEXT' || question.type === 'NUMBER') && (
-            <div>
-              <div
-                onClick={handleSelectCustom}
-                className={`border rounded-xl p-3.5 flex justify-between items-center transition-all duration-300 select-none ${isCustomSelected
-                  ? 'border-brand-accent bg-brand-blush/10 scale-[1.01] shadow-sm'
-                  : 'border-dashed border-neutral-300 hover:border-brand-blush hover:bg-brand-bg/30 cursor-pointer text-brand-dark/60'
-                  }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  {isCustomSelected ? (
-                    <div className="w-5 h-5 rounded-full border-2 border-brand-accent bg-brand-accent flex items-center justify-center text-white flex-shrink-0">
-                      <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                    </div>
-                  ) : (
-                    <Circle className="w-5 h-5 text-neutral-300 flex-shrink-0" />
-                  )}
-                  <span className="font-sans text-xs font-semibold">
-                    Digitar outro palpite...
-                  </span>
-                </div>
-              </div>
-
-              {/* Collapsible custom input field */}
-              {isCustomSelected && (
-                <div className="mt-2.5 animate-fade-in">
-                  <input
-                    type={question.type === 'NUMBER' ? 'number' : 'text'}
-                    value={customText}
-                    onChange={(e) => setCustomText(e.target.value)}
-                    placeholder={
-                      question.type === 'NUMBER'
-                        ? 'Digite o seu número palpite...'
-                        : 'Digite a sua resposta...'
-                    }
-                    className="w-full px-4 py-3 border border-neutral-200 rounded-xl font-sans text-xs focus:outline-none focus:border-brand-accent transition-colors duration-300 bg-brand-bg/25 text-brand-dark"
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          <CustomBetInput
+            questionType={question.type}
+            currentBet={currentBet}
+            isCustomSelected={isCustomSelected}
+            customText={customText}
+            onSelectCustom={handleSelectCustom}
+            onCustomTextChange={setCustomText}
+          />
         </div>
       </div>
 
