@@ -206,22 +206,14 @@ export const HistorySection: React.FC = () => {
         {/* Cards Stack Container */}
         <div className="relative w-full max-w-4xl h-[510px] sm:h-[530px] md:h-[440px] flex items-center justify-center">
           {historyData.map((item, index) => {
-            const hasDescription = !!item.description;
-
             return (
               <div
                 key={index}
-                className="absolute w-[95%] max-w-[800px] h-[480px] md:h-[390px] flex flex-col md:flex-row items-center md:items-stretch justify-start bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
+                className={`absolute top-4 md:top-6 w-[95%] max-w-[800px] flex flex-col md:flex-row items-center md:items-stretch justify-start bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out h-[480px] md:h-[390px]`}
                 style={getCardStyle(index)}
               >
                 {/* Image Container */}
-                <div
-                  className={
-                    hasDescription
-                      ? "relative w-full md:w-1/2 h-[250px] md:h-full overflow-hidden bg-brand-dark/5"
-                      : "relative w-full md:w-1/2 h-[390px] md:h-full overflow-hidden bg-brand-dark/5"
-                  }
-                >
+                <div className="relative w-full md:w-1/2 h-[250px] md:h-full overflow-hidden bg-brand-dark/5">
                   {/* Blurred background image for mobile */}
                   <img
                     src={item.image}
@@ -238,37 +230,21 @@ export const HistorySection: React.FC = () => {
                   <div className="absolute inset-0 bg-brand-dark/5 z-20" />
                 </div>
 
-                {/* Text Container */}
-                {hasDescription ? (
-                  <div className="w-full md:w-1/2 h-[230px] md:h-full p-5 md:p-8 flex flex-col justify-center space-y-2 md:space-y-3 text-left bg-white">
-                    {item.year && (
-                      <span className="font-serif text-2xl sm:text-3xl italic text-brand-accent block">
-                        {item.year}
-                      </span>
-                    )}
-                    {item.title && (
-                      <h3 className="font-serif text-xl sm:text-2xl font-light text-brand-dark">
-                        {item.title}
-                      </h3>
-                    )}
-                    <p className="font-sans text-xs sm:text-sm text-brand-dark/75 leading-relaxed overflow-y-auto">
-                      {item.description}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="w-full md:w-1/2 h-[90px] md:h-full p-4 md:p-8 flex flex-col justify-center space-y-1 md:space-y-3 text-center md:text-left bg-white">
-                    {item.year && (
-                      <span className="font-serif text-xs md:text-2xl md:italic text-brand-accent block leading-none md:leading-normal">
-                        {item.year}
-                      </span>
-                    )}
-                    {item.title && (
-                      <h3 className="font-serif text-base md:text-xl lg:text-2xl  text-brand-dark leading-none md:leading-normal">
-                        {item.title}
-                      </h3>
-                    )}
-                  </div>
-                )}
+                <div className="w-full md:w-1/2 h-[230px] md:h-full p-5 md:p-8 flex flex-col justify-center space-y-2 md:space-y-3 text-left bg-white">
+                  {item.year && (
+                    <span className="font-serif text-2xl sm:text-3xl italic text-brand-accent block">
+                      {item.year}
+                    </span>
+                  )}
+                  {item.title && (
+                    <h3 className="font-serif text-xl sm:text-2xl font-light text-brand-dark">
+                      {item.title}
+                    </h3>
+                  )}
+                  <p className="font-sans text-xs sm:text-sm text-brand-dark/75 leading-relaxed overflow-y-auto">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             );
           })}
