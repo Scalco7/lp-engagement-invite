@@ -31,7 +31,7 @@ const historyData: HistoryItem[] = [
     image: '/imgs/history/request.jpeg',
   },
   {
-    title: 'Familia',
+    title: 'Família',
     description: 'A partir dali, colecionamos memórias incríveis: passeios por Curitiba, o primeiro encontro com a família do Felipe.',
     image: '/imgs/history/scalco_family.jpeg',
   },
@@ -77,6 +77,7 @@ const historyData: HistoryItem[] = [
   },
   {
     title: 'Acampamento de carnaval',
+    description: "Festa das nações",
     image: '/imgs/history/carnival_acamp_party.jpeg',
   },
   {
