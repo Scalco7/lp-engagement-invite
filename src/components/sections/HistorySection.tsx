@@ -33,7 +33,7 @@ const historyData: HistoryItem[] = [
   {
     title: 'Familia',
     description: 'A partir dali, colecionamos memórias incríveis: passeios por Curitiba, o primeiro encontro com a família do Felipe.',
-    image: '/imgs/history/.jpeg',
+    image: '/imgs/history/scalco_family.jpeg',
   },
   {
     title: 'Passeios',
@@ -191,7 +191,7 @@ export const HistorySection: React.FC = () => {
   };
 
   return (
-    <section id="story" ref={containerRef} className="relative h-[800vh] bg-brand-bg">
+    <section id="story" ref={containerRef} className="relative h-[1800vh] bg-brand-bg">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center px-4 overflow-hidden">
 
         {/* Title Area */}
@@ -204,38 +204,74 @@ export const HistorySection: React.FC = () => {
         </div>
 
         {/* Cards Stack Container */}
-        <div className="relative w-full max-w-4xl h-[390px] sm:h-[420px] md:h-[440px] flex items-center justify-center">
-          {historyData.map((item, index) => (
-            <div
-              key={index}
-              className="absolute w-[95%] max-w-[800px] h-[360px] sm:h-[390px] md:h-[390px] flex flex-col md:flex-row bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
-              style={getCardStyle(index)}
-            >
-              {/* Left Column: Image */}
-              <div className="w-full md:w-1/2 h-[130px] sm:h-[160px] md:h-full overflow-hidden relative">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-brand-dark/5" />
-              </div>
+        <div className="relative w-full max-w-4xl h-[510px] sm:h-[530px] md:h-[440px] flex items-center justify-center">
+          {historyData.map((item, index) => {
+            const hasDescription = !!item.description;
 
-              {/* Right Column: Text */}
-              <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 flex flex-col justify-center space-y-2.5 sm:space-y-3 text-left">
-                <span className="font-serif text-2xl sm:text-3xl italic text-brand-accent block">
-                  {item.year}
-                </span>
-                <h3 className="font-serif text-xl sm:text-2xl font-light text-brand-dark">
-                  {item.title}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-brand-dark/75 leading-relaxed">
-                  {item.description}
-                </p>
+            return (
+              <div
+                key={index}
+                className="absolute w-[95%] max-w-[800px] h-[480px] md:h-[390px] flex flex-col md:flex-row items-center md:items-stretch justify-start bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
+                style={getCardStyle(index)}
+              >
+                {/* Image Container */}
+                <div
+                  className={
+                    hasDescription
+                      ? "relative w-full md:w-1/2 h-[250px] md:h-full overflow-hidden bg-brand-dark/5"
+                      : "relative w-full md:w-1/2 h-[390px] md:h-full overflow-hidden bg-brand-dark/5"
+                  }
+                >
+                  {/* Blurred background image for mobile */}
+                  <img
+                    src={item.image}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-40 select-none pointer-events-none md:hidden"
+                  />
+                  {/* Main image */}
+                  <img
+                    src={item.image}
+                    alt={item.title || "Foto da história"}
+                    className="w-full h-full object-contain md:object-cover relative z-10"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-brand-dark/5 z-20" />
+                </div>
+
+                {/* Text Container */}
+                {hasDescription ? (
+                  <div className="w-full md:w-1/2 h-[230px] md:h-full p-5 md:p-8 flex flex-col justify-center space-y-2 md:space-y-3 text-left bg-white">
+                    {item.year && (
+                      <span className="font-serif text-2xl sm:text-3xl italic text-brand-accent block">
+                        {item.year}
+                      </span>
+                    )}
+                    {item.title && (
+                      <h3 className="font-serif text-xl sm:text-2xl font-light text-brand-dark">
+                        {item.title}
+                      </h3>
+                    )}
+                    <p className="font-sans text-xs sm:text-sm text-brand-dark/75 leading-relaxed overflow-y-auto">
+                      {item.description}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="w-full md:w-1/2 h-[90px] md:h-full p-4 md:p-8 flex flex-col justify-center space-y-1 md:space-y-3 text-center md:text-left bg-white">
+                    {item.year && (
+                      <span className="font-serif text-xs md:text-2xl md:italic text-brand-accent block leading-none md:leading-normal">
+                        {item.year}
+                      </span>
+                    )}
+                    {item.title && (
+                      <h3 className="font-serif text-base md:text-xl lg:text-2xl  text-brand-dark leading-none md:leading-normal">
+                        {item.title}
+                      </h3>
+                    )}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
