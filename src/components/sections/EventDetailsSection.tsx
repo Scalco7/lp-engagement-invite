@@ -41,7 +41,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engage
                     <p><strong>Horário:</strong> {getDayOfWeek(engagementDate)}, {formatFullDate(engagementDate)}, às {formatTime(engagementDate)}</p>
                     <p><strong>Local:</strong> Nostra Casa Pizzaria (Pilarzinho)</p>
                     <p><strong>Endereço:</strong> R. Raposo Tavares, 1032 - Pilarzinho, Curitiba - PR</p>
-                    <p><strong>Valor:</strong> R$ 75,00 por pessoa (rodízio com bebidas inclusas, pago diretamente no local)</p>
+                    <p><strong>Valor: R$ 75,00 por pessoa</strong> (rodízio com bebidas inclusas, pago diretamente no local)</p>
                     <p><strong>Estacionamento:</strong> Estacionamento no local disponível para convidados</p>
                   </div>
                   <p className="font-sans text-[11px] text-brand-dark/65 leading-relaxed text-left italic">
