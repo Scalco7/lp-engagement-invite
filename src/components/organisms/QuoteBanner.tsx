@@ -3,11 +3,11 @@ import Reveal from '../atoms/Reveal';
 
 export const QuoteBanner: React.FC = () => {
   return (
-    <section className="relative h-screen p-5 overflow-hidden">
-      <div className="relative w-full h-full rounded-3xl overflow-hidden flex items-center justify-center">
+    <section className="relative h-fit md:h-screen p-5 overflow-hidden">
+      <div className="relative w-full h-[85vh] md:h-full rounded-3xl overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-brand-dark/40 z-10" />
         <img
-          src="/imgs/IMG_6500.jpg"
+          src="/imgs/hot_seeing_2.jpg"
           alt="Casal"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-4000"
         />
