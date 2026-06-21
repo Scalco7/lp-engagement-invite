@@ -41,7 +41,7 @@ const historyData: HistoryItem[] = [
   },
   {
     year: 'Novembro de 2025',
-    description: 'Férias, aniversários, casamentos de amigos, a formatura e tantas outras datas que passaram a ter um significado ainda mais especial porque estávamos juntos.',
+    description: 'Férias, aniversários, casamentos de amigos, uma formatura e tantas outras datas que passaram a ter um significado ainda mais especial porque estávamos juntos.',
     image: '/imgs/history/basket_day.jpeg',
   },
   {
@@ -81,7 +81,7 @@ const historyData: HistoryItem[] = [
   },
   {
     year: 'Março de 2026',
-    description: 'Nesse período, Felipe se mudou para Piraju/SP, uma cidade encantadora às margens do rio Paranapanema, um lugar onde eu facilmente imaginava construindo nossa futura família.',
+    description: 'Nesse período, Felipe se mudou para Piraju/SP, uma cidade encantadora às margens do rio Paranapanema, um lugar onde eu facilmente nos imaginavamos construindo nossa futura família.',
     image: '/imgs/history/piraju.jpeg',
   },
   {
