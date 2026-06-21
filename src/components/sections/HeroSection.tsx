@@ -41,7 +41,7 @@ export const HeroSection: React.FC = () => {
           <Reveal className="w-full relative shadow-lg rounded-2xl overflow-hidden border border-white/60">
             <div className="aspect-3/4 bg-neutral-100">
               <img
-                src="/imgs/test.jpg"
+                src="/imgs/cutties.jpg"
                 alt="Julia e Felipe"
                 className="w-full h-full object-cover"
               />
@@ -75,16 +75,21 @@ export const HeroSection: React.FC = () => {
             maxHeight: `700px`,
           }}
         >
-          {/* 1. MAIN CARD (test.jpg) */}
           <div
             className="w-full h-full shadow-lg relative overflow-hidden transition-all duration-100 ease-out border border-white/60"
             style={{ borderRadius: `${mainCardRadius}px` }}
           >
             <img
-              src="/imgs/test.jpg"
+              src="/imgs/cutties.jpg"
               alt="Julia e Felipe"
-              className="absolute inset-0 w-full h-full object-cover object-center"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover object-center"
+              style={{
+                width: '98vw',
+                height: '80vh',
+                maxHeight: '700px',
+              }}
             />
+
 
             <div
               className="absolute inset-0 bg-brand-dark transition-opacity duration-100 ease-out"
