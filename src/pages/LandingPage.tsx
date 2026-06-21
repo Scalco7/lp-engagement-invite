@@ -67,9 +67,9 @@ export default function LandingPage() {
             <HistorySection />
             <CountdownSection engagementDate={engagementDate} />
             <EventDetailsSection engagementDate={engagementDate} />
-            <ConfirmSection engagementDate={engagementDate} onRsvpUpdated={handleRsvpUpdated} />
             <AdditionalDetailsSection />
             <VlogsSection />
+            <ConfirmSection engagementDate={engagementDate} onRsvpUpdated={handleRsvpUpdated} />
             <QuoteBanner />
           </main>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gift, Shirt, Utensils } from 'lucide-react';
+import { Gift, Shirt } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
 
 export const AdditionalDetailsSection: React.FC = () => {
@@ -10,7 +10,7 @@ export const AdditionalDetailsSection: React.FC = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-accent rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-8 sm:mb-16">
           <Reveal>
             <span className="font-serif text-lg italic text-brand-accent block mb-2">Informações Úteis</span>
@@ -19,7 +19,7 @@ export const AdditionalDetailsSection: React.FC = () => {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Card: Traje (Dress Code) */}
           <Reveal delay={1}>
             <div className="bg-white py-4 px-8 sm:py-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
@@ -47,32 +47,8 @@ export const AdditionalDetailsSection: React.FC = () => {
             </div>
           </Reveal>
 
-          {/* Card: Cardápio */}
-          <Reveal delay={2}>
-            <div className="bg-white py-4 px-8 sm:py-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
-              <div className="w-14 h-14 bg-brand-bg/80 rounded-full flex items-center justify-center text-brand-accent mb-6">
-                <Utensils className="w-6 h-6" />
-              </div>
-              <h3 className="font-serif text-2xl text-brand-dark mb-4">Cardápio</h3>
-              <p className="font-sans text-sm text-brand-dark/75 leading-relaxed flex-grow">
-                Quer dar uma olhada nas opções de pizzas salgadas, doces e bebidas que teremos à disposição? Acesse o cardápio completo da pizzaria.
-              </p>
-              <div className="mt-8 w-full">
-                <a
-                  href="https://nostracasapizzaria.com.br/cardapio/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-brand-dark text-white hover:bg-brand-accent hover:text-brand-dark text-xs font-semibold uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer w-full text-center"
-                >
-                  <Utensils className="w-4 h-4" />
-                  Ver Opções
-                </a>
-              </div>
-            </div>
-          </Reveal>
-
           {/* Card: Presentes */}
-          <Reveal delay={3}>
+          <Reveal delay={2}>
             <div className="bg-white py-4 px-8 sm:py-8 rounded-2xl border border-brand-blush/30 shadow-sm hover:shadow-md transition-shadow duration-300 text-center h-full flex flex-col items-center">
               <div className="w-14 h-14 bg-brand-bg/80 rounded-full flex items-center justify-center text-brand-accent mb-6">
                 <Gift className="w-6 h-6" />
