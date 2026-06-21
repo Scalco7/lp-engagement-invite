@@ -56,7 +56,7 @@ export const RsvpLookupForm: React.FC<RsvpLookupFormProps> = ({ onSuccess, onGoH
     <div className="w-full max-w-md mx-auto px-4 py-8 md:py-16">
       <Reveal>
         <div className="bg-white border border-brand-blush/30 rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgba(61,44,37,0.04)] relative overflow-hidden">
-          
+
           {/* Decorative Top Line */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blush via-brand-sage to-brand-accent" />
 
@@ -68,7 +68,7 @@ export const RsvpLookupForm: React.FC<RsvpLookupFormProps> = ({ onSuccess, onGoH
               </div>
             </div>
             <h2 className="font-serif text-3xl italic text-brand-dark mb-2">
-              Acesso ao Bolão
+              Acesso aos Palpites
             </h2>
             <p className="font-sans text-xs text-brand-dark/60 leading-relaxed max-w-xs mx-auto">
               Para palpitar e ver os votos dos convidados, precisamos validar sua confirmação de presença.

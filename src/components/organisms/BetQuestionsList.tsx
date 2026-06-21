@@ -41,7 +41,7 @@ export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({
           <div className="flex flex-col items-center justify-center py-20 text-brand-accent space-y-4">
             <Loader2 className="w-8 h-8 animate-spin" />
             <p className="font-sans text-xs tracking-wider uppercase text-brand-dark/60">
-              Carregando as perguntas do bolão...
+              Carregando os palpites...
             </p>
           </div>
         ) : (
@@ -51,7 +51,7 @@ export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({
               <div className="bg-brand-sage/20 border border-brand-sage/40 rounded-2xl p-4 flex items-start gap-3 mb-8 max-w-2xl mx-auto">
                 <Info className="w-5 h-5 text-brand-dark/65 shrink-0 mt-0.5" />
                 <div className="font-sans text-xs text-brand-dark/80 leading-relaxed">
-                  <span className="font-semibold block mb-0.5 text-brand-dark">Como funciona o bolão?</span>
+                  <span className="font-semibold block mb-0.5 text-brand-dark">Como funcionam os palpites?</span>
                   Você só pode palpitar uma vez em cada pergunta. Após confirmar, seu palpite é registrado e as estatísticas do evento atualizam na hora!
                 </div>
               </div>
@@ -74,7 +74,7 @@ export const BetQuestionsList: React.FC<BetQuestionsListProps> = ({
             {questions.length === 0 && (
               <div className="text-center py-16 bg-white border border-brand-blush/20 rounded-3xl max-w-xl mx-auto shadow-sm">
                 <p className="font-sans text-sm text-brand-dark/60">
-                  Nenhuma pergunta cadastrada no bolão no momento. Volte mais tarde! 😊
+                  Nenhum palpite cadastrado no momento. Volte mais tarde! 😊
                 </p>
               </div>
             )}

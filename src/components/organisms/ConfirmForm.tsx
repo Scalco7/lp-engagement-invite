@@ -176,7 +176,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvp
                   <button
                     type="button"
                     onClick={() => handleSelectAttending('yes')}
-                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${formData.attending === 'yes'
+                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${formData.attending === 'yes'
                       ? 'border-brand-accent bg-brand-blush/20 text-brand-dark font-semibold'
                       : 'border-neutral-200 hover:border-brand-blush/50 text-brand-dark/70'
                       }`}
