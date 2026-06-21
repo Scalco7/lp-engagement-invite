@@ -97,11 +97,11 @@ const historyData: HistoryItem[] = [
     year: 'Maio de 2026',
     title: 'Pedido de Casamento',
     description: 'No dia 3 de maio de 2026, ao pôr do sol às margens do Rio Paranapanema, veio o  pedido de casamento. Um novo capítulo começava, e o sonho que nasceu em uma conversa despretensiosa agora se transformava em uma promessa para a vida toda.',
-    image: '/imgs/history/wedding_request_self.jpeg',
+    image: '/imgs/history/wedding_request.jpeg',
   },
   {
     description: 'Nossa história ainda está sendo escrita. Muitos capítulos, aventuras e sonhos nos aguardam. E ficamos felizes por ter vocês conosco, celebrando e fazendo parte deste momento tão especial das nossas vidas.',
-    image: '/imgs/history/wedding_request_2.jpeg',
+    image: '/imgs/history/hugging.jpeg',
   }
 ];
 

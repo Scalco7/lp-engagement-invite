@@ -77,7 +77,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engage
           <Reveal className="relative p-3 bg-white border border-brand-blush/20 shadow-xl rounded-2xl max-w-sm overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-500">
             <div className="aspect-3/3 rounded-xl overflow-hidden bg-neutral-100">
               <img
-                src="/imgs/IMG_6506.jpg"
+                src="/imgs/hot_seeing.jpeg"
                 alt="O Casal"
                 className="w-full h-full object-cover object-center hover:scale-[1.03] transition-transform duration-700"
               />
