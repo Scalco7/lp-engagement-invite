@@ -69,7 +69,7 @@ export default function LandingPage() {
             <EventDetailsSection engagementDate={engagementDate} />
             <AdditionalDetailsSection />
             <VlogsSection />
-            <ConfirmSection engagementDate={engagementDate} onRsvpUpdated={handleRsvpUpdated} />
+            <ConfirmSection onRsvpUpdated={handleRsvpUpdated} />
             <QuoteBanner />
           </main>
 
