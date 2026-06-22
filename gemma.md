@@ -135,7 +135,8 @@ src/
   - Ajustado o layout mobile da Hero para que renderize o título principal "Julia & Felipe" em um elemento `<h1>` com um overlay escuro sutil sobre a imagem principal. Isso corrige a ausência de cabeçalho `<h1>` nos celulares e atende à boa prática de SEO de ter exatamente um título `<h1>` principal por página para todos os dispositivos.
 - **Configuração de Roteamento SPA no Vercel (`vercel.json`)**:
   - Criado e configurado o arquivo `vercel.json` na raiz do projeto contendo `"buildCommand": "npm run build"` e `"outputDirectory": "dist"` para garantir que o Vercel compile a aplicação corretamente.
-  - Implementada uma regra de reescrita (`rewrites`) que redireciona todas as rotas não-estáticas (excluindo os diretórios `/assets/`, `/imgs/`, `/gifs/` e os arquivos de ícone `/icon.ico`/`/favicon.ico`) de volta para o `/index.html`. Isso evita que os arquivos estáticos de script/estilo sofram rewrite (o que quebrava o carregamento e causava erro 404/tela em branco) enquanto mantém o roteamento do React Router ativo para acessos diretos e atualizações de página.
+  - Implementada uma regra de reescrita (`rewrites`) padrão para aplicações SPA (`"source": "/(.*)"`, `"destination": "/index.html"`). Como o Vercel prioriza o carregamento de arquivos estáticos físicos existentes (assets, imagens, gifs), esta regra garante que as rotas dinâmicas do React Router funcionem perfeitamente em qualquer dispositivo sem conflito de tipos de arquivos ou erros de parsing de expressão regular no servidor.
+
 
 
 
