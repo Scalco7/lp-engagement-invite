@@ -1,8 +1,10 @@
 {
   "cleanUrls": true,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/|imgs/|gifs/|icon.ico|favicon.ico).*)",
       "destination": "/index.html"
     }
   ]

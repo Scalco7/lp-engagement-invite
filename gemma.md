@@ -134,7 +134,9 @@ src/
 - **Hierarquia Semântica e Consistência Mobile (`HeroSection.tsx`)**:
   - Ajustado o layout mobile da Hero para que renderize o título principal "Julia & Felipe" em um elemento `<h1>` com um overlay escuro sutil sobre a imagem principal. Isso corrige a ausência de cabeçalho `<h1>` nos celulares e atende à boa prática de SEO de ter exatamente um título `<h1>` principal por página para todos os dispositivos.
 - **Configuração de Roteamento SPA no Vercel (`vercel.json`)**:
-  - Criado o arquivo `vercel.json` na raiz do projeto configurando regras de redirecionamento (`rewrites`) para apontar todas as rotas de subdiretórios (como `/engagement-invite` e `/engagement-invite/bet`) de volta para o `/index.html` de entrada. Isso evita erros de 404 (Not Found) quando um convidado atualiza a página ou entra diretamente pelos links no navegador (tanto em smartphones quanto em computadores).
+  - Criado e configurado o arquivo `vercel.json` na raiz do projeto contendo `"buildCommand": "npm run build"` e `"outputDirectory": "dist"` para garantir que o Vercel compile a aplicação corretamente.
+  - Implementada uma regra de reescrita (`rewrites`) que redireciona todas as rotas não-estáticas (excluindo os diretórios `/assets/`, `/imgs/`, `/gifs/` e os arquivos de ícone `/icon.ico`/`/favicon.ico`) de volta para o `/index.html`. Isso evita que os arquivos estáticos de script/estilo sofram rewrite (o que quebrava o carregamento e causava erro 404/tela em branco) enquanto mantém o roteamento do React Router ativo para acessos diretos e atualizações de página.
+
 
 
 
