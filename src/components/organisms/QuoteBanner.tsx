@@ -14,10 +14,10 @@ export const QuoteBanner: React.FC = () => {
         <div className="relative z-20 text-center px-4 max-w-2xl mx-auto space-y-4">
           <Reveal>
             <p className="font-serif text-2xl sm:text-6xl sm:font-normal italic text-white font-light leading-relaxed">
-              "O amor é a chave que abre os portões da felicidade."
+              "As muitas águas não conseguem apagar o amor; os rios não conseguem levá-lo na correnteza."
             </p>
             <span className="font-sans text-xs uppercase tracking-widest text-brand-blush font-semibold mt-2 block">
-              — Oliver Wendell Holmes
+              — Cântico dos Cânticos 8:7
             </span>
           </Reveal>
         </div>
