@@ -35,7 +35,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engage
                 <div className="space-y-3">
                   <h3 className="font-serif text-2xl text-brand-dark">O Local</h3>
                   <p className="font-sans text-sm text-brand-dark/75 leading-relaxed text-left">
-                    Nossa comemoração será realizada na <strong>Nostra Casa Pizzaria</strong>. Venha celebrar conosco saboreando um delicioso rodízio de pizzas salgadas e doces em um ambiente super aconchegante!
+                    Nossa festa de noivado será realizada na <strong>Nostra Casa Pizzaria</strong>. Venha celebrar conosco saboreando um delicioso rodízio de pizzas salgadas e doces em um ambiente super aconchegante!
                   </p>
                   <div className="space-y-2 text-xs text-brand-dark/80 font-sans text-left bg-brand-bg/40 p-4 rounded-xl border border-brand-blush/10">
                     <p><strong>Horário:</strong> {getDayOfWeek(engagementDate)}, {formatFullDate(engagementDate)}, às {formatTime(engagementDate)}</p>
