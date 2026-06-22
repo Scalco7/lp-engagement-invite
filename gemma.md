@@ -133,5 +133,8 @@ src/
   - Configurada a tag `theme-color` com a cor escura oficial da identidade visual (`#3d2c25`) para customização de abas/barra de status em navegadores mobile compatíveis.
 - **Hierarquia Semântica e Consistência Mobile (`HeroSection.tsx`)**:
   - Ajustado o layout mobile da Hero para que renderize o título principal "Julia & Felipe" em um elemento `<h1>` com um overlay escuro sutil sobre a imagem principal. Isso corrige a ausência de cabeçalho `<h1>` nos celulares e atende à boa prática de SEO de ter exatamente um título `<h1>` principal por página para todos os dispositivos.
+- **Configuração de Roteamento SPA no Vercel (`vercel.json`)**:
+  - Criado o arquivo `vercel.json` na raiz do projeto configurando regras de redirecionamento (`rewrites`) para apontar todas as rotas de subdiretórios (como `/engagement-invite` e `/engagement-invite/bet`) de volta para o `/index.html` de entrada. Isso evita erros de 404 (Not Found) quando um convidado atualiza a página ou entra diretamente pelos links no navegador (tanto em smartphones quanto em computadores).
+
 
 
