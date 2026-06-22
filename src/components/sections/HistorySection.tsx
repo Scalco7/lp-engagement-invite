@@ -31,12 +31,12 @@ const historyData: HistoryItem[] = [
     image: '/imgs/history/request.jpeg',
   },
   {
-    title: 'Família',
+    year: 'Família',
     description: 'A partir dali, colecionamos memórias incríveis: passeios por Curitiba, o primeiro encontro com a família do Felipe.',
     image: '/imgs/history/scalco_family.jpeg',
   },
   {
-    title: 'Passeios',
+    year: 'Passeios',
     image: '/imgs/history/barigui_kiss.jpeg',
   },
   {
@@ -45,11 +45,11 @@ const historyData: HistoryItem[] = [
     image: '/imgs/history/basket_day.jpeg',
   },
   {
-    title: 'Casamento',
+    year: 'Casamento',
     image: '/imgs/history/friend_wedding.jpeg',
   },
   {
-    title: 'Formatura',
+    year: 'Formatura',
     image: '/imgs/history/gabi_graduation.jpeg',
   },
   {
@@ -58,11 +58,11 @@ const historyData: HistoryItem[] = [
     image: '/imgs/history/families_together.jpeg',
   },
   {
-    title: 'Ano novo',
+    year: 'Ano novo',
     image: '/imgs/history/new_year.jpeg',
   },
   {
-    title: 'Passeio no Zoo',
+    year: 'Passeio no Zoo',
     image: '/imgs/history/zoo.jpeg',
   },
   {
@@ -76,8 +76,8 @@ const historyData: HistoryItem[] = [
     image: '/imgs/history/carnival_acamp.jpeg',
   },
   {
-    title: 'Acampamento de carnaval',
-    description: "Festa das nações",
+    year: 'Acampamento de carnaval',
+    title: "Festa das nações",
     image: '/imgs/history/carnival_acamp_party.jpeg',
   },
   {
