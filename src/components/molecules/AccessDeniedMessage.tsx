@@ -11,7 +11,7 @@ export const AccessDeniedMessage: React.FC<AccessDeniedMessageProps> = ({ onGoHo
     <div className="w-full max-w-md mx-auto px-4 py-16">
       <Reveal>
         <div className="bg-white border border-brand-blush/30 rounded-3xl p-8 sm:p-10 shadow-[0_8px_30px_rgba(61,44,37,0.04)] relative overflow-hidden text-center">
-          
+
           {/* Decorative Top Line */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blush via-brand-sage to-brand-accent" />
 
@@ -29,8 +29,8 @@ export const AccessDeniedMessage: React.FC<AccessDeniedMessageProps> = ({ onGoHo
 
           {/* Message */}
           <p className="font-sans text-sm text-brand-dark/70 leading-relaxed mb-8">
-            Você informou na confirmação de presença que infelizmente não poderá comparecer ao evento. 
-            O bolão é exclusivo para os convidados confirmados. Sentiremos muito sua falta! ❤️
+            Você informou na confirmação de presença que infelizmente não poderá comparecer ao evento.
+            Os palpites são exclusivos para os convidados confirmados. Sentiremos muito sua falta! ❤️
           </p>
 
           {/* Button */}

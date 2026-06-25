@@ -125,3 +125,19 @@ src/
 - **Correção da Intercepção de Roteamento no Countdown (`CountdownSection.tsx`)**:
   - Removido o scroll-jacking (`scrollIntoView`) na seção de countdown que forçava o alinhamento da seção à tela. Esse comportamento interceptava e interrompia a navegação fluida quando o usuário clicava nos links do cabeçalho ("A Celebração" e "Confirmar") e passava pela contagem regressiva. O disparo de confetes continua ocorrendo normalmente de forma sutil quando o componente fica visível na tela.
 
+### G. Otimizações de SEO e Compartilhamento de Links (Social Cards)
+- **Metatags Globais no `index.html`**:
+  - Adicionados títulos e descrições primárias otimizadas em português brasileiro para motores de busca, contendo detalhes como data (25 de Julho de 2026), local (Nostra Casa Pizzaria) e menção ao bolão de palpites.
+  - Implementado o protocolo **Open Graph (OG)** para melhorar a apresentação visual ao compartilhar o convite em redes sociais e mensageiros como WhatsApp, Telegram, Facebook e Slack (configurando título, descrição enriquecida, imagem do casal `/imgs/cutties.jpg` e locale `pt_BR`).
+  - Adicionado suporte a **Twitter Cards** (`summary_large_image`) com as mesmas informações para otimização visual no X/Twitter.
+  - Configurada a tag `theme-color` com a cor escura oficial da identidade visual (`#3d2c25`) para customização de abas/barra de status em navegadores mobile compatíveis.
+- **Hierarquia Semântica e Consistência Mobile (`HeroSection.tsx`)**:
+  - Ajustado o layout mobile da Hero para que renderize o título principal "Julia & Felipe" em um elemento `<h1>` com um overlay escuro sutil sobre a imagem principal. Isso corrige a ausência de cabeçalho `<h1>` nos celulares e atende à boa prática de SEO de ter exatamente um título `<h1>` principal por página para todos os dispositivos.
+- **Configuração de Roteamento SPA no Vercel (`vercel.json`)**:
+  - Criado e configurado o arquivo `vercel.json` na raiz do projeto contendo `"buildCommand": "npm run build"` e `"outputDirectory": "dist"` para garantir que o Vercel compile a aplicação corretamente.
+  - Implementada uma regra de reescrita (`rewrites`) padrão para aplicações SPA (`"source": "/(.*)"`, `"destination": "/index.html"`). Como o Vercel prioriza o carregamento de arquivos estáticos físicos existentes (assets, imagens, gifs), esta regra garante que as rotas dinâmicas do React Router funcionem perfeitamente em qualquer dispositivo sem conflito de tipos de arquivos ou erros de parsing de expressão regular no servidor.
+
+
+
+
+

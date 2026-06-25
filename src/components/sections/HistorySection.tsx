@@ -2,79 +2,108 @@ import React, { useRef, useEffect, useState } from 'react';
 import Reveal from '../atoms/Reveal';
 
 interface HistoryItem {
-  year: string;
-  title: string;
-  description: string;
+  year?: string;
+  title?: string;
+  description?: string;
   image: string;
 }
 
 const historyData: HistoryItem[] = [
   {
-    year: '2015',
-    title: 'O Primeiro Olhar',
-    description: 'Tudo começou com uma conversa despretensiosa em um dia comum, mas que parecia não ter fim. Em poucos minutos, percebemos que havia uma conexão especial ali, algo raro que mal podíamos esperar para descobrir mais.',
-    image: '/imgs/IMG_6420.jpg',
+    year: 'Maio de 2025',
+    description: 'Tudo começou por causa de um vídeo de programação que, curiosamente, nem sabemos mais qual é. Foram três meses de mensagens, ligações intermináveis e muitas horas compartilhando sonhos, planos e histórias. Até que chegou a hora de transformar tudo aquilo em realidade.',
+    image: '/imgs/history/may_2025.jpeg',
   },
   {
-    year: '2016',
-    title: 'O Primeiro Encontro',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. O riso foi fácil e a certeza de querer estar perto um do outro só aumentou.',
-    image: '/imgs/IMG_6436.jpg',
+    year: 'Agosto de 2025',
+    title: 'Primeiro Encontro',
+    description: 'No dia 15 de agosto de 2025, Felipe saiu de Curitiba/PR rumo a Presidente Prudente/SP. Foram mais de 600 quilômetros de estrada, alguns imprevistos pelo caminho e horas de atraso. Mas bastou um final de semana para percebermos que tudo aquilo valia a pena. O que antes existia apenas através das telas finalmente se tornou real.',
+    image: '/imgs/history/august_2025.jpeg',
   },
   {
-    year: '2017',
-    title: 'Nossa Primeira Viagem',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Descobrimos o prazer de viajar juntos.',
-    image: '/imgs/IMG_6449.jpg',
+    year: 'Setembro de 2025',
+    description: 'Depois vieram mais encontros, cada um confirmando aquilo que já sentíamos.',
+    image: '/imgs/history/september_2025.jpeg',
   },
   {
-    year: '2018',
-    title: 'Criando Laços',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Cada dia mais unidos na rotina e nos sonhos.',
-    image: '/imgs/IMG_6500.jpg',
+    year: 'Outubro de 2025',
+    description: 'Até que, no fim de semana de 11 de outubro de 2025 em Cornélio Procópio/PR, o pedido de namoro. Foi simples, surpreendente e perfeito.',
+    image: '/imgs/history/request.jpeg',
   },
   {
-    year: '2019',
-    title: 'Conquistando Espaços',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Comemoramos juntos cada vitória.',
-    image: '/imgs/IMG_6506.jpg',
+    year: 'Família',
+    description: 'A partir dali, colecionamos memórias incríveis: passeios por Curitiba, o primeiro encontro com a família do Felipe.',
+    image: '/imgs/history/scalco_family.jpeg',
   },
   {
-    year: '2020',
-    title: 'Novos Desafios',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis nunc sed id semper risus in hendrerit gravida rutrum. Diante de qualquer adversidade, descobrimos que nossa maior força era estarmos de mãos dadas.',
-    image: '/imgs/IMG_6507.jpg',
+    year: 'Passeios',
+    image: '/imgs/history/barigui_kiss.jpeg',
   },
   {
-    year: '2021',
-    title: 'Nosso Cantinho',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus iaculis urna id volutpat lacus laoreet non curabitur. Demos vida a um espaço que tem a nossa cara e reflete o aconchego do nosso amor.',
-    image: '/imgs/IMG_6374.jpg',
+    year: 'Novembro de 2025',
+    description: 'Férias, aniversários, casamentos de amigos, uma formatura e tantas outras datas que passaram a ter um significado ainda mais especial porque estávamos juntos.',
+    image: '/imgs/history/basket_day.jpeg',
   },
   {
-    year: '2022',
-    title: 'O Pedido de Namoro',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pretium vulputate sapien nec sagittis aliquam malesuada. Sob um céu inesquecível, dissemos o primeiro sim oficial para a nossa história.',
-    image: '/imgs/test.jpg',
+    year: 'Casamento',
+    image: '/imgs/history/friend_wedding.jpeg',
   },
   {
-    year: '2023',
-    title: 'Amadurecendo Juntos',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi scelerisque eu ultrices vitae auctor eu augue ut lectus. Compartilhamos planos de vida a longo prazo e a vontade inabalável de construir uma família.',
-    image: '/imgs/IMG_6420.jpg',
+    year: 'Formatura',
+    image: '/imgs/history/gabi_graduation.jpeg',
   },
   {
-    year: '2024',
-    title: 'O Planejamento',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat pretium nibh ipsum consequat nisl vel pretium. Cada passo dado foi com o coração cheio de expectativa pelo futuro incrível que nos aguarda.',
-    image: '/imgs/IMG_6436.jpg',
+    year: 'Dezembro de 2025',
+    description: 'Nossas famílias também se conheceram, compartilhamos nosso primeiro Natal e Ano Novo.',
+    image: '/imgs/history/families_together.jpeg',
   },
   {
-    year: '2025',
-    title: 'O Pedido de Casamento',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Um momento íntimo, repleto de lágrimas de pura alegria e a certeza absoluta de que queremos o "para sempre".',
-    image: '/imgs/IMG_6449.jpg',
+    year: 'Ano novo',
+    image: '/imgs/history/new_year.jpeg',
   },
+  {
+    year: 'Passeio no Zoo',
+    image: '/imgs/history/zoo.jpeg',
+  },
+  {
+    year: 'Janeiro de 2026',
+    description: 'E vivemos aventuras que jamais esqueceremos, como a trilha do Itupava ao lado dos amigos do Felipe.',
+    image: '/imgs/history/itupava_hikking.jpeg',
+  },
+  {
+    year: 'Fevereiro de 2026',
+    title: 'Acampamento de carnaval',
+    image: '/imgs/history/carnival_acamp.jpeg',
+  },
+  {
+    year: 'Acampamento de carnaval',
+    title: "Festa das nações",
+    image: '/imgs/history/carnival_acamp_party.jpeg',
+  },
+  {
+    year: 'Março de 2026',
+    description: 'Nesse período, Felipe se mudou para Piraju/SP, uma cidade encantadora às margens do rio Paranapanema, um lugar onde eu facilmente nos imaginavamos construindo nossa futura família.',
+    image: '/imgs/history/piraju.jpeg',
+  },
+  {
+    year: 'Abril de 2026',
+    description: 'Mas a vida ainda nos reservava mais surpresas. Felipe foi aprovado para um mestrado em Portugal. Com a alegria da conquista, também vieram os desafios: a distância, a saudade e a incerteza do tempo que passaríamos separados.',
+    image: '/imgs/history/pt_edital_result.jpeg',
+  },
+  {
+    description: 'E foi justamente em meio a tudo isso que tivemos mais uma confirmação de que o amor sempre encontra seu caminho.',
+    image: '/imgs/history/in_the_car.jpeg',
+  },
+  {
+    year: 'Maio de 2026',
+    title: 'Pedido de Casamento',
+    description: 'No dia 3 de maio de 2026, ao pôr do sol às margens do Rio Paranapanema, veio o  pedido de casamento. Um novo capítulo começava, e o sonho que nasceu em uma conversa despretensiosa agora se transformava em uma promessa para a vida toda.',
+    image: '/imgs/history/wedding_request.jpeg',
+  },
+  {
+    description: 'Nossa história ainda está sendo escrita. Muitos capítulos, aventuras e sonhos nos aguardam. E ficamos felizes por ter vocês conosco, celebrando e fazendo parte deste momento tão especial das nossas vidas.',
+    image: '/imgs/history/hugging.jpeg',
+  }
 ];
 
 export const HistorySection: React.FC = () => {
@@ -163,7 +192,7 @@ export const HistorySection: React.FC = () => {
   };
 
   return (
-    <section id="story" ref={containerRef} className="relative h-[800vh] bg-brand-bg">
+    <section id="story" ref={containerRef} className="relative h-[1800vh] bg-brand-bg">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center px-4 overflow-hidden">
 
         {/* Title Area */}
@@ -176,38 +205,50 @@ export const HistorySection: React.FC = () => {
         </div>
 
         {/* Cards Stack Container */}
-        <div className="relative w-full max-w-4xl h-[390px] sm:h-[420px] md:h-[440px] flex items-center justify-center">
-          {historyData.map((item, index) => (
-            <div
-              key={index}
-              className="absolute w-[95%] max-w-[800px] h-[360px] sm:h-[390px] md:h-[390px] flex flex-col md:flex-row bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out"
-              style={getCardStyle(index)}
-            >
-              {/* Left Column: Image */}
-              <div className="w-full md:w-1/2 h-[130px] sm:h-[160px] md:h-full overflow-hidden relative">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-brand-dark/5" />
-              </div>
+        <div className="relative w-full max-w-4xl h-[510px] sm:h-[530px] md:h-[440px] flex items-center justify-center">
+          {historyData.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={`absolute top-4 md:top-6 w-[95%] max-w-[800px] flex flex-col md:flex-row items-center md:items-stretch justify-start bg-white rounded-3xl shadow-md overflow-hidden border border-brand-blush/20 transition-all duration-75 ease-out h-[480px] md:h-[390px]`}
+                style={getCardStyle(index)}
+              >
+                {/* Image Container */}
+                <div className="relative w-full md:w-1/2 h-[250px] md:h-full overflow-hidden bg-brand-dark/5">
+                  {/* Blurred background image for mobile */}
+                  <img
+                    src={item.image}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-40 select-none pointer-events-none md:hidden"
+                  />
+                  {/* Main image */}
+                  <img
+                    src={item.image}
+                    alt={item.title || "Foto da história"}
+                    className="w-full h-full object-contain md:object-cover relative z-10"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-brand-dark/5 z-20" />
+                </div>
 
-              {/* Right Column: Text */}
-              <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 flex flex-col justify-center space-y-2.5 sm:space-y-3 text-left">
-                <span className="font-serif text-2xl sm:text-3xl italic text-brand-accent block">
-                  {item.year}
-                </span>
-                <h3 className="font-serif text-xl sm:text-2xl font-light text-brand-dark">
-                  {item.title}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-brand-dark/75 leading-relaxed">
-                  {item.description}
-                </p>
+                <div className="w-full md:w-1/2 h-[230px] md:h-full p-5 md:p-8 flex flex-col justify-center space-y-2 md:space-y-3 text-left bg-white">
+                  {item.year && (
+                    <span className="font-serif text-2xl sm:text-3xl italic text-brand-accent block">
+                      {item.year}
+                    </span>
+                  )}
+                  {item.title && (
+                    <h3 className="font-serif text-xl sm:text-2xl font-light text-brand-dark">
+                      {item.title}
+                    </h3>
+                  )}
+                  <p className="font-sans text-xs sm:text-sm text-brand-dark/75 leading-relaxed overflow-y-auto">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

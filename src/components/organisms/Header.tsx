@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection, rsvp }) => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 font-sans text-[11px] font-medium uppercase tracking-widest text-brand-dark/80">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-6 font-sans text-[11px] font-medium uppercase tracking-widest text-brand-dark/80">
           {/* Palpites Button */}
           {showButton && (
             <button
@@ -85,18 +85,20 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection, rsvp }) => {
                 } ${isDisappearing ? 'animate-shrink-fade' : ''}`}
             >
               {isLocked && (
-                <Lock className={`w-3 h-3 text-brand-dark/40 ${isUnlocking ? 'animate-unlock' : ''}`} />
+                <Lock className={`w-3.5 h-3.5 text-brand-dark/40 ${isUnlocking ? 'animate-unlock' : ''}`} />
               )}
               Palpites
             </button>
           )}
 
           <button onClick={() => handleScroll('story')} className="hover:text-brand-accent transition-colors duration-300 cursor-pointer">Nossa História</button>
-          <button onClick={() => handleScroll('event')} className="hover:text-brand-accent transition-colors duration-300 cursor-pointer">A Celebração</button>
+          <button onClick={() => handleScroll('event')} className="hover:text-brand-accent transition-colors duration-300 cursor-pointer">O Local</button>
+          <button onClick={() => handleScroll('additional-details')} className="hover:text-brand-accent transition-colors duration-300 cursor-pointer">Detalhes</button>
+          <button onClick={() => handleScroll('vlogs')} className="hover:text-brand-accent transition-colors duration-300 cursor-pointer">Vlogs</button>
 
           <button
             onClick={() => handleScroll('confirm')}
-            className="px-5 py-2 bg-brand-dark text-white rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+            className="px-5 py-2 bg-brand-dark text-white rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer shrink-0"
           >
             Confirmar
           </button>
@@ -131,7 +133,9 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection, rsvp }) => {
             )}
 
             <button onClick={() => handleScroll('story')} className="text-left py-2 border-b border-brand-accent/10 cursor-pointer">Nossa História</button>
-            <button onClick={() => handleScroll('event')} className="text-left py-2 border-b border-brand-accent/10 cursor-pointer">A Celebração</button>
+            <button onClick={() => handleScroll('event')} className="text-left py-2 border-b border-brand-accent/10 cursor-pointer">O Local</button>
+            <button onClick={() => handleScroll('additional-details')} className="text-left py-2 border-b border-brand-accent/10 cursor-pointer">Detalhes Adicionais</button>
+            <button onClick={() => handleScroll('vlogs')} className="text-left py-2 border-b border-brand-accent/10 cursor-pointer">Vlogs</button>
 
             <button
               onClick={() => handleScroll('confirm')}

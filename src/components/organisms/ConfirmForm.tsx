@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { Heart, Send, CheckCircle } from 'lucide-react';
 import Reveal from '../atoms/Reveal';
-import { formatFullDate, getConfirmDeadline } from '../../utils/date';
 import { rsvpStorage, type LocalRsvp } from '../../services/rsvpStorage';
 import { rsvpService } from '../../api/rsvp.service';
 
@@ -24,11 +23,10 @@ const formatPhone = (value: string): string => {
 };
 
 interface ConfirmFormProps {
-  engagementDate: Date;
   onRsvpUpdated?: () => void;
 }
 
-export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvpUpdated }) => {
+export const ConfirmForm: React.FC<ConfirmFormProps> = ({ onRsvpUpdated }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -112,7 +110,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvp
                   Confirmação de Presença
                 </span>
                 <p className="font-sans text-xs text-brand-dark/60 mt-2">
-                  Por favor, confirme sua presença até o dia {formatFullDate(getConfirmDeadline(engagementDate))}.
+                  Por favor, confirme sua presença até o dia 29 de junho.
                 </p>
               </div>
 
@@ -176,7 +174,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ engagementDate, onRsvp
                   <button
                     type="button"
                     onClick={() => handleSelectAttending('yes')}
-                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${formData.attending === 'yes'
+                    className={`py-3.5 rounded-xl border text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${formData.attending === 'yes'
                       ? 'border-brand-accent bg-brand-blush/20 text-brand-dark font-semibold'
                       : 'border-neutral-200 hover:border-brand-blush/50 text-brand-dark/70'
                       }`}

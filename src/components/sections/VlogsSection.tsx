@@ -13,23 +13,23 @@ interface Vlog {
 const vlogsData: Vlog[] = [
   {
     id: 'imDS02iQGVA',
-    title: 'Redressa Scalco Vlog',
+    title: 'Vlog de um final de semana',
     episode: 'Episódio 1',
-    description: 'Nossa primeira aventura gravada em vídeo, compartilhando momentos especiais e divertidos.',
+    description: 'Nossa primeira aventura em vídeo, compartilhando momentos divertidos de um final de semana.',
     thumbnail: 'https://img.youtube.com/vi/imDS02iQGVA/maxresdefault.jpg',
   },
   {
     id: '7ouiLlS6XF0',
-    title: 'Redressa Scalco Vlog',
+    title: 'Vlog de ano novo',
     episode: 'Episódio 2',
-    description: 'Dando continuidade à nossa jornada, registrando sorrisos, passeios e descobertas juntos.',
+    description: 'Dando continuidade à nossa jornada, registrando como foi o acampamento de ano novo.',
     thumbnail: 'https://img.youtube.com/vi/7ouiLlS6XF0/maxresdefault.jpg',
   },
   {
     id: 'gp6e4IhfEyE',
-    title: 'Redressa Scalco Vlog',
+    title: 'Vlog no zoológico',
     episode: 'Episódio 3',
-    description: 'Mais um capítulo da nossa história registrado em vídeo para guardar com muito carinho.',
+    description: 'Venha com a gente ver como foi o passeio no zoológico.',
     thumbnail: 'https://img.youtube.com/vi/gp6e4IhfEyE/maxresdefault.jpg',
   },
 ];
