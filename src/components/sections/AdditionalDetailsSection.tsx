@@ -78,13 +78,19 @@ export const AdditionalDetailsSection: React.FC = () => {
                 <Gift className="w-6 h-6" />
               </div>
               <h3 className="font-serif text-2xl text-brand-dark mb-4">Presentes</h3>
-              <p className="font-sans text-sm text-brand-dark/75 leading-relaxed flex-grow">
-                Sua presença é o nosso maior presente! Porém, caso deseje nos presentear, disponibilizamos uma chave PIX, ou você pode entregar na hora.
+              <p className="font-sans text-sm text-brand-dark/75 leading-relaxed mb-8 grow">
+                Sua presença é o nosso maior presente! Guarde o presente de agora para o nosso casamento.
               </p>
-              <div className="mt-8 flex flex-col gap-2 w-full">
-                <div className="flex items-center justify-center gap-2 text-[10px] sm:text-xs font-semibold text-brand-dark uppercase tracking-widest bg-brand-bg px-5 py-3 rounded-full w-full border border-brand-blush/20">
-                  <span className="text-brand-accent">PIX:</span>
-                  <span className="select-all">(41) 99586-9381</span>
+
+              {/* Badges/Tags */}
+              <div className="flex flex-wrap justify-center gap-2 w-full mt-auto">
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-brand-dark bg-brand-bg px-3 py-1.5 rounded-full border border-brand-blush/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
+                  <span>Sua presença é o essencial</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-brand-dark bg-brand-bg px-3 py-1.5 rounded-full border border-brand-blush/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-blush" />
+                  <span>Guarde para o casamento</span>
                 </div>
               </div>
             </div>
