@@ -45,7 +45,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ engage
                     <p><strong>Estacionamento:</strong> Estacionamento no local disponível para convidados</p>
                   </div>
                   <p className="font-sans text-[11px] text-brand-dark/65 leading-relaxed text-left italic">
-                    * A confirmação de presença é muito importante para organizarmos a reserva junto ao local. Por favor, confirme até o dia 29 de junho.
+                    * A confirmação de presença é muito importante para organizarmos a reserva junto ao local. Por favor, confirme até o dia 05 de julho.
                   </p>
                 </div>
                 <div className="pt-2 flex flex-wrap gap-3">
