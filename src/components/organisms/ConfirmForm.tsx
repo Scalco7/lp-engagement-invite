@@ -110,7 +110,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = ({ onRsvpUpdated }) => {
                   Confirmação de Presença
                 </span>
                 <p className="font-sans text-xs text-brand-dark/60 mt-2">
-                  Por favor, confirme sua presença até o dia 05 de julho.
+                  Por favor, confirme sua presença até o dia 20 de julho.
                 </p>
               </div>
 
